@@ -13,18 +13,18 @@
     
     <style>
         :root {
-            --bg-main: #F8F6FC; /* Tím oải hương phấn nhạt mát dịu */
+            --bg-gradient: linear-gradient(135deg, #fcfaff 0%, #efe7fb 50%, #f6e6ff 100%);
             --bg-card: rgba(255, 255, 255, 0.65);
             --bg-glass: rgba(255, 255, 255, 0.85);
-            --primary: #7c5fd1; /* Tím oải hương pastel chủ đạo */
-            --primary-light: #f0ecfa;
-            --primary-glow: rgba(124, 95, 209, 0.12);
-            --accent: #a894fa;
-            --accent-pink: #f4d3ff;
+            --primary: #8569e0; /* Tím oải hương chủ đạo */
+            --primary-light: #ece9fc;
+            --primary-glow: rgba(133, 105, 224, 0.15);
+            --accent: #b2a1fa;
+            --accent-pink: #f6dbff;
             --text-main: #2b1f45; /* Chữ màu tím sẫm quý phái */
             --text-muted: #6e608a;
-            --border: rgba(124, 95, 209, 0.12);
-            --border-hover: rgba(124, 95, 209, 0.35);
+            --border: rgba(133, 105, 224, 0.12);
+            --border-hover: rgba(133, 105, 224, 0.35);
             --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Plus Jakarta Sans', sans-serif;
@@ -39,11 +39,12 @@
         }
 
         body {
-            background-color: var(--bg-main);
+            background: var(--bg-gradient);
             color: var(--text-main);
             font-family: var(--font-sans);
             overflow-x: hidden;
             line-height: 1.65;
+            position: relative;
         }
 
         /* Custom Scrollbar */
@@ -51,43 +52,57 @@
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: var(--bg-main);
+            background: rgba(255, 255, 255, 0.5);
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(124, 95, 209, 0.25);
+            background: rgba(133, 105, 224, 0.25);
             border-radius: 10px;
         }
 
-        /* Misty Ambient Background */
-        .ambient-mist {
+        /* Floating Bubbles Background Effect */
+        .bubble-container {
             position: fixed;
-            border-radius: 50%;
-            filter: blur(120px);
-            z-index: -2;
-            opacity: 0.65;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
             pointer-events: none;
         }
-        .mist-1 {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, #f0e3ff 0%, rgba(255,255,255,0) 70%);
-            top: -10%;
-            left: -10%;
-            animation: drift 25s infinite alternate ease-in-out;
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: radial-gradient(circle, rgba(178, 161, 250, 0.3) 0%, rgba(246, 219, 255, 0.05) 100%);
+            border-radius: 50%;
+            animation: float-up infinite linear;
+            pointer-events: none;
         }
-        .mist-2 {
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, #e3f0ff 0%, rgba(255,255,255,0) 70%);
-            bottom: -10%;
-            right: -10%;
-            animation: drift 30s infinite alternate-reverse ease-in-out;
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) scale(0.6);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.7;
+            }
+            85% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.2);
+                opacity: 0;
+            }
         }
 
-        @keyframes drift {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(40px, 30px) scale(1.08); }
-        }
+        /* Generates varying bubble parameters */
+        .bubble:nth-child(1) { left: 10%; width: 80px; height: 80px; animation-duration: 18s; animation-delay: 0s; }
+        .bubble:nth-child(2) { left: 25%; width: 45px; height: 45px; animation-duration: 14s; animation-delay: 2s; }
+        .bubble:nth-child(3) { left: 40%; width: 100px; height: 100px; animation-duration: 22s; animation-delay: 4s; }
+        .bubble:nth-child(4) { left: 55%; width: 60px; height: 60px; animation-duration: 16s; animation-delay: 1s; }
+        .bubble:nth-child(5) { left: 70%; width: 85px; height: 85px; animation-duration: 20s; animation-delay: 5s; }
+        .bubble:nth-child(6) { left: 85%; width: 50px; height: 50px; animation-duration: 15s; animation-delay: 3s; }
+        .bubble:nth-child(7) { left: 92%; width: 70px; height: 70px; animation-duration: 17s; animation-delay: 7s; }
 
         .wrapper {
             max-width: 1140px;
@@ -134,10 +149,10 @@
             background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(124, 95, 209, 0.15);
+            border: 1px solid rgba(133, 105, 224, 0.15);
             border-radius: 40px;
             padding: 12px 28px;
-            box-shadow: 0 10px 30px rgba(124, 95, 209, 0.04);
+            box-shadow: 0 10px 30px rgba(133, 105, 224, 0.04);
             transition: var(--transition);
         }
         .logo {
@@ -181,7 +196,7 @@
             transition: var(--transition);
         }
         .btn-drive-dock:hover {
-            box-shadow: 0 6px 16px rgba(124, 95, 209, 0.25);
+            box-shadow: 0 6px 16px rgba(133, 105, 224, 0.25);
             transform: translateY(-1px);
         }
 
@@ -214,9 +229,9 @@
         }
         .hero-title {
             font-family: var(--font-serif);
-            font-size: 48px;
+            font-size: 52px;
             line-height: 1.15;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 20px;
             letter-spacing: -0.8px;
         }
@@ -235,9 +250,66 @@
             max-width: 500px;
             line-height: 1.65;
         }
+        
+        /* Prettier Action Buttons (Độc đáo & Đẹp mắt hơn) */
         .hero-actions {
             display: flex;
+            gap: 16px;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
             gap: 12px;
+            padding: 15px 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, #654fd6 100%);
+            color: #fff;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(124, 95, 209, 0.35);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .btn-primary:hover::after {
+            left: 100%;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(124, 95, 209, 0.45);
+        }
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 32px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(124, 95, 209, 0.05);
+        }
+        .btn-secondary:hover {
+            background: #fff;
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(124, 95, 209, 0.15);
         }
 
         /* Collage Frame */
@@ -263,7 +335,7 @@
             background: #fff;
             border-radius: 20px;
             padding: 8px;
-            box-shadow: 0 15px 35px rgba(124, 95, 209, 0.08);
+            box-shadow: 0 15px 35px rgba(133, 105, 224, 0.08);
             z-index: 2;
             transform: rotate(2deg);
             transition: var(--transition);
@@ -303,7 +375,7 @@
             display: grid;
             grid-template-columns: 1.15fr 0.85fr;
             gap: 48px;
-            box-shadow: 0 10px 30px rgba(124, 95, 209, 0.04);
+            box-shadow: 0 10px 30px rgba(133, 105, 224, 0.04);
             margin-bottom: 40px;
         }
         .about-text h3 {
@@ -424,7 +496,7 @@
             box-shadow: 0 6px 16px rgba(124, 95, 209, 0.2);
         }
 
-        /* Staggered Symmetrical Bento Grid (Sự cân bằng so le hợp lý) */
+        /* Staggered Symmetrical Bento Grid Layout */
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -450,8 +522,6 @@
             border-color: var(--border-hover);
             box-shadow: 0 10px 24px rgba(124, 95, 209, 0.06);
         }
-        
-        /* So le hợp lý qua từng hàng: Row 1 (1 | 2), Row 2 (2 | 1), Row 3 (1 | 2) */
         .bento-item.size-wide {
             grid-column: span 2;
         }
@@ -773,11 +843,18 @@
 </head>
 <body>
 
-    <!-- Mist backgrounds -->
-    <div class="ambient-mist mist-1"></div>
-    <div class="ambient-mist mist-2"></div>
+    <!-- Bubbles layer -->
+    <div class="bubble-container">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
 
-    <!-- Header Navigation (Traditional Top Bar with Glassmorphism) -->
+    <!-- Header Navigation -->
     <header id="header">
         <div class="wrapper">
             <div class="nav-container">
@@ -801,14 +878,13 @@
         <div class="wrapper hero-grid">
             <div class="hero-text">
                 <div class="hero-badge">
-                    <i class="fas fa-apple-alt"></i> Khoa Sư phạm Tiếng Anh
+                    <i class="fas fa-apple-alt"></i> Ngành Sư phạm Tiếng Anh
                 </div>
                 <h1 class="hero-title">
-                    <span>Kiến thiết giáo án</span>
-                    <em>vững vàng nền số</em>
+                    <span>Nguyễn Đặng Gia Linh</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Chào cậu! Tớ là Gia Linh, sinh viên chuyên ngành Sư phạm Tiếng Anh tại ULIS. Nơi đây lưu giữ hành trình tớ tự học, rèn luyện năng lực số và ứng dụng trí tuệ nhân tạo để thiết kế những phương án giảng dạy hiện đại, trực quan nhất.
+                    Chào cậu! Tớ đang học ngành Sư phạm Tiếng Anh tại ULIS. Nơi đây lưu giữ hành trình tớ tự học, rèn luyện năng lực số và ứng dụng trí tuệ nhân tạo để thiết kế những phương án giảng dạy hiện đại, trực quan nhất.
                 </p>
                 <div class="hero-actions">
                     <a href="#projects" class="btn-primary">Xem bộ bài làm</a>
@@ -1115,37 +1191,37 @@
                 title: "Thao tác cơ bản với Tệp và Thư mục",
                 content: `
                     <div class="modal-alert">
-                        <strong>Mục tiêu:</strong> Làm chủ 12 bước cơ bản của hệ thống Windows Explorer để tổ chức không gian lưu trữ dữ liệu khoa học, ngăn nắp phục vụ soạn giáo án lâu dài.
+                        <strong>Mục tiêu bài tập:</strong> Làm chủ các thao tác lưu trữ, kiểm soát dữ liệu cá nhân một cách có khoa học để tiết kiệm thời gian điều phối và định hướng quản lý thông tin chính xác trên máy tính cá nhân.
                     </div>
                     
-                    <h5>Toàn bộ 12 bước thực hành chi tiết theo báo cáo:</h5>
+                    <h5>Hành trình 12 bước thực hành chi tiết theo báo cáo:</h5>
                     <div class="stepper">
                         <div class="step-node">
                             <div class="step-circle">1</div>
                             <div class="step-content">
                                 <div class="step-title">Mở File Explorer</div>
-                                <p>Sử dụng tổ hợp phím tắt <code>Windows + E</code> hoặc trực tiếp nhấp vào biểu tượng thư mục màu vàng quen thuộc hiển thị trên thanh tác vụ của hệ điều hành.</p>
+                                <p>Sử dụng tổ hợp phím tắt nhanh <code>Windows + E</code> hoặc nhấn vào biểu tượng thư mục màu vàng quen thuộc trên thanh tác vụ (Taskbar).</p>
                             </div>
                         </div>
                         <div class="step-node">
                             <div class="step-circle">2</div>
                             <div class="step-content">
                                 <div class="step-title">Truy cập ổ đĩa dữ liệu</div>
-                                <p>Ở cột định vị bên trái màn hình, nhấp chọn vào mục <code>This PC</code>. Sau đó, nhấp đúp để mở một ổ đĩa không phải hệ thống (ví dụ: ổ <code>D:</code> hoặc <code>E:</code>) để lưu trữ an toàn. Trong trường hợp máy tính cá nhân chỉ sở hữu duy nhất ổ <code>C:</code>, di chuyển vào thư mục hệ thống <code>Documents</code>.</p>
+                                <p>Ở cột định vị thư mục bên trái màn hình, nhấp chọn vào mục <code>This PC</code>. Sau đó, nhấp đúp để mở một ổ đĩa không phải hệ thống (ví dụ: ổ <code>D:</code> hoặc <code>E:</code>) để bảo vệ dữ liệu. Trong trường hợp máy tính cá nhân chỉ sở hữu duy nhất ổ <code>C:</code>, di chuyển vào thư mục hệ thống <code>Documents</code>.</p>
                             </div>
                         </div>
                         <div class="step-node">
                             <div class="step-circle">3</div>
                             <div class="step-content">
                                 <div class="step-title">Tạo thư mục cha</div>
-                                <p>Tại một khoảng trống trống bất kỳ trong ổ đĩa, nhấp chuột phải, di chuyển chọn mục <code>New -> Folder</code>. Tiến hành đặt tên thư mục chuẩn hóa không dấu: <code>ThucHanh_NguyenDangGiaLinh</code> rồi nhấn Enter.</p>
+                                <p>Tại một khoảng trống bất kỳ trong ổ đĩa, nhấp chuột phải, chọn mục <code>New -> Folder</code>. Tiến hành đặt tên thư mục chuẩn hóa không dấu: <code>ThucHanh_NguyenDangGiaLinh</code> rồi nhấn Enter.</p>
                             </div>
                         </div>
                         <div class="step-node">
                             <div class="step-circle">4</div>
                             <div class="step-content">
                                 <div class="step-title">Vào thư mục vừa tạo</div>
-                                <p>Nhấp đúp chuột trái vào thư mục <code>ThucHanh_NguyenDangGiaLinh</code> vừa được khởi tạo thành công để bắt đầu quản lý nội dung bên trong.</p>
+                                <p>Nhấp đúp chuột trái vào thư mục <code>ThucHanh_NguyenDangGiaLinh</code> vừa được khởi tạo để sẵn sàng kiểm soát các tệp tin bên trong.</p>
                             </div>
                         </div>
                         <div class="step-node">
@@ -1187,27 +1263,27 @@
                             <div class="step-circle">10</div>
                             <div class="step-content">
                                 <div class="step-title">Xóa tệp tin</div>
-                                <p>Di chuyển vào thư mục con <code>TaiLieu</code>, nhấp chuột phải chọn tệp <code>GhiChuQuanTrong.txt</code> và nhấn chọn mục <code>Delete</code> (hoặc ấn phím <code>Delete</code> trên bàn phím). Tệp tin sẽ tự động được đưa vào lưu giữ tại Thùng rác (Recycle Bin) của hệ thống máy tính.</p>
+                                <p>Di chuyển vào thư mục con <code>TaiLieu</code>, nhấp chuột phải chọn tệp <code>GhiChuQuanTrong.txt</code> và nhấn chọn mục <code>Delete</code> (hoặc ấn phím <code>Delete</code> trên bàn phím). Tệp tin sẽ tự động được đưa vào lưu giữ tại Thùng rác (Recycle Bin).</p>
                             </div>
                         </div>
                         <div class="step-node">
                             <div class="step-circle">11</div>
                             <div class="step-content">
                                 <div class="step-title">Xóa vĩnh viễn</div>
-                                <p>Chọn tệp tin <code>DiChuyen.txt</code> đang nằm trong thư mục <code>TaiLieu</code>, nhấn đồng thời tổ hợp phím <code>Shift + Delete</code>. Một hộp thoại cảnh báo của hệ thống hiện ra hỏi bạn có muốn xóa vĩnh viễn tệp này hay không, nhấp chọn đồng ý (Yes). Lúc này, tệp tin biến mất hoàn toàn và không đi qua Thùng rác.</p>
+                                <p>Chọn tệp tin <code>DiChuyen.txt</code> đang nằm trong thư mục <code>TaiLieu</code>, nhấn đồng thời tổ hợp phím <code>Shift + Delete</code>. Một hộp thoại cảnh báo hiện ra, chọn đồng ý (Yes). Lúc này, tệp tin biến mất hoàn toàn và không đi qua Thùng rác.</p>
                             </div>
                         </div>
                         <div class="step-node">
                             <div class="step-circle">12</div>
                             <div class="step-content">
-                                <div class="step-title">Khôi phục từ Thùng rác (Recycle Bin)</div>
-                                <p>Tìm kiếm biểu tượng <code>Recycle Bin</code> trên màn hình máy tính (Desktop), nhấp đúp để mở ra. Định vị đúng tệp tin <code>GhiChuQuanTrong.txt</code> vừa bị xóa ở bước 10, nhấp chuột phải vào nó và lựa chọn phím <code>Restore</code>. Tệp tin lập tức được hoàn nguyên về vị trí ban đầu trong thư mục con <code>TaiLieu</code> một cách toàn vẹn.</p>
+                                <div class="step-title">Khôi phục từ Thùng rác</div>
+                                <p>Tìm kiếm biểu tượng <code>Recycle Bin</code> trên màn hình máy tính (Desktop), nhấp đúp để mở ra. Định vị đúng tệp tin <code>GhiChuQuanTrong.txt</code> vừa bị xóa ở bước 10, nhấp chuột phải vào nó và lựa chọn phím <code>Restore</code>. Tệp tin lập tức được hoàn nguyên về vị trí ban đầu trong thư mục con <code>TaiLieu</code>.</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="modal-alert" style="background: rgba(124, 95, 209, 0.08);">
-                        <strong>Bài học sâu sắc:</strong> Việc nắm giữ quy trình 12 bước tệp tin chuẩn hóa giúp tớ xây dựng một thói quen lưu trữ dữ liệu giảng dạy mạch lạc, tránh tối đa tình trạng mất mát giáo án hoặc lẫn lộn bài kiểm tra của học sinh trong quá trình tác nghiệp hybrid.
+                        <strong>Bài học rút ra:</strong> Qua bài tập này, tớ nắm vững quy trình quản lý tệp tin một cách chặt chẽ. Việc duy trì hệ thống cây thư mục logic đóng vai trò nền tảng giúp ích rất nhiều cho việc lưu trữ các tệp thiết kế giáo án và giáo trình điện tử của tớ sau này một cách chuyên nghiệp.
                     </div>
                 `
             },
@@ -1216,7 +1292,7 @@
                 title: "Đánh giá 10 nguồn thông tin học thuật chi tiết",
                 content: `
                     <div class="modal-alert">
-                        <strong>Mục tiêu:</strong> Định vị, rà soát và đánh giá đa chiều về tính liêm chính, độ cập nhật và phương pháp nghiên cứu của 10 nghiên cứu khoa học hàng đầu liên quan đến chủ đề <em>"Giáo dục trong thời đại số (Education in the Digital Age)"</em>.
+                        <strong>Mục tiêu bài tập:</strong> Khảo nghiệm khả năng tìm kiếm và rà soát tính tin cậy của 10 nghiên cứu khoa học hàng đầu liên quan đến chủ đề <em>"Giáo dục trong thời đại số"</em> để phục vụ cho các báo cáo chuyên sâu.
                     </div>
                     
                     <h5>Hệ thống bảng xếp hạng toàn vẹn của 10 tài liệu học thuật theo báo cáo:</h5>
@@ -1329,7 +1405,7 @@
                     </div>
 
                     <div class="modal-alert">
-                        <strong>Bài học Sư phạm:</strong> Việc rèn luyện kỹ năng đánh giá và phân loại nguồn học liệu quốc tế giúp tớ xây dựng một bộ lọc thông minh, loại bỏ các tài liệu kém uy tín hoặc thông tin sai lệch trước khi đưa nội dung học liệu vào biên soạn giáo trình chính thức cho học sinh.
+                        <strong>Bài học rút ra:</strong> Qua quá trình chọn lọc 10 tài liệu, tớ tích lũy được kỹ năng phân tích và rà soát nguồn thông tin học thuật chuẩn xác dựa trên các chỉ số trích dẫn thực tế và uy tín của nhà xuất bản. Điều này rất cần thiết cho việc biên soạn học liệu ngoại ngữ chuẩn khoa học cho học viên sau này.
                     </div>
                 `
             },
@@ -1338,7 +1414,7 @@
                 title: "Kỹ nghệ thiết kế Prompt chuyên sâu đa tác vụ",
                 content: `
                     <div class="modal-alert">
-                        <strong>Mục tiêu:</strong> Làm chủ các kỹ thuật Prompt Engineering nâng cao (Role prompting, Structured prompting, Constraint prompting và Task decomposition) để kiểm soát dữ liệu đầu ra từ AI, tạo lập hệ thống giáo án chính xác.
+                        <strong>Mục tiêu bài tập:</strong> Khảo sát và tối ưu hóa câu lệnh AI qua 3 cấp độ (Cơ bản - Cải tiến - Nâng cao) áp dụng vào 3 tác vụ học thuật thực tế để so sánh trực quan hiệu quả đầu ra của AI.
                     </div>
 
                     <div class="modal-tabs">
@@ -1349,54 +1425,54 @@
 
                     <!-- Task 1 Tab -->
                     <div class="modal-tab-content active" id="task1">
-                        <h5>Quá trình phát triển Prompt tóm tắt UNESCO AI:</h5>
+                        <h5>Phát triển Prompt tóm tắt UNESCO AI:</h5>
                         <ul>
                             <li><strong>Prompt Cơ bản:</strong> <code>Hãy tóm tắt bài viết về AI trong giáo dục của UNESCO tại đường dẫn https://www.unesco.org/en/digital-education/artificial-intelligence.</code>
-                                <br><em>Kết quả đầu ra:</em> Một đoạn văn bản ngắn gọn, chỉ đề cập chung chung đến việc AI giúp cải tiến chất lượng và nâng cao hệ thống học tập trọn đời, thiếu cấu trúc.
+                                <br><em>Kết quả đầu ra:</em> Một đoạn văn bản ngắn, chỉ đề cập chung chung đến việc AI cải thiện chất lượng học tập và nâng cao tính bình đẳng giáo dục.
                             </li>
                             <li><strong>Prompt Cải tiến:</strong> <code>Hãy tóm tắt bài viết "Artificial Intelligence in Education" của UNESCO bằng tiếng Việt trong khoảng 200 từ. Trình bày rõ theo các mục: Vai trò của AI trong giáo dục, Thách thức của AI, Quan điểm của UNESCO, Các giải pháp được đề xuất.</code>
-                                <br><em>Kết quả đầu ra:</em> Văn bản được định hình tốt hơn, phân rõ thành 4 đầu mục với thông tin khá mạch lạc nhưng văn phong vẫn hơi đơn thuần, máy móc.
+                                <br><em>Kết quả đầu ra:</em> Văn bản có cấu trúc rõ ràng hơn với 4 đầu mục được yêu cầu nhưng văn phong còn đơn thuần, thiếu tính lý luận sâu sắc.
                             </li>
                             <li><strong>Prompt Nâng cao (Kỹ thuật Role & Constraint Prompting):</strong> <code>Bạn là một chuyên gia nghiên cứu giáo dục số. Hãy đọc bài viết "Artificial Intelligence in Education" của UNESCO và thực hiện: Tóm tắt nội dung chính dưới 200 từ, chia thành các phần tiêu đề rõ ràng chỉ ra cơ hội của AI, rủi ro và đạo đức học thuật, định hướng lâu dài của UNESCO. Kết thúc bằng một nhận xét ngắn đánh giá sắc sảo của bạn về vai trò của AI trong tương lai giáo dục. Yêu cầu: văn phong học thuật, sâu sắc, hoàn toàn không sao chép nguyên văn.</code>
-                                <br><em>Kết quả đầu ra:</em> Văn bản đạt chất lượng xuất sắc, sắc sảo. Đầu ra phân tích rất kỹ quan điểm "AI lấy con người làm trung tâm" (Human-centered AI) và đề cập đến chính sách đào tạo năng lực số chuẩn quốc tế mà UNESCO đề xuất.
+                                <br><em>Kết quả đầu ra:</em> Phân tích rất sâu sắc triết lý "AI lấy con người làm trung tâm" của UNESCO. Nêu bật việc AI hỗ trợ cá nhân hóa học tập song song với thách thức rò rỉ quyền riêng tư và gia tăng bất bình đẳng công nghệ toàn cầu.
                             </li>
                         </ul>
                     </div>
 
                     <!-- Task 2 Tab -->
                     <div class="modal-tab-content" id="task2">
-                        <h5>Quá trình phát triển Prompt giải nghĩa "Growth Mindset":</h5>
+                        <h5>Phát triển Prompt giải nghĩa "Growth Mindset":</h5>
                         <ul>
                             <li><strong>Prompt Cơ bản:</strong> <code>Growth Mindset là gì?</code>
-                                <br><em>Kết quả đầu ra:</em> Định nghĩa chung chung từ giáo sư Carol Dweck về việc niềm tin của một người có thể cải thiện thông qua rèn luyện nỗ lực, bài làm quá ngắn và sáo rỗng.
+                                <br><em>Kết quả đầu ra:</em> Định nghĩa ngắn gọn của giáo sư Carol Dweck về việc niềm tin nỗ lực giúp phát triển trí thông minh của con người.
                             </li>
                             <li><strong>Prompt Cải tiến:</strong> <code>Hãy giải thích khái niệm Growth Mindset cho đối tượng học sinh, sinh viên bằng ngôn ngữ dễ hiểu. Nội dung bao gồm: Định nghĩa, Đặc điểm của người có Growth Mindset, Ví dụ thực tế trong học tập, Sự khác biệt cơ bản với Fixed Mindset.</code>
-                                <br><em>Kết quả đầu ra:</em> Có cấu trúc tốt, lấy ví dụ thực tế về một học sinh bị điểm kém môn Toán để làm nổi bật sự khác nhau giữa hai lối tư duy một cách rõ ràng.
+                                <br><em>Kết quả đầu ra:</em> Nội dung sư phạm trực quan hơn, có lấy ví dụ về việc một học sinh bị điểm kém môn Toán đã nỗ lực làm bài tập để tiến bộ thay vì bỏ cuộc.
                             </li>
                             <li><strong>Prompt Nâng cao (Kỹ thuật Role & Structured Prompting):</strong> <code>Bạn là giảng viên tâm lý giáo dục dày dặn kinh nghiệm. Hãy giải thích khái niệm "Growth Mindset" cho sinh viên đại học theo cấu trúc chi tiết: Định nghĩa học thuật khoa học, Bảng so sánh sắc nét với Fixed Mindset, Tác động cụ thể tới động lực học tập, Ví dụ thực tế trong giảng đường đại học và 5 phương pháp rèn luyện Growth Mindset mỗi ngày. Yêu cầu: ví dụ sinh động, văn phong sư phạm truyền cảm hứng, dễ tiếp thu.</code>
-                                <br><em>Kết quả đầu ra:</em> Một tài liệu tâm lý giáo thuật hoàn chỉnh, phân chia thành 5 phần chặt chẽ. Cung cấp bộ 5 phương pháp rèn luyện cực kỳ thực tiễn (Thay đổi cách nhìn thất bại, Tập trung vào quá trình, Ngôn ngữ tích cực "chưa thể", Đón nhận phản hồi từ giảng viên và Đặt mục tiêu nhỏ thích ứng linh hoạt).
+                                <br><em>Kết quả đầu ra:</em> Giáo án hoàn chỉnh và chuyên sâu. Giải thích rõ việc Growth Mindset thúc đẩy sinh viên đối mặt với áp lực học tập và đề xuất 5 cách rèn luyện (thay đổi cách nhìn nhận lỗi sai, tập trung vào quá trình, sử dụng ngôn ngữ tích cực "chưa thể", tiếp nhận phản hồi từ giảng viên và đặt mục tiêu nhỏ mỗi ngày).
                             </li>
                         </ul>
                     </div>
 
                     <!-- Task 3 Tab -->
                     <div class="modal-tab-content" id="task3">
-                        <h5>Quá trình thiết kế Prompt ôn tập Tiếng Thái cuối kì:</h5>
+                        <h5>Thiết kế Prompt ôn tập Tiếng Thái cuối kì tại ULIS:</h5>
                         <ul>
                             <li><strong>Prompt Cơ bản:</strong> <code>Hãy tạo câu hỏi ôn tập môn tiếng Thái cơ sở 2.</code>
-                                <br><em>Kết quả đầu ra:</em> Hệ thống đưa ra khoảng 10 câu hỏi dịch thuật đơn giản, rải rác không theo cấu trúc đề thi chính thống của trường.
+                                <br><em>Kết quả đầu ra:</em> Hệ thống đưa ra 10 câu hỏi ngữ pháp dịch từ đơn lẻ, thiếu định hướng và tính liên kết.
                             </li>
                             <li><strong>Prompt Cải tiến:</strong> <code>Hãy tạo khoảng 20 câu hỏi ôn tập cuối kỳ cho môn Tiếng Thái cơ sở 2 của sinh viên trường ULIS. Nội dung bao quát các phần: Từ vựng, Ngữ pháp cơ bản, Dịch câu Việt-Thái và Hội thoại giao tiếp hằng ngày.</code>
-                                <br><em>Kết quả đầu ra:</em> Trình bày được 20 câu hỏi đánh số từ 1-20, chia thành 4 phần rõ rệt theo mô hình ôn thi, nhưng cấu trúc câu hỏi còn khá thô, chưa có ngữ cảnh sâu sắc hay đáp án kiểm tra đi kèm.
+                                <br><em>Kết quả đầu ra:</em> Trình bày được 20 câu hỏi có đánh số, chia thành 4 phần rõ rệt theo mô hình ôn thi nhưng câu hỏi còn khá thô, chưa bám sát chương trình.
                             </li>
                             <li><strong>Prompt Nâng cao (Kỹ thuật Task Decomposition & Constraint Prompting):</strong> <code>Bạn là giảng viên môn Tiếng Thái tại ULIS. Hãy thiết kế đề cương ôn tập cuối kỳ cho môn "Tiếng Thái cơ sở 2". Yêu cầu đề cương gồm khoảng 20 câu bám sát khung giáo trình ULIS, phân chia thành các phần rõ rệt: Phần I. Phụ âm kép & Thanh điệu (Đọc và xác định âm); Phần II. Từ vựng chủ đề nghề nghiệp (Dịch thuật từ vựng); Phần III. Ngữ pháp cơ bản (Đặt câu với cấu trúc ngữ pháp học trong giáo trình); Phần IV. Dịch câu (Dịch thuật Việt-Thái & Thái-Việt); Phần V. Đọc hiểu ngắn (Đọc đoạn văn Thái ngữ và trả lời câu hỏi). Yêu cầu trình bày chuyên nghiệp, tương đương độ khó đề thi cuối kì chính thức và đính kèm đầy đủ bộ đáp án chi tiết cuối bài.</code>
-                                <br><em>Kết quả đầu ra:</em> Đề thi đạt độ chuẩn hóa chuyên môn cao, chia làm 5 phần cực kỳ chi tiết bao gồm hệ thống phụ âm kép tiếng Thái, từ vựng chủ đề nghề nghiệp chuyên sâu (kỹ sư, bác sĩ, cảnh sát, sinh viên), cấu trúc ngữ pháp nâng cao, đoạn văn đọc hiểu ngắn kèm câu hỏi tương tác tinh tế và đáp án chuẩn chỉnh.
+                                <br><em>Kết quả đầu ra:</em> Một bộ đề thi chuẩn hóa có độ phân loại tốt. Bao quát được các phụ âm kép tiếng Thái nâng cao, từ vựng chủ đề nghề nghiệp (bác sĩ, cảnh sát, kỹ sư...), cấu trúc ngữ pháp cơ bản, dịch câu đối chiếu Việt - Thái và đoạn văn đọc hiểu ngắn kèm đáp án chi tiết.
                             </li>
                         </ul>
                     </div>
 
                     <div class="modal-alert">
-                        <strong>Bài học Sư phạm:</strong> Việc làm chủ kỹ năng Prompt Engineering giúp tớ dễ dàng làm chủ các AI thế hệ mới để xây dựng đề cương, thiết kế bài tập phân hóa độ khó một cách nhanh chóng, đồng thời hỗ trợ rà soát lỗi bài làm của học sinh một cách khách quan nhất.
+                        <strong>Bài học rút ra:</strong> Việc ứng dụng Kỹ nghệ prompt giúp tớ tự biên soạn được ngân hàng câu hỏi phân hóa độ khó cực nhanh, đồng thời đóng vai trò trợ lý thông minh giúp tớ chấm điểm và đưa ra phản hồi bài làm hiệu quả cho học sinh.
                     </div>
                 `
             },
@@ -1405,7 +1481,7 @@
                 title: "Quản trị Dự án trực tuyến nhóm Việt ngữ",
                 content: `
                     <div class="modal-alert">
-                        <strong>Mục tiêu:</strong> Phát triển năng lực cộng tác trong môi trường số hybrid, làm quen với tư duy quản lý tiến độ, tổ chức công việc trực tuyến để hoàn thiện đề tài nghiên cứu môn học.
+                        <strong>Mục tiêu bài tập:</strong> Rèn luyện năng lực phối hợp làm việc nhóm trực tuyến và điều phối tiến trình công việc linh hoạt qua các nền tảng số để tối ưu hóa năng suất.
                     </div>
 
                     <h5>Thông tin chi tiết dự án theo báo cáo:</h5>
@@ -1452,7 +1528,7 @@
                     </div>
 
                     <div class="modal-alert">
-                        <strong>Bài học rút ra:</strong> Quá trình cộng tác số đòi hỏi mỗi thành viên phải tự nâng cao ý thức kỷ luật cá nhân, biết cách sử dụng các bảng Kanban trực quan để kiểm soát công việc và học cách giao tiếp tôn trọng, thấu cảm để duy trì hòa khí của đội ngũ từ xa.
+                        <strong>Bài học rút ra:</strong> Quá trình hợp tác số đòi hỏi mỗi cá nhân phải có tinh thần trách nhiệm cực kỳ cao, học cách ghi chép tiến độ rõ ràng và giao tiếp chân thành, khéo léo để tránh những hiểu lầm không đáng có khi làm việc từ xa.
                     </div>
                 `
             },
@@ -1461,7 +1537,7 @@
                 title: "Sáng tạo nội dung với AI tạo sinh",
                 content: `
                     <div class="modal-alert">
-                        <strong>Mục tiêu:</strong> Đồng sáng tạo nội dung trực quan và trực tiếp biên soạn gói học liệu Anh ngữ chuyên ngành cá nhân hóa bằng cách phối hợp linh hoạt các hệ thống AI thế hệ mới.
+                        <strong>Mục tiêu bài tập:</strong> Học cách kết hợp đa công cụ AI tạo ảnh và nội dung để đồng thiết kế học liệu ngoại ngữ trực quan và cá nhân hóa lộ trình bài học cho từng đối tượng học viên.
                     </div>
 
                     <div class="modal-tabs">
@@ -1540,7 +1616,7 @@
                 title: "Liêm chính học thuật và Sử dụng AI có trách nhiệm",
                 content: `
                     <div class="modal-alert">
-                        <strong>Mục tiêu:</strong> Thiết lập hệ giá trị đạo đức vững vàng khi tiếp cận công nghệ thông minh, thấu suốt các quy định liêm chính học thuật để phát triển năng lực tư duy an toàn trong tương lai số.
+                        <strong>Mục tiêu bài tập:</strong> Thiết lập tư duy học thuật chuẩn mực và xây dựng ranh giới ứng xử đạo đức để làm chủ AI một cách thông minh, liêm chính.
                     </div>
                     
                     <h5>Nội dung nghiên cứu sâu sắc theo báo cáo:</h5>
@@ -1558,7 +1634,7 @@
                     </ol>
 
                     <div class="modal-alert" style="background: rgba(124, 95, 209, 0.08);">
-                        <strong>Thông điệp Sư phạm:</strong> Sử dụng AI có đạo đức không chỉ đơn thuần là tuân thủ các quy định học thuật khô cứng, mà chính là hành động bảo vệ và tôn trọng năng lực phát triển trí tuệ độc lập của chính bản thân chúng ta trong không gian số tương lai.
+                        <strong>Bài học rút ra:</strong> Liêm chính học thuật trong việc dùng AI giúp tớ bảo vệ tư duy sư phạm độc lập của bản thân, không bị rơi vào hiện tượng thụ động lười suy nghĩ và tăng tính chuyên môn khi tích hợp công nghệ giảng dạy Anh ngữ.
                     </div>
                 `
             }
