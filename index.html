@@ -7,28 +7,30 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --bg-body: #f8f7fd;
-            --bg-card: #ffffff;
-            --primary: #745dfd;
-            --primary-light: #f1eeff;
-            --primary-dark: #583fe3;
-            --secondary: #9a88ff;
-            --text-dark: #1e1b2a;
-            --text-muted: #625f75;
-            --border-color: #e5e2f3;
-            --shadow: 0 10px 30px rgba(116, 93, 253, 0.05);
-            --shadow-hover: 0 15px 35px rgba(116, 93, 253, 0.12);
-            --transition: all 0.3s ease;
+            --bg-main: #FAF8FF; /* Tím pastel cực nhẹ */
+            --bg-card: rgba(255, 255, 255, 0.45);
+            --bg-glass: rgba(255, 255, 255, 0.75);
+            --primary: #8667e3; /* Tím oải hương mềm */
+            --primary-light: #ece9fc;
+            --primary-glow: rgba(134, 103, 227, 0.15);
+            --accent: #b19ffd;
+            --accent-pink: #f5dbff;
+            --text-main: #31234a; /* Tím đậm quý phái thay vì màu đen */
+            --text-muted: #72638c;
+            --border: rgba(134, 103, 227, 0.12);
+            --border-hover: rgba(134, 103, 227, 0.35);
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --font-serif: 'Playfair Display', serif;
             --font-sans: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* Reset & Base Styles */
+        /* Base & Reset */
         * {
             margin: 0;
             padding: 0;
@@ -37,105 +39,193 @@
         }
 
         body {
-            background-color: var(--bg-body);
-            color: var(--text-dark);
+            background-color: var(--bg-main);
+            color: var(--text-main);
             font-family: var(--font-sans);
-            line-height: 1.6;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f0f7;
+            background: var(--bg-main);
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(116, 93, 253, 0.3);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(116, 93, 253, 0.5);
+            background: rgba(134, 103, 227, 0.25);
+            border-radius: 10px;
         }
 
-        /* Container Layout */
+        /* Dreamy Misty Blobs (Lighter tones) */
+        .ambient-mist {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -2;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .mist-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #f2e6ff 0%, rgba(255,255,255,0) 70%);
+            top: -10%;
+            left: -10%;
+            animation: drift 25s infinite alternate ease-in-out;
+        }
+        .mist-2 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, #e6f0ff 0%, rgba(255,255,255,0) 70%);
+            bottom: -10%;
+            right: -10%;
+            animation: drift 30s infinite alternate-reverse ease-in-out;
+        }
+        .mist-3 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #ffebf7 0%, rgba(255,255,255,0) 70%);
+            top: 30%;
+            right: 20%;
+            animation: drift 20s infinite alternate ease-in-out;
+            animation-delay: -5s;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(60px, 40px) scale(1.1); }
+        }
+
+        /* Global Layout */
         .wrapper {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* Header / Navbar */
-        header {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--border-color);
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.02);
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+        .section-header {
+            margin-bottom: 50px;
+        }
+        .section-subtitle {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 44px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        /* Floating Nav Dock */
+        .floating-dock {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(134, 103, 227, 0.15);
+            border-radius: 40px;
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 15px 40px rgba(134, 103, 227, 0.12);
+            z-index: 999;
+            animation: slideUpDock 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.5s;
+        }
+        @keyframes slideUpDock {
+            to { transform: translateX(-50%) translateY(0); }
+        }
+        .dock-menu {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            list-style: none;
+        }
+        .dock-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 14px;
+            padding: 10px 18px;
+            border-radius: 30px;
             transition: var(--transition);
         }
-        .nav-container {
+        .dock-link:hover, .dock-link.active {
+            color: var(--primary);
+            background: rgba(134, 103, 227, 0.08);
+        }
+        .dock-separator {
+            width: 1px;
+            height: 24px;
+            background: rgba(134, 103, 227, 0.15);
+        }
+        .btn-drive-dock {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 30px;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+            font-size: 13.5px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .btn-drive-dock:hover {
+            box-shadow: 0 8px 20px rgba(134, 103, 227, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Header Logo Only */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 0;
+            z-index: 10;
+        }
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 0;
         }
         .logo {
-            font-size: 22px;
-            font-weight: 800;
+            font-family: var(--font-serif);
+            font-size: 26px;
+            font-weight: 700;
             text-decoration: none;
-            color: var(--text-dark);
-            letter-spacing: 0.5px;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
         }
         .logo span {
             color: var(--primary);
         }
-        .nav-menu {
+
+        /* Hero Section (Asymmetrical Editorial Collage) */
+        .hero {
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            gap: 32px;
-            list-style: none;
-        }
-        .nav-link {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-weight: 600;
-            font-size: 15px;
-            transition: var(--transition);
-        }
-        .nav-link:hover, .nav-link.active {
-            color: var(--primary);
-        }
-        .btn-drive-nav {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            border-radius: 6px;
-            background: var(--primary-light);
-            border: 1px solid rgba(116, 93, 253, 0.15);
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 14px;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        .btn-drive-nav:hover {
-            background: var(--primary);
-            color: #ffffff;
-            transform: translateY(-1px);
-        }
-
-        /* Hero Section (2-Column Classic Layout) */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-light) 0%, #ffffff 100%);
-            padding: 80px 0;
-            border-bottom: 1px solid var(--border-color);
+            padding-top: 100px;
+            position: relative;
         }
         .hero-grid {
             display: grid;
@@ -143,408 +233,446 @@
             gap: 50px;
             align-items: center;
         }
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 700;
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13.5px;
+            font-weight: 600;
             color: var(--primary);
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+            margin-bottom: 24px;
+            box-shadow: 0 4px 10px rgba(134, 103, 227, 0.04);
         }
         .hero-title {
-            font-size: 44px;
-            font-weight: 800;
-            line-height: 1.25;
-            color: var(--text-dark);
-            margin-bottom: 16px;
+            font-family: var(--font-serif);
+            font-size: 54px;
+            line-height: 1.15;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
         }
         .hero-title span {
+            display: block;
+            color: var(--text-main);
+        }
+        .hero-title em {
             color: var(--primary);
+            font-weight: 400;
         }
         .hero-subtitle {
-            font-size: 16px;
+            font-size: 16.5px;
             color: var(--text-muted);
-            margin-bottom: 30px;
+            margin-bottom: 36px;
+            max-width: 540px;
+            line-height: 1.7;
         }
-        .hero-ctas {
+        .hero-actions {
             display: flex;
-            align-items: center;
             gap: 16px;
         }
         .btn-primary {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
+            gap: 10px;
+            padding: 14px 28px;
             background: var(--primary);
             border: none;
-            border-radius: 6px;
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 15px;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 15.5px;
             text-decoration: none;
+            box-shadow: 0 10px 25px rgba(134, 103, 227, 0.25);
             transition: var(--transition);
-            box-shadow: 0 4px 12px rgba(116, 93, 253, 0.2);
         }
         .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(116, 93, 253, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(134, 103, 227, 0.35);
         }
         .btn-secondary {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            color: var(--text-dark);
-            font-weight: 700;
-            font-size: 15px;
+            gap: 10px;
+            padding: 14px 28px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 15.5px;
             text-decoration: none;
             transition: var(--transition);
         }
         .btn-secondary:hover {
-            background: var(--primary-light);
-            border-color: rgba(116, 93, 253, 0.3);
-            transform: translateY(-2px);
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+            background: rgba(134, 103, 227, 0.03);
         }
-        .hero-image-wrapper {
+
+        /* Editorial Collage Image Frame */
+        .collage-container {
             position: relative;
             display: flex;
             justify-content: center;
+            align-items: center;
         }
-        .hero-image-card {
-            background: #ffffff;
+        .collage-backdrop {
+            position: absolute;
+            width: 320px;
+            height: 400px;
+            border: 1px dashed var(--primary);
+            border-radius: 24px;
+            transform: rotate(-6deg);
+            z-index: 1;
+        }
+        .collage-main {
+            position: relative;
+            width: 310px;
+            height: 390px;
+            background: #fff;
+            border-radius: 24px;
             padding: 12px;
-            border-radius: 12px;
-            box-shadow: var(--shadow-hover);
-            border: 1px solid var(--border-color);
-            max-width: 320px;
+            box-shadow: 0 20px 40px rgba(134, 103, 227, 0.08);
+            z-index: 2;
+            transform: rotate(3deg);
+            transition: var(--transition);
         }
-        .hero-img {
+        .collage-main:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+        .collage-img {
             width: 100%;
-            height: 380px;
+            height: 100%;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 16px;
+        }
+        .collage-label {
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            background: var(--accent-pink);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--text-main);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            z-index: 3;
+            transform: rotate(-6deg);
         }
 
-        /* Section Settings */
-        .section {
-            padding: 80px 0;
-        }
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .section-subtitle {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--primary);
-            font-weight: 800;
-            margin-bottom: 8px;
-            display: block;
-        }
-        .section-title {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--text-dark);
-        }
-
-        /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 40px;
-        }
+        /* About Section (Elegant layout) */
         .about-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 32px;
-            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 50px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            box-shadow: 0 15px 35px rgba(134, 103, 227, 0.05);
         }
-        .about-card h3 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: var(--text-dark);
+        .about-text h3 {
+            font-family: var(--font-serif);
+            font-size: 30px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            color: var(--primary);
         }
-        .about-card p {
+        .about-text p {
             color: var(--text-muted);
-            font-size: 15px;
+            font-size: 15.5px;
             margin-bottom: 20px;
             text-align: justify;
         }
-        .info-list {
-            list-style: none;
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            align-content: center;
         }
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            background: var(--bg-body);
-            border-radius: 8px;
-            margin-bottom: 12px;
-            border: 1px solid var(--border-color);
+        .stat-box {
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 20px;
+            text-align: center;
+            transition: var(--transition);
         }
-        .info-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--primary-light);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .stat-box:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(134, 103, 227, 0.05);
+        }
+        .stat-icon {
+            font-size: 22px;
             color: var(--primary);
-            font-size: 16px;
+            margin-bottom: 12px;
         }
-        .info-text div:first-child {
-            font-size: 12px;
+        .stat-val {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+        .stat-label {
+            font-size: 12.5px;
             color: var(--text-muted);
             font-weight: 600;
         }
-        .info-text div:last-child {
-            font-size: 14.5px;
-            color: var(--text-dark);
-            font-weight: 700;
-        }
 
-        /* Google Drive Banner Card */
+        /* Banner Drive */
         .drive-banner {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 24px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(236,233,252,0.5));
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            backdrop-filter: blur(10px);
             margin-bottom: 40px;
-            box-shadow: var(--shadow);
+            box-shadow: 0 8px 30px rgba(134, 103, 227, 0.03);
         }
-        .drive-banner-content h4 {
-            font-size: 18px;
-            font-weight: 700;
+        .drive-banner-info h4 {
+            font-size: 19px;
+            font-weight: 600;
             margin-bottom: 4px;
         }
-        .drive-banner-content p {
+        .drive-banner-info p {
             color: var(--text-muted);
             font-size: 14px;
         }
         .btn-drive-large {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: var(--primary);
-            color: #ffffff;
-            border-radius: 6px;
+            gap: 10px;
+            padding: 14px 28px;
+            background: var(--text-main);
+            color: #fff;
+            border-radius: 50px;
             font-weight: 700;
             font-size: 14.5px;
             text-decoration: none;
             transition: var(--transition);
-            box-shadow: 0 4px 12px rgba(116, 93, 253, 0.15);
         }
         .btn-drive-large:hover {
-            background: var(--primary-dark);
+            background: var(--primary);
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(134, 103, 227, 0.25);
         }
 
-        /* Filter Controls */
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 30px;
-        }
-        .filter-btn {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            padding: 8px 18px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--primary-light);
-            color: var(--primary);
-            border-color: rgba(116, 93, 253, 0.3);
-        }
-
-        /* Projects Grid Layout */
-        .projects-grid {
+        /* Asymmetric Bento Grid Layout */
+        .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 24px;
+            grid-auto-rows: minmax(300px, auto);
         }
-        .project-card {
+        
+        .bento-item {
             background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             transition: var(--transition);
             display: flex;
             flex-direction: column;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-            border-color: rgba(116, 93, 253, 0.2);
-        }
-        .project-header-box {
-            background: var(--primary-light);
-            padding: 24px;
-            display: flex;
             justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
         }
-        .project-icon-box {
-            width: 44px;
-            height: 44px;
-            background: #ffffff;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            color: var(--primary);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        .bento-item:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            box-shadow: 0 15px 30px rgba(134, 103, 227, 0.08);
         }
-        .project-card-badge {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 11px;
+
+        /* Bento Size variants */
+        .bento-item.size-wide {
+            grid-column: span 2;
+        }
+        .bento-item.size-tall {
+            grid-row: span 2;
+        }
+
+        /* Bento visual elements */
+        .bento-tag {
+            align-self: flex-start;
+            padding: 6px 12px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 11.5px;
             font-weight: 700;
             color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .project-body {
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
+        .bento-body {
+            margin: 24px 0;
             flex-grow: 1;
         }
-        .project-num {
+        .bento-num {
             font-size: 12px;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--text-muted);
             margin-bottom: 6px;
         }
-        .project-title {
-            font-size: 19px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 10px;
-            line-height: 1.35;
+        .bento-title {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 12px;
         }
-        .project-desc {
+        .bento-desc {
             color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 20px;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            font-size: 14.5px;
+            line-height: 1.6;
         }
-        .project-footer {
-            margin-top: auto;
+        
+        /* Bento Mini Mockups */
+        .bento-mockup {
+            margin-top: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 12px;
+            font-size: 11.5px;
+        }
+        .chat-line {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .chat-avatar {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        .chat-bubble {
+            background: #fff;
+            padding: 6px 10px;
+            border-radius: 0 10px 10px 10px;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+        .trello-board-mock {
+            display: flex;
+            gap: 10px;
+        }
+        .trello-col {
+            flex: 1;
+            background: rgba(134,103,227,0.05);
+            border-radius: 8px;
+            padding: 8px;
+        }
+        .trello-card {
+            background: #fff;
+            padding: 6px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .bento-action {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid rgba(134, 103, 227, 0.08);
             padding-top: 16px;
+            margin-top: auto;
         }
-        .project-tech {
+        .bento-tech {
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 600;
             color: var(--text-muted);
         }
-        .btn-view {
+        .btn-bento-link {
             background: none;
             border: none;
             color: var(--primary);
             font-weight: 700;
             font-size: 14px;
             cursor: pointer;
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             transition: var(--transition);
         }
-        .btn-view:hover {
-            color: var(--primary-dark);
-            transform: translateX(3px);
+        .btn-bento-link:hover {
+            transform: translateX(4px);
+            color: var(--text-main);
         }
 
-        /* Reflection Section */
+        /* Reflection Diary Leaf Layout */
         .reflection-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 30px;
         }
-        .reflection-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: var(--shadow);
+        .reflection-leaf {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
             transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(134, 103, 227, 0.02);
         }
-        .reflection-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
+        .reflection-leaf:hover {
+            transform: translateY(-4px) rotate(1deg);
+            border-color: var(--border-hover);
         }
-        .reflection-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-light);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            color: var(--primary);
+        .reflection-leaf::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        .reflection-leaf h4 {
+            font-family: var(--font-serif);
+            font-size: 21px;
             margin-bottom: 16px;
+            color: var(--primary);
         }
-        .reflection-card h4 {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 12px;
-        }
-        .reflection-card p {
+        .reflection-leaf p {
             color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.6;
-            text-align: justify;
+            font-size: 14.5px;
+            line-height: 1.7;
         }
 
-        /* Footer Style */
+        /* Footer */
         footer {
-            background: #ffffff;
-            border-top: 1px solid var(--border-color);
-            padding: 40px 0 20px;
+            background: #fff;
+            border-top: 1px solid var(--border);
+            padding: 80px 0 40px;
             text-align: center;
         }
         .footer-logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--text-dark);
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-main);
             margin-bottom: 8px;
             display: inline-block;
         }
@@ -554,20 +682,21 @@
         .footer-tag {
             color: var(--text-muted);
             font-size: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            font-weight: 600;
         }
         .footer-socials {
             display: flex;
             justify-content: center;
             gap: 16px;
-            margin-bottom: 24px;
+            margin-bottom: 40px;
         }
         .social-btn {
-            width: 38px;
-            height: 38px;
-            border-radius: 6px;
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #fff;
+            border: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -578,27 +707,27 @@
         }
         .social-btn:hover {
             background: var(--primary);
-            color: #ffffff;
-            border-color: var(--primary);
+            color: #fff;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--primary-glow);
         }
         .footer-copy {
-            font-size: 12px;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
+            font-size: 12.5px;
+            color: rgba(114, 99, 140, 0.4);
+            border-top: 1px solid rgba(134, 103, 227, 0.08);
+            padding-top: 30px;
         }
 
-        /* Standard Portfolio Modal Overlay */
+        /* Modal Overlay & Design */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(30, 27, 42, 0.4);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
+            background: rgba(49, 35, 74, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 10000;
             display: flex;
             justify-content: center;
@@ -614,30 +743,30 @@
         .modal-container {
             width: 90%;
             max-width: 800px;
-            max-height: 85vh;
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 32px;
+            max-height: 80vh;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid var(--border-hover);
+            border-radius: 30px;
+            padding: 40px;
             overflow-y: auto;
             position: relative;
-            transform: scale(0.95);
+            transform: scale(0.92);
             transition: var(--transition);
-            box-shadow: 0 20px 50px rgba(30, 27, 42, 0.15);
+            box-shadow: 0 30px 60px rgba(134, 103, 227, 0.1);
         }
         .modal-overlay.active .modal-container {
             transform: scale(1);
         }
         .modal-close {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 25px;
+            right: 25px;
             width: 36px;
             height: 36px;
-            border-radius: 6px;
-            background: var(--bg-body);
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
+            border-radius: 50%;
+            background: #fff;
+            border: 1px solid var(--border);
+            color: var(--text-main);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -646,60 +775,65 @@
             transition: var(--transition);
         }
         .modal-close:hover {
-            background: var(--primary-light);
-            color: var(--primary);
+            background: var(--primary);
+            color: #fff;
+            transform: rotate(90deg);
         }
         .modal-num {
             font-size: 12px;
             font-weight: 700;
             color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
             margin-bottom: 6px;
         }
         .modal-title {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 20px;
+            font-family: var(--font-serif);
+            font-size: 30px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 24px;
         }
         .modal-body {
             color: var(--text-muted);
             font-size: 15px;
-            line-height: 1.65;
+            line-height: 1.7;
         }
         .modal-body h5 {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin: 20px 0 8px;
+            font-family: var(--font-serif);
+            font-size: 18px;
+            color: var(--primary);
+            margin: 24px 0 10px;
         }
         .modal-body p {
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             text-align: justify;
         }
-        .modal-body ul, .modal-body ol {
-            margin-bottom: 16px;
+        .modal-body ol, .modal-body ul {
             padding-left: 20px;
+            margin-bottom: 18px;
         }
         .modal-body li {
             margin-bottom: 6px;
         }
         .modal-body strong {
-            color: var(--text-dark);
+            color: var(--text-main);
         }
-        .modal-info-box {
-            background: var(--bg-body);
+
+        /* Modal custom subcomponents */
+        .modal-alert {
+            background: rgba(134, 103, 227, 0.05);
             border-left: 3px solid var(--primary);
-            padding: 12px 16px;
-            border-radius: 0 8px 8px 0;
-            margin: 16px 0;
-            font-size: 14px;
+            padding: 16px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
         }
         .modal-table-container {
             width: 100%;
             overflow-x: auto;
-            margin: 16px 0;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
+            margin: 20px 0;
+            border-radius: 12px;
+            border: 1px solid var(--border);
         }
         .modal-table {
             width: 100%;
@@ -708,103 +842,103 @@
             text-align: left;
         }
         .modal-table th {
-            background: var(--primary-light);
-            color: var(--primary);
+            background: rgba(134, 103, 227, 0.06);
+            color: var(--text-main);
             padding: 10px 14px;
-            font-weight: 700;
+            font-weight: 600;
         }
         .modal-table td {
             padding: 10px 14px;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgba(134, 103, 227, 0.05);
         }
 
-        /* Responsive Styles */
+        /* Responsiveness */
         @media (max-width: 992px) {
             .hero-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
                 gap: 40px;
             }
-            .hero-badge, .hero-ctas {
+            .hero-badge {
                 justify-content: center;
             }
-            .hero-image-wrapper {
+            .hero-subtitle {
+                margin: 0 auto 36px;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .collage-container {
                 order: -1;
             }
-            .about-grid {
+            .about-card {
                 grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            .bento-item.size-wide {
+                grid-column: span 1;
             }
             .reflection-grid {
                 grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .nav-menu {
-                display: none;
-            }
-            .hero-title {
-                font-size: 32px;
-            }
-            .section-title {
-                font-size: 26px;
-            }
-            .filter-container {
-                flex-wrap: wrap;
-            }
-            .drive-banner {
-                flex-direction: column;
-                text-align: center;
-                gap: 16px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header / Navbar -->
+    <!-- Ambient Mist -->
+    <div class="ambient-mist mist-1"></div>
+    <div class="ambient-mist mist-2"></div>
+    <div class="ambient-mist mist-3"></div>
+
+    <!-- Minimal Header -->
     <header>
-        <div class="wrapper nav-container">
+        <div class="wrapper header-container">
             <a href="#" class="logo">GD<span>Linh</span></a>
-            <ul class="nav-menu">
-                <li><a href="#about" class="nav-link">Giới thiệu</a></li>
-                <li><a href="#projects" class="nav-link">Sản phẩm</a></li>
-                <li><a href="#reflection" class="nav-link">Tổng kết</a></li>
-                <li>
-                    <a href="https://drive.google.com/drive/folders/1GiHpxNyFZei2Q4kHximFQYtqtpkNRi3V?usp=drive_link" target="_blank" class="btn-drive-nav">
-                        <i class="fab fa-google-drive"></i> Xem bài tập trên GG drive
-                    </a>
-                </li>
-            </ul>
         </div>
     </header>
+
+    <!-- Floating Dock Menu (macOS inspired) -->
+    <div class="floating-dock">
+        <ul class="dock-menu">
+            <li><a href="#about" class="dock-link">Về mình</a></li>
+            <li><a href="#projects" class="dock-link">Sản phẩm</a></li>
+            <li><a href="#reflection" class="dock-link">Tổng kết</a></li>
+        </ul>
+        <div class="dock-separator"></div>
+        <a href="https://drive.google.com/drive/folders/1GiHpxNyFZei2Q4kHximFQYtqtpkNRi3V?usp=drive_link" target="_blank" class="btn-drive-dock">
+            <i class="fab fa-google-drive"></i> Tài liệu
+        </a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="wrapper hero-grid">
-            <div class="hero-content">
+            <div class="hero-text">
                 <div class="hero-badge">
-                    <i class="fas fa-university"></i> Trường Đại học Ngoại ngữ - ĐHQGHN
+                    <i class="fas fa-feather-alt"></i> ULIS • Đại học Ngoại ngữ - ĐHQGHN
                 </div>
                 <h1 class="hero-title">
-                    Sáng tạo & Đổi mới <span>Năng lực số</span> trong Học tập
+                    <span>Đối thoại ngôn từ</span>
+                    <em>giao thoa nhịp số</em>
                 </h1>
                 <p class="hero-subtitle">
-                    Chào bạn! Mình là Gia Linh, sinh viên chuyên ngành Ngôn ngữ và Văn hóa Anh. Đây là trang lưu trữ học liệu số và các dự án ứng dụng công nghệ/AI của mình trong khuôn khổ học phần phát triển bản thân.
+                    Mình là Gia Linh, sinh viên Ngôn ngữ và Văn hóa Anh. Nơi đây phác thảo hành trình mình làm chủ công cụ số và AI để định hình phương thức học thuật mới mẻ của bản thân.
                 </p>
-                <div class="hero-ctas">
-                    <a href="#projects" class="btn-primary">
-                        <i class="fas fa-folder-open"></i> Xem bài tập làm
-                    </a>
-                    <a href="#about" class="btn-secondary">
-                        <i class="fas fa-info-circle"></i> Về mình
-                    </a>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn-primary">Khám phá bài học</a>
+                    <a href="#about" class="btn-secondary">Hồ sơ cá nhân</a>
                 </div>
             </div>
-            <div class="hero-image-wrapper">
-                <div class="hero-image-card">
-                    <img src="Hình 1.jpg" alt="Nguyễn Đặng Gia Linh" class="hero-img">
+            <div class="collage-container">
+                <div class="collage-backdrop"></div>
+                <div class="collage-main">
+                    <img src="Hình 1.jpg" alt="Nguyễn Đặng Gia Linh" class="collage-img">
                 </div>
+                <div class="collage-label">Anh ngữ & Văn hóa</div>
             </div>
         </div>
     </section>
@@ -813,174 +947,178 @@
     <section id="about" class="section">
         <div class="wrapper">
             <div class="section-header">
-                <span class="section-subtitle">Chân dung sinh viên</span>
+                <span class="section-subtitle">Chân dung</span>
                 <h2 class="section-title">Nguyễn Đặng Gia Linh</h2>
             </div>
-            <div class="about-grid">
-                <div class="about-card">
-                    <h3>Hành trình phát triển</h3>
+            
+            <div class="about-card">
+                <div class="about-text">
+                    <h3>Khát khao & Chuyển dịch</h3>
                     <p>
-                        Xuất phát điểm từ khối ngành chuyên môn ngoại ngữ (Ngôn ngữ và Văn hóa Anh), mình luôn tìm kiếm những phương thức mới mẻ để kết nối ngôn ngữ với công nghệ. Mình tin rằng trong kỷ nguyên số, một biên-phiên dịch hay nhà nghiên cứu văn hóa không chỉ cần am hiểu từ ngữ mà còn phải thành thạo việc làm chủ các công cụ công nghệ thông tin.
+                        Sinh trưởng trong môi trường ngôn học Anh tại ULIS, mình thấu cảm sâu sắc giá trị kết nối của ngôn từ. Khi kỷ nguyên số bùng nổ, mình không lựa chọn đứng ngoài mà chủ động tích hợp sức mạnh công nghệ vào quá trình tư duy độc lập.
                     </p>
                     <p>
-                        Digital Portfolio này là trang học liệu ghi lại toàn bộ quy trình từ những thao tác hệ thống cơ bản đến việc ứng dụng AI có chọn lọc để tối ưu hóa hiệu quả học tập. Qua đó, thể hiện một tư duy mở, linh hoạt và định hướng lâu dài trước bối cảnh trí tuệ nhân tạo đang thay đổi sâu rộng.
+                        Trang Portfolio này là những ghi chép chân thực, khẳng định sự chuyển biến của mình qua học phần Công nghệ số & Trí tuệ nhân tạo. Mình tin rằng, công nghệ không làm giảm đi chất văn, mà chính là bệ phóng giúp ngôn ngữ bay cao và tiếp cận đa chiều hơn.
                     </p>
                 </div>
-                <ul class="info-list">
-                    <li class="info-item">
-                        <div class="info-icon"><i class="fas fa-id-badge"></i></div>
-                        <div class="info-text">
-                            <div>Mã số sinh viên</div>
-                            <div>25040125</div>
-                        </div>
-                    </li>
-                    <li class="info-item">
-                        <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
-                        <div class="info-text">
-                            <div>Chuyên ngành đào tạo</div>
-                            <div>Ngôn ngữ và Văn hóa Anh</div>
-                        </div>
-                    </li>
-                    <li class="info-item">
-                        <div class="info-icon"><i class="fas fa-laptop-code"></i></div>
-                        <div class="info-text">
-                            <div>Môn học thực hành</div>
-                            <div>Nhập môn Công nghệ số & Ứng dụng AI</div>
-                        </div>
-                    </li>
-                </ul>
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <div class="stat-icon"><i class="fas fa-fingerprint"></i></div>
+                        <div class="stat-val">25040125</div>
+                        <div class="stat-label">Mã số sinh viên</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
+                        <div class="stat-val">6 Module</div>
+                        <div class="stat-label">Tác vụ công nghệ</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon"><i class="fas fa-compass"></i></div>
+                        <div class="stat-val">B1-B2</div>
+                        <div class="stat-label">Học liệu chuyên môn</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon"><i class="fas fa-feather"></i></div>
+                        <div class="stat-val">Lilac</div>
+                        <div class="stat-label">Tone màu oải hương</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section" style="background-color: #fcfbfe; border-top: 1px solid var(--border-color);">
+    <!-- Projects (Bento-style Grid) -->
+    <section id="projects" class="section">
         <div class="wrapper">
             <div class="section-header">
-                <span class="section-subtitle">Kho học liệu</span>
-                <h2 class="section-title">Danh mục Sản phẩm Bài tập</h2>
+                <span class="section-subtitle">Hồ sơ bài tập</span>
+                <h2 class="section-title">Hành trình trải nghiệm số</h2>
             </div>
 
-            <!-- Banner Google Drive -->
+            <!-- Google Drive Banner -->
             <div class="drive-banner">
-                <div class="drive-banner-content">
-                    <h4>Bản báo cáo & Minh họa gốc</h4>
-                    <p>Truy cập thư mục Google Drive để theo dõi và tải về toàn bộ các tệp minh chứng bài tập một cách nhanh chóng.</p>
+                <div class="drive-banner-info">
+                    <h4>Bản lưu trữ trực quan & Báo cáo đầy đủ</h4>
+                    <p>Để trực tiếp tải về và rà soát ảnh minh họa cũng như báo cáo PDF của từng bài tập, vui lòng truy cập Drive liên kết.</p>
                 </div>
                 <a href="https://drive.google.com/drive/folders/1GiHpxNyFZei2Q4kHximFQYtqtpkNRi3V?usp=drive_link" target="_blank" class="btn-drive-large">
                     <i class="fab fa-google-drive"></i> Xem bài tập trên GG drive
                 </a>
             </div>
 
-            <!-- Filter Controls -->
-            <div class="filter-container">
-                <button class="filter-btn active" onclick="filterProjects('all', this)">Tất cả sản phẩm</button>
-                <button class="filter-btn" onclick="filterProjects('system', this)">Cơ bản & Hệ thống</button>
-                <button class="filter-btn" onclick="filterProjects('ai', this)">Ứng dụng AI & Sáng tạo</button>
-            </div>
-
-            <!-- Projects Grid -->
-            <div class="projects-grid" id="projectsGrid">
+            <!-- Bento Layout -->
+            <div class="bento-grid">
                 
-                <!-- Project 1 (system) -->
-                <div class="project-card" data-category="system">
-                    <div class="project-header-box">
-                        <div class="project-icon-box"><i class="fas fa-folder"></i></div>
-                        <span class="project-card-badge">Thực hành</span>
+                <!-- Bento 1: Thao tác file (Normal Size) -->
+                <div class="bento-item">
+                    <span class="bento-tag">Hệ thống</span>
+                    <div class="bento-body">
+                        <div class="bento-num">Bài tập 1 / Mục 1.4</div>
+                        <h3 class="bento-title">Tổ chức Tệp & Thư mục</h3>
+                        <p class="bento-desc">Học cách quản lý và điều phối tệp tin khoa học trên ổ đĩa nội bộ bằng hệ thống cây thư mục logic, bảo vệ an toàn dữ liệu cá nhân.</p>
                     </div>
-                    <div class="project-body">
-                        <span class="project-num">Bài tập 1 / Mục 1.4</span>
-                        <h3 class="project-title">Thao tác cơ bản với Tệp & Thư mục</h3>
-                        <p class="project-desc">Quy trình thiết lập sơ đồ cây thư mục học tập chuẩn hóa, thực hành các thao tác quản lý dữ liệu an toàn trên Windows File Explorer.</p>
-                        <div class="project-footer">
-                            <span class="project-tech">Hệ thống & Tệp tin</span>
-                            <button class="btn-view" onclick="openModal(1)">Xem chi tiết <i class="fas fa-chevron-right"></i></button>
-                        </div>
+                    <div class="bento-action">
+                        <span class="bento-tech">Windows File Explorer</span>
+                        <button class="btn-bento-link" onclick="openBentoModal(1)">Khám phá <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
-                <!-- Project 2 (system) -->
-                <div class="project-card" data-category="system">
-                    <div class="project-header-box">
-                        <div class="project-icon-box"><i class="fas fa-search"></i></div>
-                        <span class="project-card-badge">Nghiên cứu</span>
-                    </div>
-                    <div class="project-body">
-                        <span class="project-num">Bài tập 2 / Mục 2.4</span>
-                        <h3 class="project-title">Tìm kiếm & Đánh giá nguồn tin</h3>
-                        <p class="project-desc">Khai thác và xếp hạng độ tin cậy của 10 tài liệu học thuật về Chuyển đổi số và Giáo dục trong thời đại mới.</p>
-                        <div class="project-footer">
-                            <span class="project-tech">Đánh giá Thông tin</span>
-                            <button class="btn-view" onclick="openModal(2)">Xem chi tiết <i class="fas fa-chevron-right"></i></button>
+                <!-- Bento 2: Tìm kiếm học thuật (Wide Size) -->
+                <div class="bento-item size-wide">
+                    <span class="bento-tag">Học thuật</span>
+                    <div class="bento-body">
+                        <div class="bento-num">Bài tập 2 / Mục 2.4</div>
+                        <h3 class="bento-title">Khai thác & Đánh giá Thông tin</h3>
+                        <p class="bento-desc">Thiết lập các tham số tìm kiếm nâng cao để chọn lọc và xếp hạng độ tin cậy của 10 tài liệu quốc tế về xu hướng chuyển đổi giáo dục trong thời đại số.</p>
+                        
+                        <!-- Mini visual mockup inside the card -->
+                        <div class="bento-mockup">
+                            <i class="fas fa-search" style="color: var(--primary)"></i> <strong>Education Reform:</strong> 3.250 kết quả • Độc lập lọc (2021-2026) • Chọn lọc 10 bài báo Nature/Springer uy tín.
                         </div>
+                    </div>
+                    <div class="bento-action">
+                        <span class="bento-tech">ScienceDirect / Google Scholar / APA Style</span>
+                        <button class="btn-bento-link" onclick="openBentoModal(2)">Khám phá <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
-                <!-- Project 3 (ai) -->
-                <div class="project-card" data-category="ai">
-                    <div class="project-header-box">
-                        <div class="project-icon-box"><i class="fas fa-terminal"></i></div>
-                        <span class="project-card-badge">Prompting</span>
-                    </div>
-                    <div class="project-body">
-                        <span class="project-num">Bài tập 3 / Mục 3.4</span>
-                        <h3 class="project-title">Prompt Engineering trong Học tập</h3>
-                        <p class="project-desc">Thử nghiệm 3 tác vụ phổ biến qua 3 cấp độ câu lệnh cơ bản, cải tiến và nâng cao để phân tích hiệu quả phản hồi của AI.</p>
-                        <div class="project-footer">
-                            <span class="project-tech">Thiết kế Câu lệnh</span>
-                            <button class="btn-view" onclick="openModal(3)">Xem chi tiết <i class="fas fa-chevron-right"></i></button>
+                <!-- Bento 3: Prompt Engineering (Tall Size) -->
+                <div class="bento-item size-tall">
+                    <span class="bento-tag">Prompting</span>
+                    <div class="bento-body">
+                        <div class="bento-num">Bài tập 3 / Mục 3.4</div>
+                        <h3 class="bento-title">Prompt Engineering trong Học tập</h3>
+                        <p class="bento-desc">Xây dựng và so sánh 3 mức độ câu lệnh (Cơ bản - Cải tiến - Nâng cao) áp dụng vào các tác vụ tóm tắt tư liệu UNESCO, diễn giải Growth Mindset và thiết kế bài ôn tập cuối kỳ môn Tiếng Thái tại ULIS.</p>
+                        
+                        <!-- Visual mockup representing Prompting Chat -->
+                        <div class="bento-mockup" style="margin-top:25px;">
+                            <div class="chat-line">
+                                <div class="chat-avatar" style="background:#bba3ff"></div>
+                                <div class="chat-bubble">Tác vụ: Soạn câu hỏi ôn tập Tiếng Thái cơ sở 2...</div>
+                            </div>
+                            <div class="chat-line">
+                                <div class="chat-avatar" style="background:#f2cdff"></div>
+                                <div class="chat-bubble" style="background: rgba(134,103,227,0.05)">Prompt nâng cao: Phân bổ cụ thể Từ vựng, Ngữ pháp, Đáp án đi kèm.</div>
+                            </div>
                         </div>
+                    </div>
+                    <div class="bento-action">
+                        <span class="bento-tech">ChatGPT-4o / Role Prompting</span>
+                        <button class="btn-bento-link" onclick="openBentoModal(3)">Khám phá <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
-                <!-- Project 4 (system) -->
-                <div class="project-card" data-category="system">
-                    <div class="project-header-box">
-                        <div class="project-icon-box"><i class="fas fa-users"></i></div>
-                        <span class="project-card-badge">Cộng tác</span>
-                    </div>
-                    <div class="project-body">
-                        <span class="project-num">Bài tập 4 / Mục 4.4</span>
-                        <h3 class="project-title">Quản lý Dự án & Cộng tác số</h3>
-                        <p class="project-desc">Quy trình làm việc nhóm trực tuyến đồng bộ hóa tiến độ bằng bảng Trello và biên tập báo cáo Nhập môn Việt ngữ qua Google Docs.</p>
-                        <div class="project-footer">
-                            <span class="project-tech">Cộng tác Trực tuyến</span>
-                            <button class="btn-view" onclick="openModal(4)">Xem chi tiết <i class="fas fa-chevron-right"></i></button>
+                <!-- Bento 4: Cộng tác Việt ngữ (Normal Size) -->
+                <div class="bento-item">
+                    <span class="bento-tag">Cộng tác</span>
+                    <div class="bento-body">
+                        <div class="bento-num">Bài tập 4 / Mục 4.4</div>
+                        <h3 class="bento-title">Hợp tác số & Quản lý nhóm</h3>
+                        <p class="bento-desc">Phối hợp lập kế hoạch và phân công tiến độ làm việc nhóm trực tuyến để hoàn thiện học liệu môn Việt ngữ qua Trello và Google Workspace.</p>
+                        
+                        <!-- Mini visual mockup of Trello -->
+                        <div class="bento-mockup">
+                            <div class="trello-board-mock">
+                                <div class="trello-col">
+                                    <div class="trello-card">Lập Timeline</div>
+                                </div>
+                                <div class="trello-col">
+                                    <div class="trello-card" style="background:var(--primary-light)">Đang rà soát</div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <div class="bento-action">
+                        <span class="bento-tech">Trello Kanban / Google Workspace</span>
+                        <button class="btn-bento-link" onclick="openBentoModal(4)">Khám phá <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
-                <!-- Project 5 (ai) -->
-                <div class="project-card" data-category="ai">
-                    <div class="project-header-box">
-                        <div class="project-icon-box"><i class="fas fa-image"></i></div>
-                        <span class="project-card-badge">Sáng tạo</span>
+                <!-- Bento 5: AI sáng tạo nội dung (Wide Size) -->
+                <div class="bento-item size-wide">
+                    <span class="bento-tag">Sáng tạo</span>
+                    <div class="bento-body">
+                        <div class="bento-num">Bài tập 5 / Mục 5.4</div>
+                        <h3 class="bento-title">AI hỗ trợ Kiến tạo Nội dung</h3>
+                        <p class="bento-desc">Đồng sáng tạo Infographic di sản "Chùa Một Cột" (Gemini, DALL-E, Canva AI) và thiết kế hệ thống học liệu ngoại ngữ cá nhân hóa trình độ B1 chủ đề Du lịch sinh thái dồi dào bài tập thực hành.</p>
                     </div>
-                    <div class="project-body">
-                        <span class="project-num">Bài tập 5 / Mục 5.4</span>
-                        <h3 class="project-title">AI hỗ trợ Sáng tạo Nội dung số</h3>
-                        <p class="project-desc">Đồng sáng tạo Infographic "Chùa Một Cột" bằng Gemini/DALL-E và biên soạn học liệu B1 cá nhân hóa chủ đề du lịch bền vững.</p>
-                        <div class="project-footer">
-                            <span class="project-tech">Canva, Gemini & AI</span>
-                            <button class="btn-view" onclick="openModal(5)">Xem chi tiết <i class="fas fa-chevron-right"></i></button>
-                        </div>
+                    <div class="bento-action">
+                        <span class="bento-tech">Gemini / DALL-E / Canva / CEFR Learning Package</span>
+                        <button class="btn-bento-link" onclick="openBentoModal(5)">Khám phá <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
-                <!-- Project 6 (ai) -->
-                <div class="project-card" data-category="ai">
-                    <div class="project-header-box">
-                        <div class="project-icon-box"><i class="fas fa-shield-alt"></i></div>
-                        <span class="project-card-badge">Đạo đức</span>
+                <!-- Bento 6: Liêm chính đạo đức (Normal Size) -->
+                <div class="bento-item">
+                    <span class="bento-tag">Đạo đức</span>
+                    <div class="bento-body">
+                        <div class="bento-num">Bài tập 6 / Mục 6.4</div>
+                        <h3 class="bento-title">Liêm chính Học thuật số</h3>
+                        <p class="bento-desc">Nghiên cứu Khung năng lực AI VNU 2025 và đề xuất Bộ quy tắc cá nhân 30/70 giúp ứng xử liêm chính và kiểm chứng học thuật trung thực khi sử dụng AI.</p>
                     </div>
-                    <div class="project-body">
-                        <span class="project-num">Bài tập 6 / Mục 6.4</span>
-                        <h3 class="project-title">Liêm chính Học thuật & Sử dụng AI</h3>
-                        <p class="project-desc">Phân tích chính sách AI 2025 của ĐHQGHN, đề xuất Bộ nguyên tắc ứng xử 30/70 cá nhân để giữ vững tính liêm chính số.</p>
-                        <div class="project-footer">
-                            <span class="project-tech">Đạo đức & Luật số</span>
-                            <button class="btn-view" onclick="openModal(6)">Xem chi tiết <i class="fas fa-chevron-right"></i></button>
-                        </div>
+                    <div class="bento-action">
+                        <span class="bento-tech">VNU AI 2025 / 30-70 Rule Code</span>
+                        <button class="btn-bento-link" onclick="openBentoModal(6)">Khám phá <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
 
@@ -988,35 +1126,37 @@
         </div>
     </section>
 
-    <!-- Reflection Section -->
+    <!-- Reflection Section (Diary Leaf design) -->
     <section id="reflection" class="section">
         <div class="wrapper">
             <div class="section-header">
-                <span class="section-subtitle">Ghi nhận cá nhân</span>
-                <h2 class="section-title">Tổng kết & Tự đánh giá</h2>
+                <span class="section-subtitle">Tự sự</span>
+                <h2 class="section-title">Nhìn lại hành trình tích lũy</h2>
             </div>
+
             <div class="reflection-grid">
-                <div class="reflection-card">
-                    <div class="reflection-icon"><i class="fas fa-hourglass-half"></i></div>
-                    <h4>Trải nghiệm & Cảm nhận</h4>
+                
+                <div class="reflection-leaf">
+                    <h4>Cảm nhận & Đổi thay</h4>
                     <p>
-                        Hành trình từ những bài tập quản lý file cơ bản đến lúc đồng sáng tạo với AI đã mở rộng lăng kính học tập của mình. Mình nhận thấy rằng công nghệ không phải là thách thức làm lu mờ giá trị cá nhân, mà chính là chất xúc tác để thúc đẩy năng lực nghiên cứu phát triển một cách bài bản và nhanh chóng hơn.
+                        Vốn quen thuộc với các khái niệm ngôn từ lãng mạn, việc tiếp cận với các công cụ công nghệ số và câu lệnh hệ thống ban đầu thực sự là một thử thách lớn đối với mình. Tuy nhiên, khi tự tay tổ chức cây thư mục, xây dựng các cấu trúc prompt đa lớp hay tự thiết kế các gói học liệu ngoại ngữ cá nhân hóa, mình thấu cảm sâu sắc rằng công nghệ là lăng kính khúc xạ giúp tư duy của bản thân trở nên rành mạch, khoa học và thực tế hơn rất nhiều.
                     </p>
                 </div>
-                <div class="reflection-card">
-                    <div class="reflection-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h4>Kỹ năng số thu nhận</h4>
+
+                <div class="reflection-leaf">
+                    <h4>Những giá trị đạt được</h4>
                     <p>
-                        Mình đã rèn luyện được tư duy hệ thống dữ liệu, cách kiểm soát câu lệnh (Prompt Engineering) chặt chẽ, kỹ năng điều phối nhóm trực tuyến và hiểu biết về ranh giới liêm chính số. Đây đều là những năng lực thiết yếu giúp một sinh viên ngôn ngữ tự tin bước ra thị trường lao động hiện đại.
+                        Qua học phần này, mình không chỉ thành thạo những thao tác phần mềm hay công nghệ tạo hình cơ bản, mà quan trọng hơn hết là mình học được phương pháp tự nâng cấp kỹ năng mềm: từ tư duy chọn lọc nguồn tin chuẩn xác, phương pháp giao tiếp tối ưu với LLMs (Prompt Engineering), năng lực quản trị tiến độ nhóm online cho đến lập trường ứng xử chuẩn mực, bảo đảm liêm chính tối đa khi tiếp cận trí tuệ nhân tạo.
                     </p>
                 </div>
-                <div class="reflection-card">
-                    <div class="reflection-icon"><i class="fas fa-medal"></i></div>
-                    <h4>Thách thức & Sự tự hào</h4>
+
+                <div class="reflection-leaf">
+                    <h4>Nỗ lực & Tự hào</h4>
                     <p>
-                        Vượt qua sức ì tư duy thuần túy lý thuyết và học cách kiểm chứng nghiêm ngặt các đầu ra của AI là khó khăn lớn nhất. Mình tự hào vì đã luôn áp dụng thái độ phản biện, đặt con người vào trung tâm quy trình công nghệ để hoàn thành trọn vẹn và khoa học toàn bộ hệ thống sản phẩm này.
+                        Khó khăn lớn nhất là vượt qua lối suy nghĩ cảm tính thuần túy của một sinh viên ngoại ngữ để rèn luyện thói quen logic chặt chẽ. Mình tự hào vì luôn duy trì tinh thần cầu thị "Growth Mindset", không ngần ngại thử nghiệm lại nhiều lần các câu lệnh để tìm ra kết quả tối ưu nhất. Sản phẩm Portfolio này chính là một dấu mốc, ghi nhận sự chuyển dịch tư duy và năng lực thích ứng linh hoạt của mình trước bối cảnh giáo dục số tương lai.
                     </p>
                 </div>
+
             </div>
         </div>
     </section>
@@ -1025,44 +1165,43 @@
     <footer>
         <div class="wrapper">
             <a href="#" class="footer-logo">GD<span>Linh</span></a>
-            <p class="footer-tag">English Language and Culture Student • ULIS VNU</p>
+            <p class="footer-tag">Sinh viên Ngôn ngữ và Văn hóa Anh • ULIS VNU</p>
             <div class="footer-socials">
                 <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
                 <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://drive.google.com/drive/folders/1GiHpxNyFZei2Q4kHximFQYtqtpkNRi3V?usp=drive_link" target="_blank" class="social-btn"><i class="fab fa-google-drive"></i></a>
             </div>
-            <p class="footer-copy">© 2026 Nguyễn Đặng Gia Linh - MSSV: 25040125. All Rights Reserved.</p>
+            <p class="footer-copy">© 2026 Nguyễn Đặng Gia Linh - 25040125. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- Portfolio Modal -->
-    <div class="modal-overlay" id="projectModal">
+    <!-- Interactive Detail Modal Overlay -->
+    <div class="modal-overlay" id="bentoModal">
         <div class="modal-container">
-            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-            <div class="modal-num" id="modalNum">Bài tập</div>
-            <h3 class="modal-title" id="modalTitle">Tiêu đề bài làm</h3>
-            <div class="modal-body" id="modalBody">
-                <!-- Content injected dynamically -->
-            </div>
+            <button class="modal-close" onclick="closeBentoModal()"><i class="fas fa-times"></i></button>
+            <div class="modal-num" id="modalNum"></div>
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <div class="modal-body" id="modalBody"></div>
         </div>
     </div>
 
-    <!-- Script Handling Navigation, Filter and Modal Data -->
+    <!-- Script for Dynamic Modal System and Active state transitions -->
     <script>
-        // Smooth Active Link State on Scroll
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-
+        // Track Scroll for Dock active states
         window.addEventListener('scroll', () => {
             let current = '';
+            const sections = document.querySelectorAll('section');
+            const dockLinks = document.querySelectorAll('.dock-link');
+
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (window.scrollY >= sectionTop - 120) {
+                if (window.scrollY >= sectionTop - 180) {
                     current = section.getAttribute('id');
                 }
             });
-            navLinks.forEach(link => {
+
+            dockLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href').includes(current)) {
                     link.classList.add('active');
@@ -1070,230 +1209,216 @@
             });
         });
 
-        // Filter Projects Category
-        function filterProjects(category, button) {
-            // Active button state
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            // Show/Hide Cards
-            const cards = document.querySelectorAll('.project-card');
-            cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // Project Database Content
-        const modalDatabase = {
+        // Modal database containing deep analysis for each bento piece
+        const assignmentDatabase = {
             1: {
                 num: "Bài tập 1 / Mục 1.4",
-                title: "Thao tác cơ bản với Tệp & Thư mục",
-                body: `
-                    <p><strong>Mục tiêu:</strong> Làm quen với việc tổ chức lưu trữ và cấu trúc dữ liệu khoa học trong hệ điều hành Windows để tiết kiệm thời gian tìm kiếm thông tin và phục vụ học tập lâu dài.</p>
-                    <h5>Quy trình thực tế đã triển khai:</h5>
+                title: "Quản lý và Tổ chức Tệp tin",
+                content: `
+                    <p><strong>Mục tiêu:</strong> Làm quen và thiết lập thói quen lưu trữ, điều phối tệp tin khoa học trên không gian bộ nhớ máy tính cục bộ để giảm thiểu thời gian tìm kiếm dữ liệu.</p>
+                    
+                    <h5>Các bước thực hành thực tế:</h5>
                     <ol>
-                        <li><strong>Khởi động File Explorer:</strong> Sử dụng phím tắt <code>Windows + E</code> để vào trình duyệt tệp. Chọn phân vùng ổ đĩa <code>E:</code> để lưu trữ lâu dài.</li>
-                        <li><strong>Tạo thư mục cha:</strong> Nhấp chuột phải, chọn <code>New -> Folder</code>, tiến hành đặt tên thư mục chuẩn không dấu: <code>ThucHanh_NguyenDangGiaLinh</code>.</li>
-                        <li><strong>Thao tác văn bản cơ bản:</strong> Tạo tệp ghi chú mới <code>GhiChu.txt</code> trong thư mục, đổi tên tệp (Rename) thành <code>GhiChuQuanTrong.txt</code> để phân loại tầm quan trọng.</li>
-                        <li><strong>Tạo thư mục con và xử lý tệp:</strong> Khởi tạo thư mục con mang tên <code>TaiLieu</code>. Thực hiện sao chép (Copy-Paste) tệp <code>GhiChuQuanTrong.txt</code> vào đây. Tiếp theo, tạo tệp <code>DiChuyen.txt</code> và thực hiện thao tác di chuyển (Cut-Paste) để phân phối tệp về đúng vị trí thư mục <code>TaiLieu</code>.</li>
-                        <li><strong>Quản lý an toàn tệp xóa:</strong> Thực hành xóa tệp đưa vào Recycle Bin (Thùng rác) và sử dụng chức năng <code>Restore</code> để khôi phục về trạng thái cũ. Thực hiện xóa vĩnh viễn tệp rác bằng tổ hợp phím <code>Shift + Delete</code> để giải phóng bộ nhớ.</li>
+                        <li><strong>Khởi động công cụ:</strong> Nhấn tổ hợp phím <code>Windows + E</code> mở File Explorer. Truy cập phân vùng ổ đĩa dữ liệu an toàn (ổ đĩa <code>E:</code>) để tránh mất mát thông tin trong trường hợp hệ thống gặp lỗi.</li>
+                        <li><strong>Thiết lập cấu trúc thư mục cha:</strong> Tạo mới thư mục có tên không dấu chuẩn hóa theo định dạng: <code>ThucHanh_NguyenDangGiaLinh</code>.</li>
+                        <li><strong>Khởi tạo và hiệu chỉnh tệp tin:</strong> Tạo mới một văn bản dạng Notepad <code>GhiChu.txt</code>. Sử dụng tính năng <code>Rename</code> đổi tên tệp thành <code>GhiChuQuanTrong.txt</code> nhằm tăng độ nhận diện về tầm quan trọng của thông tin bên trong.</li>
+                        <li><strong>Phân nhánh thư mục con và điều phối:</strong> Tạo thêm một thư mục con tên là <code>TaiLieu</code>. Thực hành các thao tác điều hướng bao gồm:
+                            <ul>
+                                <li>Sao chép (<code>Copy & Paste</code>) tệp <code>GhiChuQuanTrong.txt</code> vào thư mục con <code>TaiLieu</code> để tạo ra bản sao lưu dự phòng.</li>
+                                <li>Tạo một tệp mới tên là <code>DiChuyen.txt</code> ở thư mục gốc, sử dụng tính năng di chuyển (<code>Cut & Paste</code>) để di dời tệp này gọn gàng vào thư mục <code>TaiLieu</code>.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Xóa và khôi phục dữ liệu:</strong> Thực hiện xóa tệp <code>GhiChuQuanTrong.txt</code> ở thư mục cha bên ngoài bằng phím <code>Delete</code> đưa vào Recycle Bin, sau đó truy cập thùng rác và khôi phục tệp về vị trí gốc ban đầu thành công. Tiếp tục tiến hành xóa vĩnh viễn tệp <code>DiChuyen.txt</code> bằng tổ hợp <code>Shift + Delete</code> để dọn dẹp bộ nhớ vĩnh viễn.</li>
                     </ol>
-                    <div class="modal-info-box">
-                        <strong>Đúc kết:</strong> Mọi thao tác thực hiện đều đi kèm ảnh minh họa trực quan lưu tại Drive liên kết, chứng minh quá trình luyện tập và khả năng tổ chức thông tin chuẩn chỉ của sinh viên.
+
+                    <div class="modal-alert">
+                        <strong>Kinh nghiệm thực tiễn:</strong> Việc duy trì một sơ đồ cây thư mục logic đóng vai trò cực kỳ quan trọng đối với các dự án cộng tác và học thuật. Nó giúp quy trình truy xuất dữ liệu diễn ra gần như lập tức và không bị nhầm lẫn.
                     </div>
                 `
             },
             2: {
                 num: "Bài tập 2 / Mục 2.4",
-                title: "Khai thác & Đánh giá nguồn thông tin học thuật",
-                body: `
-                    <p><strong>Mục tiêu:</strong> Nâng cao năng lực tra cứu, chọn lọc và phản biện chất lượng nguồn tài liệu học thuật số, tránh việc tiếp cận các thông tin thiếu chuẩn xác hoặc không qua kiểm duyệt.</p>
-                    <h5>Quy trình nghiên cứu và Đánh giá:</h5>
-                    <p>Nghiên cứu được triển khai quanh chủ đề giáo dục <strong>"Giáo dục trong thời đại số (Education in the Digital Age)"</strong>. Phạm vi thời gian nghiên cứu giới hạn từ 2021 đến 2026. Các kênh tra cứu gồm: <em>Google Scholar, ScienceDirect, SpringerLink</em>.</p>
-                    <h5>Bảng phân tích & Xếp hạng 10 nguồn tin tiêu biểu:</h5>
+                title: "Khai thác & Đánh giá Nguồn tin Học thuật",
+                content: `
+                    <p><strong>Mục tiêu:</strong> Định vị và phân tích sâu sắc chất lượng, tính tin cậy của các ấn phẩm nghiên cứu quốc tế liên quan đến chủ đề <em>"Giáo dục trong thời đại số (Education in the Digital Age)"</em>.</p>
+                    
+                    <h5>Phương pháp luận & Phạm vi thu thập:</h5>
+                    <p>Phạm vi thời gian tìm kiếm được khống chế chặt chẽ trong giai đoạn từ năm 2021 đến năm 2026 để bảo đảm cập nhật đúng xu thế công nghệ hiện đại. Các nguồn học thuật uy tín được tiếp cận trực tiếp bao gồm: <em>Google Scholar, ScienceDirect, SpringerLink</em> và hệ thống tạp chí học thuật thuộc Nature Portfolio.</p>
+
+                    <h5>Danh mục tài liệu tiêu biểu đã được phân tích & xếp hạng:</h5>
                     <div class="modal-table-container">
                         <table class="modal-table">
                             <thead>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Tên tài liệu học thuật</th>
-                                    <th>Cơ quan / Tạp chí xuất bản</th>
-                                    <th>Tính cập nhật</th>
-                                    <th>Xếp hạng tin cậy</th>
+                                    <th>Tên tài liệu khoa học</th>
+                                    <th>Nhà xuất bản / Tạp chí nguồn</th>
+                                    <th>Phương pháp luận nghiên cứu</th>
+                                    <th>Độ tin cậy (1-10)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>1</td>
                                     <td>Education reform and change driven by digital technology</td>
-                                    <td>Nature (Humanities & Social Sciences Communications)</td>
-                                    <td>2024</td>
-                                    <td>10/10</td>
+                                    <td>Humanities & Social Sciences Communications (Nature)</td>
+                                    <td>Phân tích thư mục trên lượng lớn dữ liệu</td>
+                                    <td><strong>10 / 10</strong></td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
                                     <td>Digital transformation and digital literacy in higher education</td>
                                     <td>Humanities & Social Sciences Communications</td>
-                                    <td>2024</td>
-                                    <td>9/10</td>
+                                    <td>Tổng quan hệ thống nghiên cứu trước đó</td>
+                                    <td><strong>9 / 10</strong></td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Intelligent technologies in smart education</td>
                                     <td>Humanities & Social Sciences Communications</td>
-                                    <td>2025</td>
-                                    <td>9/10</td>
+                                    <td>Phân tích xu hướng phát triển của AI</td>
+                                    <td><strong>9 / 10</strong></td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
                                     <td>Large language model powered chatbots for student support</td>
-                                    <td>arXiv (Kho lưu trữ mở)</td>
-                                    <td>2024</td>
-                                    <td>6/10</td>
+                                    <td>arXiv (Hệ thống dữ liệu lưu trữ mở)</td>
+                                    <td>Khảo nghiệm ứng dụng thực tế</td>
+                                    <td><strong>6 / 10</strong></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="modal-info-box">
-                        <strong>Năng lực đạt được:</strong> Qua bài tập này, mình hiểu rõ khái niệm phản biện tạp chí (Peer review) và biết cách lập danh mục tài liệu tham khảo theo đúng quy chuẩn trích dẫn khoa học APA.
+
+                    <div class="modal-alert">
+                        <strong>Tầm nhìn đúc kết:</strong> Quá trình rà soát này giúp mình học được phương pháp phân định ranh giới giữa nghiên cứu uy tín đã qua hội đồng phản biện nghiêm ngặt và các tài liệu chưa qua thẩm định (Preprint), rèn luyện thói quen trích dẫn học thuật chuẩn APA và MLA.
                     </div>
                 `
             },
             3: {
                 num: "Bài tập 3 / Mục 3.4",
-                title: "Prompt Engineering trong Học tập",
-                body: `
-                    <p><strong>Mục tiêu:</strong> Làm chủ nghệ thuật thiết kế câu lệnh để tương tác hiệu quả với các Mô hình Ngôn ngữ lớn (LLMs), tối ưu hóa các phản hồi phục vụ tác vụ học tập hằng ngày.</p>
-                    <h5>Thử nghiệm 3 tác vụ học thuật trên ChatGPT:</h5>
+                title: "Tối ưu hóa Câu lệnh (Prompt Engineering)",
+                content: `
+                    <p><strong>Mục tiêu:</strong> Nắm vững nguyên lý hoạt động của các Mô hình ngôn ngữ lớn (LLMs), rèn luyện kỹ năng viết prompt đa tầng để thu về các phản hồi chính xác, hữu ích phục vụ học thuật.</p>
+                    
+                    <h5>Thử nghiệm trên 3 tác vụ học tập qua 3 mức độ câu lệnh:</h5>
+                    <p>Thực hiện khảo sát trên ChatGPT-4o thông qua 3 cấp độ câu lệnh: <strong>Cơ bản</strong> (mô tả thô), <strong>Cải tiến</strong> (bổ sung bối cảnh, giới hạn) và <strong>Nâng cao</strong> (áp dụng các kỹ thuật Prompt Engineering nâng cao như Role Prompting, Structured Prompting, Constraint Prompting và Task Decomposition).</p>
+
+                    <h5>Nội dung chi tiết 3 tác vụ:</h5>
                     <ul>
-                        <li><strong>Tác vụ 1 - Tóm tắt văn bản:</strong> Tóm tắt tài liệu AI trong giáo dục của UNESCO. Prompt nâng cao sử dụng kỹ thuật chia nhỏ nhiệm vụ (Task decomposition) và giới hạn từ ngữ học thuật.</li>
-                        <li><strong>Tác vụ 2 - Giải thích khái niệm:</strong> Cắt nghĩa thuật ngữ "Growth Mindset". Prompt nâng cao phân vai AI là "Giảng viên tâm lý học giáo dục" giúp đưa ra ví dụ dễ hiểu cho học sinh trung học.</li>
-                        <li><strong>Tác vụ 3 - Tạo đề ôn tập:</strong> Soạn thảo bộ đề thi Tiếng Thái Cơ sở 2 cho sinh viên ULIS. Prompt nâng cao cấu trúc đề thi đa dạng (Từ vựng, Ngữ pháp, Đọc hiểu) và bắt buộc AI xuất bộ đáp án rõ ràng.</li>
+                        <li><strong>Tác vụ 1 - Tóm tắt tư liệu UNESCO:</strong> Tóm tắt bài viết "AI trong Giáo dục" của UNESCO dưới 200 từ với phong cách khoa học.
+                            <br><em>Kết quả Prompt nâng cao:</em> Bài tóm tắt chuẩn xác, phân bổ 4 đề mục rõ ràng, không mắc lỗi lan man hay ảo tưởng thông tin.
+                        </li>
+                        <li><strong>Tác vụ 2 - Giải thích khái niệm "Growth Mindset":</strong> Giải nghĩa trực quan phù hợp với học sinh trung học.
+                            <br><em>Kết quả Prompt nâng cao:</em> Đóng vai trò chuyên gia tâm lý học giáo dục, giải thích rõ đặc điểm, so sánh sâu sắc với Fixed Mindset kèm ví dụ thực hành cụ thể.
+                        </li>
+                        <li><strong>Tác vụ 3 - Soạn câu hỏi ôn tập Tiếng Thái:</strong> Soạn câu hỏi ôn tập cuối kỳ môn Tiếng Thái cơ sở 2 tại ULIS.
+                            <br><em>Kết quả Prompt nâng cao:</em> Tạo bộ câu hỏi phong phú bao quát cả Từ vựng, Ngữ pháp cơ bản, Dịch câu, Đọc hiểu ngắn bám sát bối cảnh học tập thực tế và có đáp án đính kèm cuối bài.
+                        </li>
                     </ul>
-                    <h5>So sánh định lượng hiệu quả câu lệnh:</h5>
-                    <div class="modal-table-container">
-                        <table class="modal-table">
-                            <thead>
-                                <tr>
-                                    <th>Cấp độ Prompt</th>
-                                    <th>Tính rõ ràng</th>
-                                    <th>Độ chi tiết thông tin</th>
-                                    <th>Cấu trúc phản hồi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Prompt cơ bản</strong></td>
-                                    <td>Thấp</td>
-                                    <td>Ít chi tiết / Chung chung</td>
-                                    <td>Sơ sài, chưa phân mảng</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Prompt cải tiến</strong></td>
-                                    <td>Trung bình</td>
-                                    <td>Khá đầy đủ</td>
-                                    <td>Có chia tiêu đề cơ bản</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Prompt nâng cao</strong></td>
-                                    <td>Rất cao</td>
-                                    <td>Cực kỳ chi tiết, chính xác</td>
-                                    <td>Rõ ràng, mạch lạc, dễ dùng</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal-info-box">
-                        <strong>Bài học cốt lõi:</strong> Tư duy của người dùng quyết định sự thông minh của AI. Prompt Engineering là một kỹ năng bắt buộc để biến AI thành cộng sự đắc lực trong học tập.
+
+                    <div class="modal-alert">
+                        <strong>Phân tích cốt lõi:</strong> Sự thay đổi từ Prompt cơ bản sang Prompt nâng cao đem lại chất lượng phản hồi hoàn toàn vượt bậc về độ rõ ràng, cấu trúc logic và tính học thuật ứng dụng cao. Kỹ năng thiết kế câu lệnh chính là chiếc chìa khóa làm chủ công nghệ thực sự của con người.
                     </div>
                 `
             },
             4: {
                 num: "Bài tập 4 / Mục 4.4",
-                title: "Quản lý Dự án & Cộng tác số",
-                body: `
-                    <p><strong>Mục tiêu:</strong> Học cách phối hợp làm việc nhóm trực tuyến đồng bộ, tháo gỡ rào cản địa lý và rèn luyện kỹ năng giải quyết mâu thuẫn để tối ưu hiệu suất công việc.</p>
-                    <h5>Quy trình phối hợp số thực tế:</h5>
+                title: "Hợp tác số & Quản lý Dự án trực tuyến",
+                content: `
+                    <p><strong>Mục tiêu:</strong> Thiết lập tư duy phối hợp, rèn luyện kỹ năng điều hành và quản trị tiến độ công việc trong các dự án học thuật nhóm sử dụng công cụ trực tuyến.</p>
+                    
+                    <h5>Triển khai dự án nhóm môn "Nhập môn Việt ngữ":</h5>
+                    <p>Nhóm thực hiện nhiệm vụ biên soạn báo cáo phân tích ngữ pháp tiếng Việt. Quá trình cộng tác từ xa được phân bổ qua các nền tảng công nghệ chuyên dụng:</p>
                     <ul>
-                        <li><strong>Quản lý kế hoạch bằng Trello:</strong> Lập bảng Kanban chia rõ các phân khúc: Cần làm (To-do), Đang làm (In progress), Đang sửa (Review) và Đã hoàn thành (Done). Phân chia cụ thể hạn chót (Deadline) cho mỗi thành viên trong nhóm.</li>
-                        <li><strong>Đồng biên tập trên Google Docs:</strong> Soạn thảo báo cáo đề tài "Cấu tạo phát ngôn nghi vấn" môn Nhập môn Việt ngữ trực tuyến. Toàn nhóm có thể vào nhận xét (Comment), chỉnh sửa đồng thời trong thời gian thực.</li>
-                        <li><strong>Giao tiếp nhóm qua Messenger & Google Meet:</strong> Họp định kỳ hằng tuần để tổng hợp tiến độ và giải quyết xung đột ý kiến.</li>
+                        <li><strong>Trello (Quản trị tiến độ Kanban):</strong> Lập bảng theo dõi công việc trực quan từ khâu thu thập đề tài, phân bổ vai trò cho từng thành viên, theo dõi tiến trình chỉnh sửa nội dung cho đến nghiệm thu tệp báo cáo cuối cùng.</li>
+                        <li><strong>Google Docs (Cộng tác nội dung trực tiếp):</strong> Các thành viên cùng tham gia viết báo cáo đồng thời trên một tệp duy nhất, giúp trưởng nhóm dễ dàng đánh giá, góp ý và hiệu chỉnh câu chữ ngay trong thời gian thực.</li>
+                        <li><strong>Messenger & Google Meet (Truyền thông trực tiếp):</strong> Họp trực tuyến để cùng trao đổi, tháo gỡ các vướng mắc ngữ nghĩa và thống nhất tiếng nói chung về mặt học thuật.</li>
                     </ul>
-                    <div class="modal-info-box">
-                        <strong>Thách thức đã vượt qua:</strong> Việc làm việc từ xa dễ gây ra sự chậm trễ phản hồi thông tin hoặc hiểu lầm ý nhau. Nhóm đã tự khắc phục bằng việc thiết lập mốc thời gian phản hồi tin nhắn cố định và cử leader liên tục rà soát tiến độ, duy trì tinh thần trách nhiệm tập thể.
+
+                    <div class="modal-alert">
+                        <strong>Khắc phục thách thức:</strong> Làm việc online thường phát sinh vấn đề trễ tiến độ hoặc bất đồng quan điểm giữa các thành viên. Nhóm mình đã giải quyết hiệu quả bằng cách thiết lập nguyên tắc nhắc nhở deadline từ leader, chia nhỏ công việc và cam kết thời gian phản hồi tin nhắn cố định để bảo toàn năng suất chung.
                     </div>
                 `
             },
             5: {
                 num: "Bài tập 5 / Mục 5.4",
-                title: "AI hỗ trợ Sáng tạo Nội dung số",
-                body: `
-                    <p><strong>Mục tiêu:</strong> Khai thác khả năng sáng tạo hình ảnh và cấu trúc văn bản của AI tạo sinh để đồng thiết kế các sản phẩm học liệu sinh động, thu hút người học.</p>
-                    <h5>1. Thiết kế Infographic di sản Chùa Một Cột:</h5>
-                    <p>Phối hợp 3 công cụ AI để thực hiện ấn phẩm trực quan giới thiệu di sản văn hóa Việt Nam:</p>
+                title: "Ứng dụng AI trong Sáng tạo Nội dung",
+                content: `
+                    <p><strong>Mục tiêu:</strong> Đồng tạo tác và thiết kế các ấn phẩm trực quan sinh động cũng như tài liệu học tập cá nhân hóa chất lượng cao bằng cách phối hợp tối ưu các công cụ trí tuệ nhân tạo thế hệ mới.</p>
+                    
+                    <h5>1. Đồng thiết kế Infographic di sản "Chùa Một Cột":</h5>
+                    <p>Thực hiện tích hợp 3 hệ thống AI để đồng sáng tạo một infographic truyền thống:</p>
                     <ul>
-                        <li><strong>Gemini:</strong> Xây dựng khung thông tin chi tiết về lịch sử xây dựng (năm 1049), kiến trúc Liên Hoa Đài độc đáo, ý nghĩa nhân văn tâm linh Phật giáo và giờ mở cửa tham quan.</li>
-                        <li><strong>DALL-E:</strong> Chuyển thể văn bản giới thiệu thành hình họa Chùa Một Cột cổ kính, an nhiên với gam màu truyền thống sắc nét.</li>
-                        <li><strong>Canva AI:</strong> Lựa chọn mẫu bố cục, đồng nhất biểu tượng (Icon) trực quan giúp định hướng mắt người đọc và tạo dựng khoảng trống thích hợp cho infographic.</li>
+                        <li><strong>Gemini:</strong> Biên tập dữ liệu văn bản chính xác, chắt lọc các mốc thời gian lịch sử (năm 1049 đời vua Lý Thái Tông), kết cấu kiến trúc độc đáo (Liên Hoa Đài đặt trên một cột đá giữa hồ Linh Chiểu) và ý nghĩa văn hóa nhân văn của Chùa Một Cột.</li>
+                        <li><strong>DALL-E:</strong> Chuyển thể văn bản thành đồ họa ấn tượng mang phong cách thanh tịnh cổ kính với tông màu ấm và nét phác họa mỹ thuật tinh tế.</li>
+                        <li><strong>Canva AI:</strong> Tạo mẫu layout dọc trực quan, phân tách bố cục hợp lý giúp định hướng tầm mắt người xem và đồng nhất hệ thống biểu tượng (icons) minh họa.</li>
                     </ul>
-                    <h5>2. Biên soạn học liệu Ngoại ngữ cá nhân hóa (B1):</h5>
-                    <p>Tạo gói bài học chuyên biệt chủ đề <strong>"Sustainable Tourism and Eco-travel"</strong> cho sinh viên ngành Du lịch có trình độ B1. Bộ học liệu hoàn chỉnh bao gồm: Bài đọc (Reading) khoảng 250-300 từ mang từ vựng chọn lọc, bài tập trắc nghiệm củng cố ngữ pháp Present Perfect và hoạt động thực hành nói/viết tranh biện phản biện xã hội.</p>
-                    <div class="modal-info-box">
-                        <strong>Nhận xét chuyên môn:</strong> Việc áp dụng AI giúp tiết kiệm thời gian thiết kế bài học nhưng đòi hỏi sinh viên phải đóng vai trò rà soát (Human-in-the-loop) để sửa đổi các lỗi typography hoặc lỗi kiến thức của AI.
+
+                    <h5>2. Thiết kế gói học liệu ngoại ngữ cá nhân hóa chuyên sâu:</h5>
+                    <p>Thiết kế gói tài liệu học tiếng Anh chủ đề <strong>"Sustainable Tourism and Eco-travel"</strong> dành cho học sinh trình độ Trung cấp (CEFR B1) định hướng chuyên ngành Du lịch, bao gồm:</p>
+                    <ul>
+                        <li><strong>Bài đọc hiểu (Reading Passage):</strong> Biên soạn văn bản đọc sâu 250-300 từ có lồng ghép tự nhiên các từ vựng mục tiêu: <em>conservation, biodiversity, footprint, sustainable, indigenous</em>.</li>
+                        <li><strong>Bài tập đi kèm:</strong> Soạn bài tập trắc nghiệm nghĩa từ vựng và bài tập điền khuyết rèn luyện ngữ pháp thì Hiện tại hoàn thành (Present Perfect).</li>
+                        <li><strong>Hoạt động nói/viết:</strong> Đề xuất chủ đề tranh biện và bài viết luận ngắn gợi mở suy nghĩ phản biện về việc hạn chế lượng khách du lịch tại các kỳ quan tự nhiên.</li>
+                    </ul>
+
+                    <div class="modal-alert">
+                        <strong>Kinh nghiệm đúc kết:</strong> Mọi sản phẩm do AI tạo ra đều cần khâu kiểm duyệt nghiêm ngặt của con người (Human-in-the-loop) để loại trừ các lỗi hiển thị ký tự (typography) hoặc sửa lại thông tin thực tế chưa cập nhật chính xác của AI.
                     </div>
                 `
             },
             6: {
                 num: "Bài tập 6 / Mục 6.4",
                 title: "Liêm chính Học thuật & Sử dụng AI có Trách nhiệm",
-                body: `
-                    <p><strong>Mục tiêu:</strong> Xác lập lập trường đạo đức và các ranh giới tự nguyện của sinh viên khi sử dụng công nghệ AI để bảo vệ năng lực tư duy độc lập.</p>
-                    <h5>Bối cảnh & Chính sách học thuật:</h5>
-                    <p>Nghiên cứu <strong>Khung năng lực AI 2025</strong> do Đại học Quốc gia Hà Nội ban hành (gắn liền quyết định chuyển đổi môn Tin học cơ sở thành học phần Nhập môn Công nghệ số và Ứng dụng AI). So sánh với chính sách của Harvard và Oxford để làm rõ tầm quan trọng của việc tôn trọng liêm chính học thuật.</p>
-                    <h5>Bộ quy tắc ứng xử cá nhân 30/70:</h5>
+                content: `
+                    <p><strong>Mục tiêu:</strong> Thấu hiểu ranh giới đạo đức học thuật trong thời đại số và xây dựng bộ nguyên tắc cá nhân giúp khai thác hiệu quả AI mà vẫn duy trì tính trung thực, độc lập tư duy.</p>
+                    
+                    <h5>Nghiên cứu bối cảnh & Khung năng lực:</h5>
+                    <p>Phân tích sâu sắc <strong>Khung năng lực AI 2025 của ĐHQGHN</strong> (gắn liền với học phần VNU1001), làm rõ triết lý công nghệ được sinh ra là để trợ lực và củng cố các giá trị nhân văn của con người. Đối chiếu với các quy định liêm chính học thuật nghiêm ngặt của các trường đại học danh tiếng thế giới như Harvard và Oxford.</p>
+
+                    <h5>Bộ Quy tắc ứng xử cá nhân (Code of Conduct) đề xuất:</h5>
                     <ol>
-                        <li><strong>Tư duy độc lập đi trước:</strong> Luôn tự lập dàn ý bài luận hoặc bài nghiên cứu bằng trí tuệ của mình trước khi tìm đến sự hỗ trợ của AI.</li>
-                        <li><strong>Giới hạn tỉ lệ 30/70:</strong> Chỉ cho phép AI đóng góp tối đa 30% ý tưởng hoặc gợi mở từ khóa, 70% nội dung phân tích chi tiết và lập luận phải do chính sinh viên biên soạn.</li>
-                        <li><strong>Thẩm định thông tin (Fact-check):</strong> Mọi số liệu AI đưa ra phải được đối chiếu chéo với các tài liệu khoa học chính thống để loại bỏ rủi ro thông tin sai lệch.</li>
-                        <li><strong>Minh bạch nguồn gốc:</strong> Trích dẫn công khai mức độ tham gia của AI trong báo cáo bài tập theo đúng chuẩn APA/MLA.</li>
+                        <li><strong>Tư duy độc lập đi trước (Think first):</strong> Luôn chủ động xây dựng đề cương bài báo cáo và phát triển luận điểm sơ bộ bằng trí tuệ của bản thân trước khi tìm kiếm sự trợ giúp phát triển ý tưởng từ AI.</li>
+                        <li><strong>Nguyên tắc vàng 30/70:</strong> Đảm bảo AI chỉ hỗ trợ tối đa 30% trong khâu khơi gợi ý tưởng hoặc tra cứu, 70% nội dung phân tích chi tiết, lập luận và diễn đạt văn phong phải hoàn toàn thuộc về chất xám độc lập của bản thân.</li>
+                        <li><strong>Luôn kiểm chứng nguồn tin (Fact-check):</strong> Mọi số liệu thực tế do AI cung cấp bắt buộc phải được đối chiếu chéo với các nguồn học thuật chính thống uy tín để loại bỏ lỗi ảo tưởng thông tin.</li>
+                        <li><strong>Minh bạch trích dẫn:</strong> Ghi chú rõ ràng mức độ tham gia của công cụ trí tuệ nhân tạo trong các bài báo cáo khoa học theo chuẩn quy định.</li>
                     </ol>
-                    <div class="modal-info-box">
-                        <strong>Thông điệp cá nhân:</strong> Xem AI là một "Co-pilot" (người cùng lái) để nâng đỡ hành trình học tập, không bao giờ giao phó toàn bộ tay lái để tránh mài mòn khả năng tư duy phản biện.
+
+                    <div class="modal-alert">
+                        <strong>Thông điệp triết lý:</strong> Hãy luôn coi trí tuệ nhân tạo là "Co-pilot" (người cùng lái) mẫn cán, giữ cho bản thân luôn làm chủ tay lái để bảo vệ sự phát triển năng lực tư duy độc lập của mình trong kỷ nguyên số.
                     </div>
                 `
             }
         };
 
-        // Modal Interactive Controls
-        const modalOverlay = document.getElementById('projectModal');
+        // Open Bento Modal
+        const bentoModal = document.getElementById('bentoModal');
         const modalNum = document.getElementById('modalNum');
         const modalTitle = document.getElementById('modalTitle');
         const modalBody = document.getElementById('modalBody');
 
-        function openModal(id) {
-            const data = modalDatabase[id];
+        function openBentoModal(id) {
+            const data = assignmentDatabase[id];
             if (data) {
                 modalNum.textContent = data.num;
                 modalTitle.textContent = data.title;
-                modalBody.innerHTML = data.body;
-                modalOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden'; // block page scroll
+                modalBody.innerHTML = data.content;
+                bentoModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Lock background scroll
             }
         }
 
-        function closeModal() {
-            modalOverlay.classList.remove('active');
-            document.body.style.overflow = ''; // restore scroll
+        // Close Bento Modal
+        function closeBentoModal() {
+            bentoModal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scroll
         }
 
-        // Close on background click
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                closeModal();
+        // Close on overlay click
+        bentoModal.addEventListener('click', (e) => {
+            if (e.target === bentoModal) {
+                closeBentoModal();
             }
         });
     </script>
