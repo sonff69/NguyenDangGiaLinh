@@ -13,19 +13,17 @@
     
     <style>
         :root {
-            /* Hệ màu tím sương khói mộng mơ nâng cấp */
-            --bg-gradient: linear-gradient(-45deg, #f6f0ff, #edf2ff, #fbf2ff, #f0e6ff);
-            --bg-card: rgba(255, 255, 255, 0.55);
-            --bg-glass: rgba(255, 255, 255, 0.82);
+            /* Hệ màu tím phấn oải hương - Đậm nét & Rõ ràng hơn */
+            --bg-glass: rgba(255, 255, 255, 0.85);
             --primary: #8569e0; 
             --primary-light: #ece9fc;
             --primary-glow: rgba(133, 105, 224, 0.15);
             --accent: #b2a1fa;
             --accent-pink: #f7d4ff;
-            --text-main: #2b1f45; 
-            --text-muted: #6e608a;
-            --border: rgba(133, 105, 224, 0.12);
-            --border-hover: rgba(133, 105, 224, 0.35);
+            --text-main: #2b1f45; /* Màu chữ tím sẫm hoàng gia cực kỳ rõ nét */
+            --text-muted: #625380;
+            --border: rgba(133, 105, 224, 0.15);
+            --border-hover: rgba(133, 105, 224, 0.4);
             --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Plus Jakarta Sans', sans-serif;
@@ -40,20 +38,12 @@
         }
 
         body {
-            background: var(--bg-gradient);
-            background-size: 400% 400%;
-            animation: gradientMove 18s ease infinite;
+            background: transparent;
             color: var(--text-main);
             font-family: var(--font-sans);
             overflow-x: hidden;
             line-height: 1.65;
             position: relative;
-        }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         /* Custom Scrollbar */
@@ -64,52 +54,72 @@
             background: rgba(255, 255, 255, 0.3);
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(133, 105, 224, 0.25);
+            background: rgba(133, 105, 224, 0.3);
             border-radius: 10px;
         }
 
-        /* Dynamic Floating Liquid Orbs (Hiệu ứng lơ lửng siêu đẹp mắt) */
+        /* Hệ thống phân tầng hiển thị nền - KHÔNG BỊ TRỐNG TRẮNG */
+        .bg-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Nền màu tím rõ rệt hơn để tránh bị lóa trắng */
+            background: linear-gradient(-45deg, #eee5fc 0%, #f6ecff 50%, #e2dafc 100%);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+            z-index: -3; /* Tầng thấp nhất */
+            pointer-events: none;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Dynamic Floating Liquid Orbs (Hiệu ứng bong bóng khí lơ lửng) */
         .orb-container {
             position: fixed;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            z-index: -2;
+            z-index: -2; /* Tầng giữa để nổi rõ trên lớp nền gốc */
             overflow: hidden;
             pointer-events: none;
         }
         .orb {
             position: absolute;
-            filter: blur(100px);
-            mix-blend-mode: multiply;
-            opacity: 0.5;
+            filter: blur(120px);
+            opacity: 0.85; /* Tăng độ hiển thị */
             animation: drift-orb infinite alternate ease-in-out;
             pointer-events: none;
         }
         .orb-1 {
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, #dfd3ff 0%, rgba(255,255,255,0) 70%);
-            top: -100px;
-            left: -100px;
+            background: radial-gradient(circle, #cebeff 0%, rgba(255,255,255,0) 70%);
+            top: -50px;
+            left: -50px;
             animation-duration: 20s;
         }
         .orb-2 {
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, #f9d8ff 0%, rgba(255,255,255,0) 70%);
-            bottom: -200px;
-            right: -100px;
+            background: radial-gradient(circle, #f5bdff 0%, rgba(255,255,255,0) 70%);
+            bottom: -150px;
+            right: -50px;
             animation-duration: 25s;
             animation-delay: -5s;
         }
         .orb-3 {
             width: 450px;
             height: 450px;
-            background: radial-gradient(circle, #e2f0ff 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle, #adcfff 0%, rgba(255,255,255,0) 70%);
             top: 25%;
-            left: 35%;
+            left: 30%;
             animation-duration: 18s;
             animation-delay: -10s;
         }
@@ -143,7 +153,7 @@
         .bubble {
             position: absolute;
             bottom: -100px;
-            background: radial-gradient(circle, rgba(178, 161, 250, 0.25) 0%, rgba(246, 219, 255, 0.02) 100%);
+            background: radial-gradient(circle, rgba(165, 145, 245, 0.3) 0%, rgba(246, 219, 255, 0.02) 100%);
             border-radius: 50%;
             animation: float-up infinite linear;
             pointer-events: none;
@@ -204,7 +214,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(133, 105, 224, 0.15);
@@ -264,7 +274,7 @@
             display: flex;
             align-items: center; /* Đảm bảo căn giữa dọc hoàn toàn */
             justify-content: center;
-            padding-top: 110px;
+            padding-top: 100px;
             padding-bottom: 50px;
             position: relative;
         }
@@ -272,8 +282,13 @@
             display: grid;
             grid-template-columns: 1.15fr 0.85fr;
             gap: 50px;
-            align-items: center; /* Đồng nhất căn giữa dọc các phần tử con */
+            align-items: center; /* Đồng nhất căn giữa dọc các cột */
             width: 100%;
+        }
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Căn dọc nội dung khối chữ */
         }
         .hero-badge {
             display: inline-flex;
@@ -287,44 +302,43 @@
             font-weight: 600;
             color: var(--primary);
             margin-bottom: 20px;
+            align-self: flex-start;
         }
 
-        /* Stylized Header Typography (Thiết kế tinh tế & cách điệu) */
+        /* Stylized Header Typography (Sửa lỗi hiển thị đè dấu tiếng Việt) */
         .hero-title {
             font-family: var(--font-serif);
-            font-size: 54px;
-            line-height: 1.1;
+            font-size: 56px;
+            line-height: 1.35; /* Giãn dòng thoải mái để không bị đè dấu */
             font-weight: 700;
             margin-bottom: 24px;
-            letter-spacing: -1.5px;
+            letter-spacing: 0.02em; /* Cho phép các ký tự và dấu thở rộng rãi */
+            color: var(--text-main);
         }
         .hero-title .name-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, #4f33b5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            display: inline;
             font-weight: 800;
-            display: inline-block;
         }
         .hero-title .name-styled {
+            font-family: var(--font-serif);
             font-style: italic;
             font-weight: 400;
-            color: var(--text-main);
-            display: inline-block;
-            margin-left: 6px;
+            color: var(--primary); /* Sử dụng màu trơn để không bị lỗi nét cắt chữ */
+            display: inline;
+            margin-left: 8px;
             position: relative;
-            letter-spacing: -0.5px;
         }
         .hero-title .name-styled::after {
             content: '';
             position: absolute;
-            bottom: 6px;
-            left: 5%;
-            width: 90%;
-            height: 4px;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 3px;
             background: var(--accent-pink);
             z-index: -1;
             border-radius: 2px;
-            opacity: 0.7;
+            opacity: 0.65;
         }
 
         .hero-subtitle {
@@ -927,14 +941,17 @@
 </head>
 <body>
 
-    <!-- Liquid Floating Orbs -->
+    <!-- Backmost Gradient Backdrop -->
+    <div class="bg-backdrop"></div>
+
+    <!-- Liquid Floating Orbs Layer -->
     <div class="orb-container">
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
     </div>
 
-    <!-- Bubbles layer -->
+    <!-- Bubbles Layer -->
     <div class="bubble-container">
         <div class="bubble"></div>
         <div class="bubble"></div>
@@ -1577,15 +1594,15 @@
                                 <br><em>Kết quả đầu ra:</em> 
                                 <br><strong>Phần 1. Từ vựng:</strong> 1. Hãy viết nghĩa tiếng Việt của các từ sau: นักศึกษา, อาหาร, โรงพยาบาล, จังหวัด, สนามบิน. 
                                 <br><strong>2. Dịch sang tiếng Thái:</strong> Tôi thích học tiếng Thái, Hôm nay thời tiết rất nóng, Bạn đang đi đâu?, Tôi muốn ăn cơm chiên, Chủ nhật tôi không phải đi học. 
-                                <br><strong>3. Điền từ thích hợp vào chỗ trống:</strong> ฉัน _____ ภาษาไทยทุกวัน, วันนี้อากาศ _____ มาก, เขาไป _____ กับเพื่อน.
+                                <br><strong>3. Điền từ thích hợp vào chỗ trống:</strong> ฉัน _____ ภาษาไทยทุกวัน, วันนี้อากาศ _____ มาก, เขา đi _____ กับ bạn.
                             </li>
                             <li><strong>Prompt Cải tiến:</strong> <code>Hãy tạo khoảng 20 câu hỏi ôn tập cuối kì cho môn Tiếng Thái cơ sở 2 của ULIS. Bao gồm: Từ vựng, Ngữ pháp, Dịch câu, Hội thoại, Đọc hiểu</code>
                                 <br><em>Kết quả đầu ra:</em>
-                                <br><strong>I. Từ vựng:</strong> 1. "อาหาร" nghĩa là gì? 2. Dịch "thư viện" sang tiếng Thái. 3. "เหนื่อย" nghĩa là gì? 4. Điền từ: ฉัน đi _____ กับเพื่อน. 5. Dịch "du lịch" sang tiếng Thái.
+                                <br><strong>I. Từ vựng:</strong> 1. "อาหาร" nghĩa là gì? 2. Dịch "thư viện" sang tiếng Thái. 3. "เหนื่อย" nghĩa là gì? 4. Điền từ: ฉัน đi _____ กับ bạn. 5. Dịch "du lịch" sang tiếng Thái.
                                 <br><strong>II. Ngữ pháp:</strong> 6. Đặt câu với "อยาก + V". 7. Đặt câu với "ต้อง + V". 8. Chuyển sang phủ định: ฉันเข้าใจภาษาไทย. 9. Hoàn thành: Nếu ... sẽ ... 10. Sắp xếp câu: ฉัน / ภาษาไทย / เรียน / ทุกวัน.
                                 <br><strong>III. Dịch câu:</strong> 11. Dịch sang tiếng Thái: "Tôi thích học tiếng Thái." 12. Dịch sang tiếng Thái: "Hôm nay trời thời tiết rất nóng." 13. Dịch sang tiếng Việt: เขาไปตลาดกับเพื่อน. 14. Dịch sang tiếng Việt: พรุ่งนี้ฉันจะ đi มหาวิทยาลัย.
                                 <br><strong>IV. Hội thoại:</strong> 15. Viết 4 câu hội thoại hỏi đường. 16. Viết đoạn hội thoại gọi món ăn. 17. Trả lời câu hỏi: คุณชื่ออะไร. 18. Trả lời câu hỏi: คุณมาจากประเทศอะไร.
-                                <br><strong>V. Đọc hiểu:</strong> Đọc đoạn văn: วันนี้สมหญิงไปมหาวิทยาลัย เธอเรียนภาษาไทยและกินข้าวกับเพื่อน. 19. สมหญิง đi đâu? 20. เธอทำอะไรกับเพื่อน?
+                                <br><strong>V. Đọc hiểu:</strong> Đọc đoạn văn: วันนี้สมหญิงไปมหาวิทยาลัย เธอเรียนภาษาไทยและกินข้าวกับเพื่อน. 19. สมหญิง đi đâu? 20. เธอทำอะไร với bạn?
                             </li>
                             <li><strong>Prompt Nâng cao (Kỹ thuật Task Decomposition & Constraint Prompting):</strong> <code>Bạn là giảng viên môn Tiếng Thái tại ULIS. Hãy thiết kế bộ câu hỏi ôn tập cuối kì cho môn "Tiếng Thái cơ sở 2". Yêu cầu: Khoảng 20 câu, Bám sát giáo trình ULIS, Bao gồm: Phụ âm kép, Thanh điệu, Từ vựng chủ đề nghề nghiệp, Ngữ pháp cơ bản, Dịch Việt-Thái và Thái-Việt, Đọc hiểu ngắn. Chia theo từng phần rõ ràng, Có đáp án cụ thể, Mức độ tương đương đề thi cuối kì.</code>
                                 <br><em>Kết quả đầu ra:</em> Đề cương chi tiết được phân rã thành:
@@ -1699,7 +1716,7 @@
                         </div>
 
                         <div class="modal-alert">
-                            <strong>Khảo nghiệm thực tế & Cải tiến:</strong> Sau khi kiểm thử trên 2 người học độc lập (Minh T. và chị Thị H.), tớ đã rút ra phương án tối ưu giáo án: 1) Cần tăng cường tính phân hóa phần ngữ pháp bằng cách thêm bài viết lại câu thay vì điền từ đơn giản; 2) Bắt buộc đính kèm bảng tra cứu từ vựng (Glossary) có phiên âm quốc tế IPA ngay bên dưới bài đọc để tối ưu hóa khả năng tự học của học viên.
+                            <strong>Khảo nghiệm thực tế & Cải tiến:</strong> Sau khi kiểm thử trên 2 người học độc lập (Minh T. và chị Thị H.), tớ đã rút ra phương án tối ưu giáo án: 1) Cần tăng cường độ phân hóa phần ngữ pháp bằng cách thêm bài viết lại câu thay vì điền từ đơn giản; 2) Bắt buộc đính kèm bảng tra cứu từ vựng (Glossary) có phiên âm quốc tế IPA ngay bên dưới bài đọc để tối ưu hóa khả năng tự học của học viên.
                         </div>
                     </div>
                 `
