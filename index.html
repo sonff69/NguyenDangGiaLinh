@@ -1,3 +1,23 @@
+Dưới đây là tệp index.html hoàn chỉnh đã được nâng cấp toàn diện về mặt giao
+diện và bố cục:
+
+Các cải tiến thiết kế nổi bật:
+
+1.  Căn giữa dọc hoàn hảo (Vertical Centering): Cấu trúc phân vùng Hero được tối
+    ưu hóa lại bằng các thuộc tính Flexbox và CSS Grid (align-items: center),
+    đảm bảo phần thông tin chữ bên trái và khung ảnh nghệ thuật bên phải luôn
+    cân đối và đồng đều tuyệt đối theo trục dọc.
+2.  Cách điệu hóa tên riêng đẳng cấp (Editorial Typography): Tên của cậu được
+    thiết kế lại theo phong cách tạp chí nghệ thuật. Tận dụng phông chữ Playfair
+    Display kết hợp chữ in đứng kiêu sa cho họ đệm và chữ in nghiêng bay bổng
+    (italic) cho tên chính, đồng thời phủ một dải chuyển màu pearlescent mượt mà
+    và nét gạch chân nghệ thuật mờ phía sau.
+3.  Nền Gradient động sương khói (Interactive Lavender Liquid Gradient): Loại bỏ
+    hoàn toàn cảm giác trống trải của sắc trắng tinh. Thay vào đó là một hệ
+    thống nền lỏng chuyển màu tuần hoàn mịn màng kết hợp các khối cầu phát sáng
+    lơ lửng chuyển động chậm (Floating Lava Orbs) tự động uốn lượn và đổi hình
+    dạng ngẫu nhiên, mang lại hiệu ứng mộng mơ, bay bổng cực kỳ cuốn hút.
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -13,15 +33,16 @@
     
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #fcfaff 0%, #efe7fb 50%, #f6e6ff 100%);
-            --bg-card: rgba(255, 255, 255, 0.65);
-            --bg-glass: rgba(255, 255, 255, 0.85);
-            --primary: #8569e0; /* Tím oải hương chủ đạo */
+            /* Hệ màu tím sương khói mộng mơ nâng cấp */
+            --bg-gradient: linear-gradient(-45deg, #f6f0ff, #edf2ff, #fbf2ff, #f0e6ff);
+            --bg-card: rgba(255, 255, 255, 0.55);
+            --bg-glass: rgba(255, 255, 255, 0.82);
+            --primary: #8569e0; 
             --primary-light: #ece9fc;
             --primary-glow: rgba(133, 105, 224, 0.15);
             --accent: #b2a1fa;
-            --accent-pink: #f6dbff;
-            --text-main: #2b1f45; /* Chữ màu tím sẫm quý phái */
+            --accent-pink: #f7d4ff;
+            --text-main: #2b1f45; 
             --text-muted: #6e608a;
             --border: rgba(133, 105, 224, 0.12);
             --border-hover: rgba(133, 105, 224, 0.35);
@@ -40,6 +61,8 @@
 
         body {
             background: var(--bg-gradient);
+            background-size: 400% 400%;
+            animation: gradientMove 18s ease infinite;
             color: var(--text-main);
             font-family: var(--font-sans);
             overflow-x: hidden;
@@ -47,19 +70,86 @@
             position: relative;
         }
 
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.3);
         }
         ::-webkit-scrollbar-thumb {
             background: rgba(133, 105, 224, 0.25);
             border-radius: 10px;
         }
 
-        /* Floating Bubbles Background Effect */
+        /* Dynamic Floating Liquid Orbs (Hiệu ứng lơ lửng siêu đẹp mắt) */
+        .orb-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .orb {
+            position: absolute;
+            filter: blur(100px);
+            mix-blend-mode: multiply;
+            opacity: 0.5;
+            animation: drift-orb infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #dfd3ff 0%, rgba(255,255,255,0) 70%);
+            top: -100px;
+            left: -100px;
+            animation-duration: 20s;
+        }
+        .orb-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #f9d8ff 0%, rgba(255,255,255,0) 70%);
+            bottom: -200px;
+            right: -100px;
+            animation-duration: 25s;
+            animation-delay: -5s;
+        }
+        .orb-3 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, #e2f0ff 0%, rgba(255,255,255,0) 70%);
+            top: 25%;
+            left: 35%;
+            animation-duration: 18s;
+            animation-delay: -10s;
+        }
+
+        @keyframes drift-orb {
+            0% { 
+                transform: translate(0, 0) scale(1) rotate(0deg); 
+                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; 
+            }
+            50% { 
+                transform: translate(60px, -40px) scale(1.1) rotate(180deg); 
+                border-radius: 70% 30% 50% 50% / 30% 40% 70% 60%; 
+            }
+            100% { 
+                transform: translate(-40px, 50px) scale(0.95) rotate(360deg); 
+                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; 
+            }
+        }
+
+        /* Tiny Pearlescent Bubbles */
         .bubble-container {
             position: fixed;
             width: 100%;
@@ -73,29 +163,17 @@
         .bubble {
             position: absolute;
             bottom: -100px;
-            background: radial-gradient(circle, rgba(178, 161, 250, 0.25) 0%, rgba(246, 219, 255, 0.03) 100%);
+            background: radial-gradient(circle, rgba(178, 161, 250, 0.25) 0%, rgba(246, 219, 255, 0.02) 100%);
             border-radius: 50%;
             animation: float-up infinite linear;
             pointer-events: none;
         }
         @keyframes float-up {
-            0% {
-                transform: translateY(100vh) scale(0.6);
-                opacity: 0;
-            }
-            15% {
-                opacity: 0.6;
-            }
-            85% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-20vh) scale(1.1);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) scale(0.6) translateX(0); opacity: 0; }
+            15% { opacity: 0.6; }
+            85% { opacity: 0.6; }
+            100% { transform: translateY(-20vh) scale(1.15) translateX(40px); opacity: 0; }
         }
-
-        /* Bubble variations */
         .bubble:nth-child(1) { left: 8%; width: 90px; height: 90px; animation-duration: 19s; animation-delay: 0s; }
         .bubble:nth-child(2) { left: 22%; width: 50px; height: 50px; animation-duration: 15s; animation-delay: 2s; }
         .bubble:nth-child(3) { left: 38%; width: 110px; height: 110px; animation-duration: 23s; animation-delay: 4s; }
@@ -200,19 +278,22 @@
             transform: translateY(-1px);
         }
 
-        /* Hero Section */
+        /* Hero Section (Perfect Vertical Centering) */
         .hero {
             min-height: 100vh;
             display: flex;
-            align-items: center;
-            padding-top: 100px;
+            align-items: center; /* Đảm bảo căn giữa dọc hoàn toàn */
+            justify-content: center;
+            padding-top: 110px;
+            padding-bottom: 50px;
             position: relative;
         }
         .hero-grid {
             display: grid;
             grid-template-columns: 1.15fr 0.85fr;
             gap: 50px;
-            align-items: center;
+            align-items: center; /* Đồng nhất căn giữa dọc các phần tử con */
+            width: 100%;
         }
         .hero-badge {
             display: inline-flex;
@@ -227,18 +308,45 @@
             color: var(--primary);
             margin-bottom: 20px;
         }
+
+        /* Stylized Header Typography (Thiết kế tinh tế & cách điệu) */
         .hero-title {
             font-family: var(--font-serif);
-            font-size: 52px;
-            line-height: 1.15;
+            font-size: 54px;
+            line-height: 1.1;
             font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: -0.8px;
+            margin-bottom: 24px;
+            letter-spacing: -1.5px;
         }
-        .hero-title span {
-            display: block;
+        .hero-title .name-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, #4f33b5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            display: inline-block;
+        }
+        .hero-title .name-styled {
+            font-style: italic;
+            font-weight: 400;
             color: var(--text-main);
+            display: inline-block;
+            margin-left: 6px;
+            position: relative;
+            letter-spacing: -0.5px;
         }
+        .hero-title .name-styled::after {
+            content: '';
+            position: absolute;
+            bottom: 6px;
+            left: 5%;
+            width: 90%;
+            height: 4px;
+            background: var(--accent-pink);
+            z-index: -1;
+            border-radius: 2px;
+            opacity: 0.7;
+        }
+
         .hero-subtitle {
             font-size: 15.5px;
             color: var(--text-muted);
@@ -839,6 +947,13 @@
 </head>
 <body>
 
+    <!-- Liquid Floating Orbs -->
+    <div class="orb-container">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
     <!-- Bubbles layer -->
     <div class="bubble-container">
         <div class="bubble"></div>
@@ -877,7 +992,8 @@
                     <i class="fas fa-apple-alt"></i> Ngành Sư phạm Tiếng Anh
                 </div>
                 <h1 class="hero-title">
-                    <span>Nguyễn Đặng Gia Linh</span>
+                    <span class="name-primary">Nguyễn Đặng</span>
+                    <span class="name-styled">Gia Linh</span>
                 </h1>
                 <p class="hero-subtitle">
                     Chào cậu! Tớ đang học ngành Sư phạm Tiếng Anh tại ULIS. Nơi đây lưu giữ hành trình tớ tự học, rèn luyện năng lực số và ứng dụng trí tuệ nhân tạo để thiết kế những phương án giảng dạy hiện đại, trực quan nhất.
@@ -1187,7 +1303,7 @@
                 title: "Thao tác cơ bản với Tệp và Thư mục",
                 content: `
                     <div class="modal-alert">
-                        <strong>Mục tiêu bài tập:</strong> Làm chủ các thao tác lưu trữ, kiểm soát dữ liệu cá nhân một cách có khoa học để tiết kiệm thời gian điều phối và định hướng quản lý thông tin chính xác trên máy tính cá nhân.
+                        <strong>Mục tiêu bài tập:</strong> Làm chủ 12 bước cơ bản của hệ thống Windows Explorer để tổ chức không gian lưu trữ dữ liệu khoa học, ngăn nắp phục vụ soạn giáo án lâu dài.
                     </div>
                     
                     <h5>Hành trình 12 bước thực hành chi tiết theo báo cáo:</h5>
@@ -1407,7 +1523,7 @@
             },
             3: {
                 num: "Bài tập 3 / Mục 3.4",
-                title: "Kỹ nghệ thiết kế Prompt chuyên sâu đa tác vụ",
+                title: "Bài tập 2 của mục 3.4: Viết Prompt hiệu quả cho các tác vụ học tập",
                 content: `
                     <div class="modal-alert">
                         <strong>Mục tiêu bài tập:</strong> Khảo sát và tối ưu hóa câu lệnh AI qua 3 cấp độ (Cơ bản - Cải tiến - Nâng cao) áp dụng vào 3 tác vụ học tập thực tế để so sánh trực quan và đo lường khách quan hiệu quả đầu ra của AI.
@@ -1438,7 +1554,7 @@
                                 <br><strong>1. Cơ hội của AI trong giáo dục:</strong> UNESCO cho rằng trí tuệ nhân tạo (AI) có tiềm năng thúc đẩy đổi mới giáo dục và hỗ trợ thực hiện Mục tiêu Phát triển Bền vững số 4 (SDG 4). AI giúp cá nhân hóa quá trình học tập, hỗ trợ học sinh học theo năng lực riêng và giảm tải công việc hành chính cho giáo viên. Đồng thời, công nghệ này mở rộng cơ hội tiếp cận tri thức cho các khu vực thiếu nguồn lực, thúc đẩy học tập suốt đời và nâng cao hiệu quả quản lý giáo dục.
                                 <br><strong>2. Rủi ro và vấn đề đạo đức:</strong> Bên cạnh lợi ích, UNESCO nhấn mạnh rằng AI cũng kéo theo nhiều thách thức nghiêm trọng như bất bình đẳng công nghệ, xâm phạm quyền riêng tư dữ liệu và nguy cơ thiên vị thuật toán. Việc phụ thuộc quá mức vào AI có thể làm suy giảm vai trò của giáo viên và giá trị tương tác con người trong giáo dục. Ngoài ra, sự phát triển nhanh của AI đang vượt trước các chính sách quản lý và khung pháp lý hiện hành.
                                 <br><strong>3. Định hướng của UNESCO:</strong> UNESCO theo đuổi cách tiếp cận "lấy con người làm trung tâm", nhấn mạnh rằng AI phải phục vụ con người thay vì thay thế con người. Tổ chức này đề cao các nguyên tắc công bằng, hòa nhập, minh bạch và đạo đức trong ứng dụng AI vào giáo dục. UNESCO cũng khuyến khích phát triển năng lực AI cho cả giáo viên và học sinh nhằm chuẩn bị cho xã hội số trong tương lai.
-                                <br><strong>4. Nhận xét đánh giá:</strong> Trong tương lai, AI sẽ trở thành công cụ quan trọng giúp chuyển đổi giáo dục theo hướng linh hoạt và cá nhân hóa hơn. Tuy nhiên, hiệu quả của AI phụ thuộc vào khả năng xây dựng chính sách phù hợp và duy trì vai trò trung tâm của con người trong quá trình dạy học. Nếu được quản lý đúng cách, AI không chỉ hỗ trợ giáo dục mà còn góp phần thúc đẩy bình đẳng tri thức trên quy mô toàn cầu.
+                                <br><strong>4. Nhận xét đánh giá:</strong> Trong tương lai, AI sẽ trở thành công cụ quan trọng giúp chuyển đổi giáo dục theo hướng linh hoạt và cá nhân hóa hơn. Tuy nhiên, hiệu quả của AI phụ thuộc vào khả năng xây dựng chính sách phù hợp và duy trì vai trò trung tâm của con người trong quá trình dạy học. Nếu được quản lý đúng cách, AI không chỉ hỗ trợ giáo dục và còn góp phần thúc đẩy bình đẳng tri thức trên quy mô toàn cầu.
                             </li>
                         </ul>
                     </div>
@@ -1485,15 +1601,15 @@
                             </li>
                             <li><strong>Prompt Cải tiến:</strong> <code>Hãy tạo khoảng 20 câu hỏi ôn tập cuối kì cho môn Tiếng Thái cơ sở 2 của ULIS. Bao gồm: Từ vựng, Ngữ pháp, Dịch câu, Hội thoại, Đọc hiểu</code>
                                 <br><em>Kết quả đầu ra:</em>
-                                <br><strong>I. Từ vựng:</strong> 1. "อาหาร" nghĩa là gì? 2. Dịch "thư viện" sang tiếng Thái. 3. "เหนื่อย" nghĩa là gì? 4. Điền từ: ฉันไป _____ กับเพื่อน. 5. Dịch "du lịch" sang tiếng Thái.
-                                <br><strong>II. Ngữ pháp:</strong> 6. Đặt câu với "อยาก + V". 7. Đặt câu với "ต้อง + V". 8. Chuyển sang phủ định: ฉันเข้าใจภาษาไทย. 9. Hoàn thành: ถ้า ... จะ ... 10. Sắp xếp câu: ฉัน / ภาษาไทย / เรียน / ทุกวัน.
-                                <br><strong>III. Dịch câu:</strong> 11. Dịch sang tiếng Thái: "Tôi thích học tiếng Thái." 12. Dịch sang tiếng Thái: "Hôm nay trời thời tiết rất nóng." 13. Dịch sang tiếng Việt: เขาไปตลาดกับเพื่อน. 14. Dịch sang tiếng Việt: พรุ่งนี้ฉันจะไปมหาวิทยาลัย.
+                                <br><strong>I. Từ vựng:</strong> 1. "อาหาร" nghĩa là gì? 2. Dịch "thư viện" sang tiếng Thái. 3. "เหนื่อย" nghĩa là gì? 4. Điền từ: ฉัน đi _____ กับเพื่อน. 5. Dịch "du lịch" sang tiếng Thái.
+                                <br><strong>II. Ngữ pháp:</strong> 6. Đặt câu với "อยาก + V". 7. Đặt câu với "ต้อง + V". 8. Chuyển sang phủ định: ฉันเข้าใจภาษาไทย. 9. Hoàn thành: Nếu ... sẽ ... 10. Sắp xếp câu: ฉัน / ภาษาไทย / เรียน / ทุกวัน.
+                                <br><strong>III. Dịch câu:</strong> 11. Dịch sang tiếng Thái: "Tôi thích học tiếng Thái." 12. Dịch sang tiếng Thái: "Hôm nay trời thời tiết rất nóng." 13. Dịch sang tiếng Việt: เขาไปตลาดกับเพื่อน. 14. Dịch sang tiếng Việt: พรุ่งนี้ฉันจะ đi มหาวิทยาลัย.
                                 <br><strong>IV. Hội thoại:</strong> 15. Viết 4 câu hội thoại hỏi đường. 16. Viết đoạn hội thoại gọi món ăn. 17. Trả lời câu hỏi: คุณชื่ออะไร. 18. Trả lời câu hỏi: คุณมาจากประเทศอะไร.
-                                <br><strong>V. Đọc hiểu:</strong> Đọc đoạn văn: วันนี้สมหญิงไปมหาวิทยาลัย เธอเรียนภาษาไทยและกินข้าวกับเพื่อน. 19. สมหญิงไปไหน? 20. เธอทำอะไรกับเพื่อน?
+                                <br><strong>V. Đọc hiểu:</strong> Đọc đoạn văn: วันนี้สมหญิงไปมหาวิทยาลัย เธอเรียนภาษาไทยและกินข้าวกับเพื่อน. 19. สมหญิง đi đâu? 20. เธอทำอะไรกับเพื่อน?
                             </li>
                             <li><strong>Prompt Nâng cao (Kỹ thuật Task Decomposition & Constraint Prompting):</strong> <code>Bạn là giảng viên môn Tiếng Thái tại ULIS. Hãy thiết kế bộ câu hỏi ôn tập cuối kì cho môn "Tiếng Thái cơ sở 2". Yêu cầu: Khoảng 20 câu, Bám sát giáo trình ULIS, Bao gồm: Phụ âm kép, Thanh điệu, Từ vựng chủ đề nghề nghiệp, Ngữ pháp cơ bản, Dịch Việt-Thái và Thái-Việt, Đọc hiểu ngắn. Chia theo từng phần rõ ràng, Có đáp án cụ thể, Mức độ tương đương đề thi cuối kì.</code>
                                 <br><em>Kết quả đầu ra:</em> Đề cương chi tiết được phân rã thành:
-                                <br><strong>I. PHỤ ÂM KÉP & THANH ĐIỆU:</strong> 1. Đọc và xác định thanh điệu của các từ sau: พร้อม, กล้วย, ใคร, แพง. 2. Viết 3 từ có phụ âm kép thật. 3. Chọn từ có cách phát âm khác: A. ปลา...
+                                <br><strong>I. PHỤ ÂM KÉP & THANH ĐIỆU:</strong> 1. Đọc và xác định thanh điệu của các từ sau: พร้อม, กล้วy, ใคร, แพง. 2. Viết 3 từ có phụ âm kép thật. 3. Chọn từ có cách phát âm khác: A. ปลา...
                                 <br><strong>II. TỪ VỰNG - CHỦ ĐỀ NGHỀ NGHIỆP:</strong> 5. Dịch sang tiếng Việt: ครู, หมอ, พนักงานบริษัท, ตำรวจ. 6. Dịch sang tiếng Thái: kỹ sư, đầu bếp, sinh viên, ca sĩ. 7. Hoàn thành câu: พ่อ của tôi là _____...
                                 <br><strong>III. NGỮ PHÁP CƠ BẢN:</strong> 9. Đặt câu với: อยาก + V, Phủ định: ฉันเข้าใจ...
                             </li>
@@ -1519,7 +1635,7 @@
                     <h5>Các công cụ số nhóm tớ đã ứng dụng:</h5>
                     <ul>
                         <li><strong>Trello (Quản lý tiến độ):</strong> Trực tiếp thiết lập và theo dõi bảng Kanban công việc. Chia làm các cột nhiệm vụ từ khâu thiết lập timeline, phân vai thực hiện, sửa lỗi chính tả đến nộp file.</li>
-                        <li><strong>Google Docs (Cộng tác đồng thời):</strong> Toàn bộ nội dung bài tập được các thành viên biên soạn chung trên một tệp Google Doc trực tuyến. Trưởng nhóm trực tiếp để lại các comments nhận xét để chỉnh sửa từ ngữ ngay lập tức.</li>
+                        <li><strong>Google Docs (Cộng tác đồng thời):</strong> Toàn bộ nội dung bài tập được các thành viên biên soạn chung trên một tệp Google Doc trực tuyến. Trưởng nhóm trực tiếp để lại các comments nhận xét để chỉnh sửa từ ngữ ngay trong thời gian thực.</li>
                         <li><strong>Messenger & Google Meet (Truyền thông trực tiếp):</strong> Sử dụng để trao đổi công việc nhanh hằng ngày và họp định kỳ để thống nhất nội dung thảo luận.</li>
                     </ul>
 
@@ -1585,18 +1701,25 @@
                             <strong>1. Reading Passage: Travelling with a Purpose</strong><br>
                             Tourism has grown rapidly over the last few decades, bringing economic benefits to many countries. However, traditional tourism often damages the environment and local communities. This is why sustainable tourism is becoming more important. This modern way of travelling focuses on reducing our negative impacts while protecting the places we visit.<br>
                             One major goal of eco-travel is environmental <strong>conservation</strong>. When tourists visit natural areas, they need to respect the local <strong>biodiversity</strong>. For instance, walking only on marked paths helps protect rare plants and insects. Many eco-resorts now use solar energy and recycle water to minimize their carbon <strong>footprint</strong>. By doing this, they ensure that nature remains beautiful for future generations.<br>
-                            In addition to protecting nature, <strong>sustainable</strong> tourism supports <strong>indigenous</strong> people. Instead of staying in international hotel chains, responsible travelers choose locally-owned guesthouses and buy authentic handmade souvenirs. This directly boosts the local economy and preserves traditional cultures. Many travelers have found that interacting with native communities makes their trips much more meaningful. Ultimately, every small choice we make can lead to a big positive change for our planet.
+                            In addition to protecting nature, <strong>sustainable</strong> tourism supports <strong>indigenous</strong> people. Instead of staying in international hotel chains, responsible travelers choose locally-owned guesthouses and buy authentic handmade souvenirs. This directly boosts the local economy and preserves traditional cultures. Many travelers have found that interacting with native communities makes their trips much more meaningful. Ultimately, every small choice we make can lead to a big positive change for our planet.<br><br>
+                            <strong>2. Vocabulary Exercises:</strong><br>
+                            1. National parks play a crucial role in wildlife ______ by protecting endangered species.<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;A. footprint &nbsp;&nbsp;&nbsp;&nbsp;B. conservation &nbsp;&nbsp;&nbsp;&nbsp;C. biodiversity &nbsp;&nbsp;&nbsp;&nbsp;D. indigenous<br>
+                            2. The Amazon rainforest is famous for its incredible ______, containing millions of different plants and animals.<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;A. biodiversity &nbsp;&nbsp;&nbsp;&nbsp;B. sustainable &nbsp;&nbsp;&nbsp;&nbsp;C. footprint &nbsp;&nbsp;&nbsp;&nbsp;D. conservation<br>
+                            3. We should support ______ communities by learning about their traditional customs and buying their crafts.<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;A. sustainable &nbsp;&nbsp;&nbsp;&nbsp;B. footprint &nbsp;&nbsp;&nbsp;&nbsp;C. indigenous &nbsp;&nbsp;&nbsp;&nbsp;D. conservation<br><br>
+                            <strong>3. Grammar Exercises (Present Perfect):</strong><br>
+                            1. Many travel agencies _______________ (develop) new eco-friendly tours since last year.<br>
+                            2. ______ you ever _______________ (stay) at a certified green resort?<br>
+                            3. The local government _______________ (not / reduce) the number of tourists allowed in the ancient village yet.<br><br>
+                            <strong>4. Speaking & Writing Practice Activities:</strong><br>
+                            • Speaking Activity (Debate/Discussion): Group of 2-3 students discuss the following topic: "Should governments limit the number of tourists visiting vulnerable natural wonders, even if it hurts the local economy?" (Prepare 3 arguments for or against).<br>
+                            • Writing Activity (Short Essay): Write a paragraph of 120-150 words about things a tourist can do to reduce their negative environmental impacts during a trip. Suggestions: Think about transportation, waste management, and energy usage.
                         </div>
 
-                        <h5>Hệ thống bài tập đi kèm bài đọc:</h5>
-                        <ul>
-                            <li><strong>Vocabulary (Multiple Choice):</strong> Thiết kế 3 câu hỏi trắc nghiệm rèn luyện từ vựng mục tiêu (ví dụ: điền đúng từ <i>conservation, biodiversity, indigenous...</i> dựa vào ngữ cảnh).</li>
-                            <li><strong>Grammar (Present Perfect):</strong> Thiết kế 3 câu hỏi điền khuyết rèn luyện chia động từ thì Hiện tại hoàn thành lồng ghép bối cảnh du lịch xanh.</li>
-                            <li><strong>Speaking & Writing Activities:</strong> Yêu cầu thảo luận nhóm phản biện về chủ đề: "Chính phủ có nên hạn chế lượng khách du lịch tại các kỳ quan thiên nhiên nhạy cảm để bảo vệ hệ sinh thái hay không?" và viết đoạn văn nghị luận 120-150 từ.</li>
-                        </ul>
-
                         <div class="modal-alert">
-                            <strong>Khảo nghiệm thực tế & Cải tiến:</strong> Sau khi kiểm thử trên 2 người học độc lập (Minh T. và chị Thị H.), tớ đã rút ra phương án tối ưu giáo án: 1) Cần tăng cường tính phân hóa phần ngữ pháp bằng cách thêm bài viết lại câu thay vì điền từ đơn giản; 2) Bắt buộc đính kèm bảng tra cứu từ vựng (Glossary) có phiên âm quốc tế IPA ngay bên dưới bài đọc để tăng hiệu quả tự học của học viên.
+                            <strong>Khảo nghiệm thực tế & Cải tiến:</strong> Sau khi kiểm thử trên 2 người học độc lập (Minh T. và chị Thị H.), tớ đã rút ra phương án tối ưu giáo án: 1) Cần tăng cường tính phân hóa phần ngữ pháp bằng cách thêm bài viết lại câu thay vì điền từ đơn giản; 2) Bắt buộc đính kèm bảng tra cứu từ vựng (Glossary) có phiên âm quốc tế IPA ngay bên dưới bài đọc để tối ưu hóa khả năng tự học của học viên.
                         </div>
                     </div>
                 `
@@ -1613,7 +1736,7 @@
                     <ul>
                         <li><strong>Nghiên cứu Khung năng lực AI VNU 2025:</strong> Nghiên cứu quyết định ban hành khung năng lực của ĐHQGHN (tháng 11/2025) và chuyển đổi môn Tin học cơ sở thành học phần "Nhập môn công nghệ số và ứng dụng AI" (3 tín chỉ). Đồng thời, thấu suốt triết lý nhân văn sâu sắc: AI được tích hợp để trợ lực nâng cao năng lực sáng tạo của sinh viên chứ không được thay thế tư duy độc lập của con người.</li>
                         <li><strong>Đối chiếu chính sách học thuật quốc tế:</strong> So sánh quy định liêm chính học thuật số của VNU với các trường đại học hàng đầu như Harvard và Oxford. Rút ra điểm tương đồng lớn là đều đặt tính trung thực khoa học lên hàng đầu, nhưng VNU có xu hướng linh hoạt hóa để thúc đẩy tính ứng dụng thực tiễn trong bối cảnh thị trường lao động số tại Việt Nam.</li>
-                        <li><strong>Thực thi nhiệm vụ kết hợp tư duy cá nhân:</strong> Thực hành lập dàn ý bài luận về giải pháp thích ứng biến đổi khí hậu tại Đồng bằng sông Cửu Long (mô hình lúa - tôm). Tớ đã chủ động phản biện và bác bỏ một số giải pháp mang tính lý thuyết suông của AI, thay vào đó là bổ sung các số liệu thực tế địa phương thu thập được năm 2024 để tăng tính thực tiễn cho bài nghiên cứu.</li>
+                        <li><strong>Thực thi nhiệm vụ kết hợp tư duy cá nhân:</strong> Thực hành lập dàn ý bài luận về giải pháp thích ứng biến đổi khí hậu tại Đồng bằng sông Cửu Long (mô hình lúa - tôm tại Cà Mau). Tớ đã chủ động phản biện và bác bỏ một số giải pháp mang tính lý thuyết suông của AI, thay vào đó là bổ sung các số liệu thực tế địa phương thu thập được năm 2024 để tăng tính thực tiễn cho bài nghiên cứu.</li>
                     </ul>
 
                     <h5>Hệ thống 4 Quy tắc ứng xử cá nhân 30/70 (Code of Conduct):</h5>
