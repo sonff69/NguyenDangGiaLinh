@@ -73,7 +73,7 @@
         .bubble {
             position: absolute;
             bottom: -100px;
-            background: radial-gradient(circle, rgba(178, 161, 250, 0.3) 0%, rgba(246, 219, 255, 0.05) 100%);
+            background: radial-gradient(circle, rgba(178, 161, 250, 0.25) 0%, rgba(246, 219, 255, 0.03) 100%);
             border-radius: 50%;
             animation: float-up infinite linear;
             pointer-events: none;
@@ -84,25 +84,25 @@
                 opacity: 0;
             }
             15% {
-                opacity: 0.7;
+                opacity: 0.6;
             }
             85% {
-                opacity: 0.7;
+                opacity: 0.6;
             }
             100% {
-                transform: translateY(-20vh) scale(1.2);
+                transform: translateY(-20vh) scale(1.1);
                 opacity: 0;
             }
         }
 
-        /* Generates varying bubble parameters */
-        .bubble:nth-child(1) { left: 10%; width: 80px; height: 80px; animation-duration: 18s; animation-delay: 0s; }
-        .bubble:nth-child(2) { left: 25%; width: 45px; height: 45px; animation-duration: 14s; animation-delay: 2s; }
-        .bubble:nth-child(3) { left: 40%; width: 100px; height: 100px; animation-duration: 22s; animation-delay: 4s; }
-        .bubble:nth-child(4) { left: 55%; width: 60px; height: 60px; animation-duration: 16s; animation-delay: 1s; }
-        .bubble:nth-child(5) { left: 70%; width: 85px; height: 85px; animation-duration: 20s; animation-delay: 5s; }
-        .bubble:nth-child(6) { left: 85%; width: 50px; height: 50px; animation-duration: 15s; animation-delay: 3s; }
-        .bubble:nth-child(7) { left: 92%; width: 70px; height: 70px; animation-duration: 17s; animation-delay: 7s; }
+        /* Bubble variations */
+        .bubble:nth-child(1) { left: 8%; width: 90px; height: 90px; animation-duration: 19s; animation-delay: 0s; }
+        .bubble:nth-child(2) { left: 22%; width: 50px; height: 50px; animation-duration: 15s; animation-delay: 2s; }
+        .bubble:nth-child(3) { left: 38%; width: 110px; height: 110px; animation-duration: 23s; animation-delay: 4s; }
+        .bubble:nth-child(4) { left: 52%; width: 65px; height: 65px; animation-duration: 17s; animation-delay: 1s; }
+        .bubble:nth-child(5) { left: 68%; width: 95px; height: 85px; animation-duration: 21s; animation-delay: 5s; }
+        .bubble:nth-child(6) { left: 82%; width: 55px; height: 50px; animation-duration: 16s; animation-delay: 3s; }
+        .bubble:nth-child(7) { left: 90%; width: 75px; height: 75px; animation-duration: 18s; animation-delay: 6s; }
 
         .wrapper {
             max-width: 1140px;
@@ -239,10 +239,6 @@
             display: block;
             color: var(--text-main);
         }
-        .hero-title em {
-            color: var(--primary);
-            font-weight: 400;
-        }
         .hero-subtitle {
             font-size: 15.5px;
             color: var(--text-muted);
@@ -251,7 +247,7 @@
             line-height: 1.65;
         }
         
-        /* Prettier Action Buttons (Độc đáo & Đẹp mắt hơn) */
+        /* Prettier Action Buttons */
         .hero-actions {
             display: flex;
             gap: 16px;
@@ -989,7 +985,7 @@
                     <span class="bento-tag">Hệ thống</span>
                     <div class="bento-body">
                         <div class="bento-num">Bài tập 1 / Mục 1.4</div>
-                        <h3 class="bento-title">Cơ bản về Tệp & Thư mục</h3>
+                        <h3 class="bento-title">Bài tập 1 của mục 1.4: Thao tác cơ bản với tệp tin và thư mục</h3>
                         <p class="bento-desc">Học cách làm việc chuẩn mực trên máy tính qua 12 thao tác Windows Explorer: cấu trúc cây thư mục logic, điều phối tệp tin và dọn dẹp hệ thống.</p>
                     </div>
                     <div class="bento-action">
@@ -1003,7 +999,7 @@
                     <span class="bento-tag">Học thuật</span>
                     <div class="bento-body">
                         <div class="bento-num">Bài tập 2 / Mục 2.4</div>
-                        <h3 class="bento-title">Khai thác & Đánh giá Nguồn tin</h3>
+                        <h3 class="bento-title">Bài tập 2 của mục 2.4: Tìm kiếm và đánh giá thông tin học thuật</h3>
                         <p class="bento-desc">Nghiên cứu chủ đề "Giáo dục trong thời đại số" thông qua 10 bài báo quốc tế uy tín (Nature, Springer, Taylor & Francis). Khảo sát kỹ lưỡng độ cập nhật, phương pháp luận nghiên cứu và phân loại mức độ tin cậy khoa học.</p>
                     </div>
                     <div class="bento-action">
@@ -1017,8 +1013,8 @@
                     <span class="bento-tag">Prompting</span>
                     <div class="bento-body">
                         <div class="bento-num">Bài tập 3 / Mục 3.4</div>
-                        <h3 class="bento-title">Kỹ nghệ thiết kế câu lệnh AI</h3>
-                        <p class="bento-desc">Thử nghiệm 3 tác vụ giáo dục thực tế (Tóm tắt UNESCO, diễn giải Growth Mindset, soạn đề thi Tiếng Thái ULIS) thông qua 3 cấp độ prompt từ cơ bản đến nâng cao. Khảo nghiệm sự chuyển dịch vượt bậc về tính học thuật học thuật và tính hệ thống của dữ liệu đầu ra từ AI.</p>
+                        <h3 class="bento-title">Bài tập 2 của mục 3.4: Viết Prompt hiệu quả cho các tác vụ học tập</h3>
+                        <p class="bento-desc">Thử nghiệm 3 tác vụ giáo dục thực tế (Tóm tắt UNESCO, diễn giải Growth Mindset, soạn đề thi Tiếng Thái ULIS) thông qua 3 cấp độ prompt từ cơ bản đến nâng cao. Khảo nghiệm sự chuyển dịch vượt bậc về tính học thuật và tính hệ thống của dữ liệu đầu ra từ AI.</p>
                     </div>
                     <div class="bento-action">
                         <span class="bento-tech">ChatGPT-4o / Prompt Engineering</span>
@@ -1031,7 +1027,7 @@
                     <span class="bento-tag">Cộng tác</span>
                     <div class="bento-body">
                         <div class="bento-num">Bài tập 4 / Mục 4.4</div>
-                        <h3 class="bento-title">Hợp tác nhóm & Quản lý số</h3>
+                        <h3 class="bento-title">Bài tập 3 của mục 4.4: Sử dụng công cụ cộng tác trực tuyến cho dự án nhóm</h3>
                         <p class="bento-desc">Phối hợp nhóm trực tuyến hiệu quả thông qua Trello và Google Docs để hoàn thiện dự án môn Nhập môn Việt ngữ. Rèn luyện kỹ năng phân bổ tiến độ và tháo gỡ xung đột trực tuyến.</p>
                     </div>
                     <div class="bento-action">
@@ -1045,7 +1041,7 @@
                     <span class="bento-tag">Đạo đức</span>
                     <div class="bento-body">
                         <div class="bento-num">Bài tập 6 / Mục 6.4</div>
-                        <h3 class="bento-title">Liêm chính Học thuật AI</h3>
+                        <h3 class="bento-title">Bài tập 4 của mục 6.4: Sử dụng AI có trách nhiệm trong học tập và nghiên cứu</h3>
                         <p class="bento-desc">Nghiên cứu sâu sắc chính sách Khung năng lực AI 2025 của VNU, đối chiếu với Harvard/Oxford và thiết lập bộ nguyên tắc ứng xử cá nhân 30/70 khi đồng tương tác với trí tuệ nhân tạo.</p>
                     </div>
                     <div class="bento-action">
@@ -1059,7 +1055,7 @@
                     <span class="bento-tag">Sáng tạo</span>
                     <div class="bento-body">
                         <div class="bento-num">Bài tập 5 / Mục 5.4</div>
-                        <h3 class="bento-title">Đồng tạo tác Nội dung & Học liệu</h3>
+                        <h3 class="bento-title">Bài tập 2 của mục 5.4: Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung</h3>
                         <p class="bento-desc">Ứng dụng đa công cụ AI (Gemini, DALL-E, Canva) để thiết kế Infographic "Chùa Một Cột". Đồng thời, trực tiếp biên soạn giáo án cá nhân hóa "Sustainable Tourism" trình độ CEFR B1 cho học sinh học ngành Du lịch với đầy đủ đoạn đọc sâu và các bài luyện tập phong phú.</p>
                     </div>
                     <div class="bento-action">
@@ -1414,7 +1410,7 @@
                 title: "Kỹ nghệ thiết kế Prompt chuyên sâu đa tác vụ",
                 content: `
                     <div class="modal-alert">
-                        <strong>Mục tiêu bài tập:</strong> Khảo sát và tối ưu hóa câu lệnh AI qua 3 cấp độ (Cơ bản - Cải tiến - Nâng cao) áp dụng vào 3 tác vụ học thuật thực tế để so sánh trực quan hiệu quả đầu ra của AI.
+                        <strong>Mục tiêu bài tập:</strong> Khảo sát và tối ưu hóa câu lệnh AI qua 3 cấp độ (Cơ bản - Cải tiến - Nâng cao) áp dụng vào 3 tác vụ học tập thực tế để so sánh trực quan và đo lường khách quan hiệu quả đầu ra của AI.
                     </div>
 
                     <div class="modal-tabs">
@@ -1425,32 +1421,54 @@
 
                     <!-- Task 1 Tab -->
                     <div class="modal-tab-content active" id="task1">
-                        <h5>Phát triển Prompt tóm tắt UNESCO AI:</h5>
+                        <h5>Quá trình phát triển Prompt tóm tắt UNESCO AI:</h5>
                         <ul>
-                            <li><strong>Prompt Cơ bản:</strong> <code>Hãy tóm tắt bài viết về AI trong giáo dục của UNESCO tại đường dẫn https://www.unesco.org/en/digital-education/artificial-intelligence.</code>
-                                <br><em>Kết quả đầu ra:</em> Một đoạn văn bản ngắn, chỉ đề cập chung chung đến việc AI cải thiện chất lượng học tập và nâng cao tính bình đẳng giáo dục.
+                            <li><strong>Prompt Cơ bản:</strong> <code>https://www.unesco.org/en/digital-education/artificial-intelligence Hãy tóm tắt bài viết về AI trong giáo dục của UNESCO.</code>
+                                <br><em>Kết quả đầu ra:</em> "Bài viết của UNESCO cho rằng trí tuệ nhân tạo (AI) có tiềm năng cải thiện chất lượng giáo dục, đổi mới phương pháp dạy và học, đồng thời hỗ trợ đạt được Mục tiêu Phát triển Bền vững số 4 về giáo dục. AI có thể giúp cá nhân hóa việc học, hỗ trợ giáo viên, mở rộng cơ hội tiếp cận tri thức và thúc đẩy học tập suốt đời."
                             </li>
-                            <li><strong>Prompt Cải tiến:</strong> <code>Hãy tóm tắt bài viết "Artificial Intelligence in Education" của UNESCO bằng tiếng Việt trong khoảng 200 từ. Trình bày rõ theo các mục: Vai trò của AI trong giáo dục, Thách thức của AI, Quan điểm của UNESCO, Các giải pháp được đề xuất.</code>
-                                <br><em>Kết quả đầu ra:</em> Văn bản có cấu trúc rõ ràng hơn với 4 đầu mục được yêu cầu nhưng văn phong còn đơn thuần, thiếu tính lý luận sâu sắc.
+                            <li><strong>Prompt Cải tiến:</strong> <code>Hãy tóm tắt bài viết "Artificial Intelligence in Education" của UNESCO bằng tiếng Việt trong khoảng 200 từ. Trình bày theo các mục: - Vai trò của AI trong giáo dục - Thách thức của AI - Quan điểm của UNESCO - Các giải pháp/chính sách được đề xuất</code>
+                                <br><em>Kết quả đầu ra:</em> 
+                                <br><strong>- Vai trò của AI trong giáo dục:</strong> AI giúp cá nhân hóa việc học, hỗ trợ học sinh học theo năng lực và tốc độ riêng. Công nghệ này còn hỗ trợ giáo viên trong việc chấm bài, quản lý lớp học và xây dựng tài liệu giảng dạy. Ngoài ra, AI góp phần mở rộng cơ hội tiếp cận giáo dục cho những khu vực thiếu tài nguyên học tập.
+                                <br><strong>- Thách thức của AI:</strong> Bên cạnh lợi ích, AI cũng đặt ra nhiều vấn đề như nguy cơ mất quyền riêng tư dữ liệu, thiếu công bằng trong tiếp cận công nghệ và khả năng phụ thuộc quá mức vào máy móc. Sự chênh lệch về điều kiện công nghệ giữa các quốc gia có thể làm gia tăng bất bình đẳng giáo dục.
+                                <br><strong>- Quan điểm của UNESCO:</strong> UNESCO cho rằng AI cần được phát triển theo hướng "lấy con người làm trung tâm". Công nghệ phải hỗ trợ giáo viên và người học thay vì thay thế hoàn toàn vai trò của con người. Đồng thời, việc sử dụng AI cần đảm bảo đạo đức, minh bạch và công bằng.
+                                <br><strong>- Các giải pháp/chính sách được đề xuất:</strong> UNESCO khuyến khích các quốc gia xây dựng khung pháp lý và chính sách quản lý AI trong giáo dục. Tổ chức này cũng đề xuất đào tạo kỹ năng AI cho giáo viên, nâng cao nhận thức của học sinh và thúc đẩy hợp tác quốc tế nhằm sử dụng AI một cách an toàn, hiệu quả.
                             </li>
-                            <li><strong>Prompt Nâng cao (Kỹ thuật Role & Constraint Prompting):</strong> <code>Bạn là một chuyên gia nghiên cứu giáo dục số. Hãy đọc bài viết "Artificial Intelligence in Education" của UNESCO và thực hiện: Tóm tắt nội dung chính dưới 200 từ, chia thành các phần tiêu đề rõ ràng chỉ ra cơ hội của AI, rủi ro và đạo đức học thuật, định hướng lâu dài của UNESCO. Kết thúc bằng một nhận xét ngắn đánh giá sắc sảo của bạn về vai trò của AI trong tương lai giáo dục. Yêu cầu: văn phong học thuật, sâu sắc, hoàn toàn không sao chép nguyên văn.</code>
-                                <br><em>Kết quả đầu ra:</em> Phân tích rất sâu sắc triết lý "AI lấy con người làm trung tâm" của UNESCO. Nêu bật việc AI hỗ trợ cá nhân hóa học tập song song với thách thức rò rỉ quyền riêng tư và gia tăng bất bình đẳng công nghệ toàn cầu.
+                            <li><strong>Prompt Nâng cao (Kỹ thuật Role & Constraint Prompting):</strong> <code>Bạn là một chuyên gia nghiên cứu giáo dục số. Hãy đọc bài viết "Artificial Intelligence in Education" của UNESCO và thực hiện: Tóm tắt nội dung trong 200 từ. Chia thành các mục có tiêu đề rõ ràng chỉ ra: cơ hội của AI, rủi ro và vấn đề đạo đức, định hướng của UNESCO. Kết thúc bằng nhận xét đánh giá về vai trò của AI trong tương lai giáo dục. Yêu cầu: Văn phong học thuật, Ngắn gọn nhưng có chiều sâu, Không sao chép nguyên văn tài liệu.</code>
+                                <br><em>Kết quả đầu ra:</em>
+                                <br><strong>1. Cơ hội của AI trong giáo dục:</strong> UNESCO cho rằng trí tuệ nhân tạo (AI) có tiềm năng thúc đẩy đổi mới giáo dục và hỗ trợ thực hiện Mục tiêu Phát triển Bền vững số 4 (SDG 4). AI giúp cá nhân hóa quá trình học tập, hỗ trợ học sinh học theo năng lực riêng và giảm tải công việc hành chính cho giáo viên. Đồng thời, công nghệ này mở rộng cơ hội tiếp cận tri thức cho các khu vực thiếu nguồn lực, thúc đẩy học tập suốt đời và nâng cao hiệu quả quản lý giáo dục.
+                                <br><strong>2. Rủi ro và vấn đề đạo đức:</strong> Bên cạnh lợi ích, UNESCO nhấn mạnh rằng AI cũng kéo theo nhiều thách thức nghiêm trọng như bất bình đẳng công nghệ, xâm phạm quyền riêng tư dữ liệu và nguy cơ thiên vị thuật toán. Việc phụ thuộc quá mức vào AI có thể làm suy giảm vai trò của giáo viên và giá trị tương tác con người trong giáo dục. Ngoài ra, sự phát triển nhanh của AI đang vượt trước các chính sách quản lý và khung pháp lý hiện hành.
+                                <br><strong>3. Định hướng của UNESCO:</strong> UNESCO theo đuổi cách tiếp cận "lấy con người làm trung tâm", nhấn mạnh rằng AI phải phục vụ con người thay vì thay thế con người. Tổ chức này đề cao các nguyên tắc công bằng, hòa nhập, minh bạch và đạo đức trong ứng dụng AI vào giáo dục. UNESCO cũng khuyến khích phát triển năng lực AI cho cả giáo viên và học sinh nhằm chuẩn bị cho xã hội số trong tương lai.
+                                <br><strong>4. Nhận xét đánh giá:</strong> Trong tương lai, AI sẽ trở thành công cụ quan trọng giúp chuyển đổi giáo dục theo hướng linh hoạt và cá nhân hóa hơn. Tuy nhiên, hiệu quả của AI phụ thuộc vào khả năng xây dựng chính sách phù hợp và duy trì vai trò trung tâm của con người trong quá trình dạy học. Nếu được quản lý đúng cách, AI không chỉ hỗ trợ giáo dục mà còn góp phần thúc đẩy bình đẳng tri thức trên quy mô toàn cầu.
                             </li>
                         </ul>
                     </div>
 
                     <!-- Task 2 Tab -->
                     <div class="modal-tab-content" id="task2">
-                        <h5>Phát triển Prompt giải nghĩa "Growth Mindset":</h5>
+                        <h5>Quá trình phát triển Prompt giải nghĩa "Growth Mindset":</h5>
                         <ul>
                             <li><strong>Prompt Cơ bản:</strong> <code>Growth Mindset là gì?</code>
-                                <br><em>Kết quả đầu ra:</em> Định nghĩa ngắn gọn của giáo sư Carol Dweck về việc niềm tin nỗ lực giúp phát triển trí thông minh của con người.
+                                <br><em>Kết quả đầu ra:</em> "Growth Mindset là khái niệm do Carol Dweck phát triển, dùng để chỉ tư duy cho rằng năng lực và trí thông minh của con người có thể được cải thiện thông qua nỗ lực, luyện tập và học hỏi."
                             </li>
-                            <li><strong>Prompt Cải tiến:</strong> <code>Hãy giải thích khái niệm Growth Mindset cho đối tượng học sinh, sinh viên bằng ngôn ngữ dễ hiểu. Nội dung bao gồm: Định nghĩa, Đặc điểm của người có Growth Mindset, Ví dụ thực tế trong học tập, Sự khác biệt cơ bản với Fixed Mindset.</code>
-                                <br><em>Kết quả đầu ra:</em> Nội dung sư phạm trực quan hơn, có lấy ví dụ về việc một học sinh bị điểm kém môn Toán đã nỗ lực làm bài tập để tiến bộ thay vì bỏ cuộc.
+                            <li><strong>Prompt Cải tiến:</strong> <code>Hãy giải thích khái niệm Growth Mindset cho học sinh sinh viên bằng ngôn ngữ dễ hiểu. Bao gồm: Định nghĩa, Đặc điểm, Ví dụ thực tế, Sự khác biệt với Fixed Mindset</code>
+                                <br><em>Kết quả đầu ra:</em>
+                                <br>Growth Mindset là "tư duy phát triển", tức là niềm tin rằng khả năng, trí thông minh và kỹ năng của con người có thể cải thiện nhờ học tập, luyện tập và cố gắng. Khái niệm này được nghiên cứu bởi Carol Dweck.
+                                <br><strong>Đặc điểm của Growth Mindset:</strong> Người có Growth Mindset thường không ngại thử thách, xem thất bại là cơ hội để học hỏi, kiên trì khi gặp khó khăn, luôn muốn cải thiện bản thân và sẵn sàng lắng nghe góp ý để tiến bộ. Họ tin rằng thành công không chỉ dựa vào tài năng bẩm sinh mà còn phụ thuộc vào sự nỗ lực và quá trình rèn luyện.
+                                <br><strong>Ví dụ thực tế:</strong> Một học sinh bị điểm thấp môn Toán. Nếu có Growth Mindset, bạn ấy sẽ nghĩ: "Mình chưa giỏi môn này nhưng nếu luyện tập thêm thì sẽ tiến bộ." Sau đó, bạn chăm chỉ học và kết quả được cải thiện. Thay vì sợ sai, người có tư duy phát triển xem sai lầm là bước cần thiết để học tốt hơn.
+                                <br><strong>Sự khác biệt với Fixed Mindset:</strong> Fixed Mindset là "tư duy cố định", cho rằng năng lực của mỗi người gần như không thay đổi. Ví dụ: Fixed Mindset nghĩ "Mình không giỏi nên cố cũng vô ích", còn Growth Mindset nghĩ "Mình có thể tiến bộ nếu cố gắng". Người có Fixed Mindset thường sợ thất bại nên dễ bỏ cuộc, trong khi người có Growth Mindset thường kiên trì và tích cực học hỏi hơn.
                             </li>
-                            <li><strong>Prompt Nâng cao (Kỹ thuật Role & Structured Prompting):</strong> <code>Bạn là giảng viên tâm lý giáo dục dày dặn kinh nghiệm. Hãy giải thích khái niệm "Growth Mindset" cho sinh viên đại học theo cấu trúc chi tiết: Định nghĩa học thuật khoa học, Bảng so sánh sắc nét với Fixed Mindset, Tác động cụ thể tới động lực học tập, Ví dụ thực tế trong giảng đường đại học và 5 phương pháp rèn luyện Growth Mindset mỗi ngày. Yêu cầu: ví dụ sinh động, văn phong sư phạm truyền cảm hứng, dễ tiếp thu.</code>
-                                <br><em>Kết quả đầu ra:</em> Giáo án hoàn chỉnh và chuyên sâu. Giải thích rõ việc Growth Mindset thúc đẩy sinh viên đối mặt với áp lực học tập và đề xuất 5 cách rèn luyện (thay đổi cách nhìn nhận lỗi sai, tập trung vào quá trình, sử dụng ngôn ngữ tích cực "chưa thể", tiếp nhận phản hồi từ giảng viên và đặt mục tiêu nhỏ mỗi ngày).
+                            <li><strong>Prompt Nâng cao (Kỹ thuật Role & Structured Prompting):</strong> <code>Bạn là giảng viên tâm lý học giáo dục. Hãy giải thích khái niệm "Growth Mindset" cho sinh viên đại học theo cấu trúc: Định nghĩa học thuật, So sánh với Fixed Mindset, Ảnh hưởng tới việc học tập, Ví dụ thực tế trong môi trường đại học, Cách rèn luyện Growth Mindset. Yêu cầu: Có ví dụ cụ thể, Giải thích logic, Văn phong học thuật nhưng dễ hiểu.</code>
+                                <br><em>Kết quả đầu ra:</em>
+                                <br><strong>1. Định nghĩa học thuật:</strong> Growth Mindset là khái niệm do Carol Dweck đề xuất, dùng để chỉ niềm tin rằng năng lực, trí thông minh và kỹ năng của con người có thể phát triển thông qua nỗ lực, chiến lược học tập phù hợp và quá trình rèn luyện lâu dài. Theo quan điểm này, thất bại không phải là phản ánh giới hạn cố định của cá nhân mà là một phần của quá trình học tập và cải thiện bản thân.
+                                <br><strong>2. So sánh với Fixed Mindset:</strong> Fixed Mindset cho rằng trí thông minh và năng lực là yếu tố bẩm sinh, khó thay đổi. Người mang tư duy cố định thường né tránh thử thách vì sợ thất bại làm giảm giá trị bản thân. Ngược lại, người có Growth Mindset xem khó khăn là cơ hội phát triển. Họ chấp nhận sai sót, chủ động tiếp thu phản hồi và kiên trì hơn trong học tập. Điểm khác biệt cốt lõi nằm ở cách nhìn nhận thất bại: Fixed Mindset xem thất bại là bằng chứng của sự kém cỏi, còn Growth Mindset xem đó là dữ liệu để tiến bộ.
+                                <br><strong>3. Ảnh hưởng tới việc học tập:</strong> Growth Mindset có tác động tích cực đến động lực học tập, khả năng tự điều chỉnh và tính kiên trì của sinh viên. Khi tin rằng năng lực có thể cải thiện, sinh viên thường chủ động tìm kiếm các chiến lược học tập mới khi gặp khó khăn, thay vì bỏ cuộc. Điều này giúp nâng cao hiệu quả học tập và chuẩn bị tốt cho cả xã hội liên tục thay đổi.
+                                <br><strong>4. Ví dụ thực tế trong môi trường đại học...</strong>
+                                <br><strong>5. Cách rèn luyện Growth Mindset:</strong> 
+                                <br>- Thay đổi cách nhìn về thất bại: Xem lỗi sai là cơ hội học hỏi thay vì dấu hiệu của sự yếu kém.
+                                <br>- Tập trung vào quá trình thay vì chỉ kết quả cuối cùng.
+                                <br>- Sử dụng ngôn ngữ tích cực như "mình chưa làm được" thay cho "mình không làm được".
+                                <br>- Chủ động tiếp nhận phản hồi từ giảng viên và bạn học.
+                                <br>- Đặt mục tiêu cải thiện từng bước thay vì kỳ vọng thành công ngay lập tức.
                             </li>
                         </ul>
                     </div>
@@ -1460,135 +1478,107 @@
                         <h5>Thiết kế Prompt ôn tập Tiếng Thái cuối kì tại ULIS:</h5>
                         <ul>
                             <li><strong>Prompt Cơ bản:</strong> <code>Hãy tạo câu hỏi ôn tập môn tiếng Thái cơ sở 2.</code>
-                                <br><em>Kết quả đầu ra:</em> Hệ thống đưa ra 10 câu hỏi ngữ pháp dịch từ đơn lẻ, thiếu định hướng và tính liên kết.
+                                <br><em>Kết quả đầu ra:</em> 
+                                <br><strong>Phần 1. Từ vựng:</strong> 1. Hãy viết nghĩa tiếng Việt của các từ sau: นักศึกษา, อาหาร, โรงพยาบาล, จังหวัด, สนามบิน. 
+                                <br><strong>2. Dịch sang tiếng Thái:</strong> Tôi thích học tiếng Thái, Hôm nay thời tiết rất nóng, Bạn đang đi đâu?, Tôi muốn ăn cơm chiên, Chủ nhật tôi không phải đi học. 
+                                <br><strong>3. Điền từ thích hợp vào chỗ trống:</strong> ฉัน _____ ภาษาไทยทุกวัน, วันนี้อากาศ _____ มาก, เขาไป _____ กับเพื่อน.
                             </li>
-                            <li><strong>Prompt Cải tiến:</strong> <code>Hãy tạo khoảng 20 câu hỏi ôn tập cuối kỳ cho môn Tiếng Thái cơ sở 2 của sinh viên trường ULIS. Nội dung bao quát các phần: Từ vựng, Ngữ pháp cơ bản, Dịch câu Việt-Thái và Hội thoại giao tiếp hằng ngày.</code>
-                                <br><em>Kết quả đầu ra:</em> Trình bày được 20 câu hỏi có đánh số, chia thành 4 phần rõ rệt theo mô hình ôn thi nhưng câu hỏi còn khá thô, chưa bám sát chương trình.
+                            <li><strong>Prompt Cải tiến:</strong> <code>Hãy tạo khoảng 20 câu hỏi ôn tập cuối kì cho môn Tiếng Thái cơ sở 2 của ULIS. Bao gồm: Từ vựng, Ngữ pháp, Dịch câu, Hội thoại, Đọc hiểu</code>
+                                <br><em>Kết quả đầu ra:</em>
+                                <br><strong>I. Từ vựng:</strong> 1. "อาหาร" nghĩa là gì? 2. Dịch "thư viện" sang tiếng Thái. 3. "เหนื่อย" nghĩa là gì? 4. Điền từ: ฉันไป _____ กับเพื่อน. 5. Dịch "du lịch" sang tiếng Thái.
+                                <br><strong>II. Ngữ pháp:</strong> 6. Đặt câu với "อยาก + V". 7. Đặt câu với "ต้อง + V". 8. Chuyển sang phủ định: ฉันเข้าใจภาษาไทย. 9. Hoàn thành: ถ้า ... จะ ... 10. Sắp xếp câu: ฉัน / ภาษาไทย / เรียน / ทุกวัน.
+                                <br><strong>III. Dịch câu:</strong> 11. Dịch sang tiếng Thái: "Tôi thích học tiếng Thái." 12. Dịch sang tiếng Thái: "Hôm nay trời thời tiết rất nóng." 13. Dịch sang tiếng Việt: เขาไปตลาดกับเพื่อน. 14. Dịch sang tiếng Việt: พรุ่งนี้ฉันจะไปมหาวิทยาลัย.
+                                <br><strong>IV. Hội thoại:</strong> 15. Viết 4 câu hội thoại hỏi đường. 16. Viết đoạn hội thoại gọi món ăn. 17. Trả lời câu hỏi: คุณชื่ออะไร. 18. Trả lời câu hỏi: คุณมาจากประเทศอะไร.
+                                <br><strong>V. Đọc hiểu:</strong> Đọc đoạn văn: วันนี้สมหญิงไปมหาวิทยาลัย เธอเรียนภาษาไทยและกินข้าวกับเพื่อน. 19. สมหญิงไปไหน? 20. เธอทำอะไรกับเพื่อน?
                             </li>
-                            <li><strong>Prompt Nâng cao (Kỹ thuật Task Decomposition & Constraint Prompting):</strong> <code>Bạn là giảng viên môn Tiếng Thái tại ULIS. Hãy thiết kế đề cương ôn tập cuối kỳ cho môn "Tiếng Thái cơ sở 2". Yêu cầu đề cương gồm khoảng 20 câu bám sát khung giáo trình ULIS, phân chia thành các phần rõ rệt: Phần I. Phụ âm kép & Thanh điệu (Đọc và xác định âm); Phần II. Từ vựng chủ đề nghề nghiệp (Dịch thuật từ vựng); Phần III. Ngữ pháp cơ bản (Đặt câu với cấu trúc ngữ pháp học trong giáo trình); Phần IV. Dịch câu (Dịch thuật Việt-Thái & Thái-Việt); Phần V. Đọc hiểu ngắn (Đọc đoạn văn Thái ngữ và trả lời câu hỏi). Yêu cầu trình bày chuyên nghiệp, tương đương độ khó đề thi cuối kì chính thức và đính kèm đầy đủ bộ đáp án chi tiết cuối bài.</code>
-                                <br><em>Kết quả đầu ra:</em> Một bộ đề thi chuẩn hóa có độ phân loại tốt. Bao quát được các phụ âm kép tiếng Thái nâng cao, từ vựng chủ đề nghề nghiệp (bác sĩ, cảnh sát, kỹ sư...), cấu trúc ngữ pháp cơ bản, dịch câu đối chiếu Việt - Thái và đoạn văn đọc hiểu ngắn kèm đáp án chi tiết.
+                            <li><strong>Prompt Nâng cao (Kỹ thuật Task Decomposition & Constraint Prompting):</strong> <code>Bạn là giảng viên môn Tiếng Thái tại ULIS. Hãy thiết kế bộ câu hỏi ôn tập cuối kì cho môn "Tiếng Thái cơ sở 2". Yêu cầu: Khoảng 20 câu, Bám sát giáo trình ULIS, Bao gồm: Phụ âm kép, Thanh điệu, Từ vựng chủ đề nghề nghiệp, Ngữ pháp cơ bản, Dịch Việt-Thái và Thái-Việt, Đọc hiểu ngắn. Chia theo từng phần rõ ràng, Có đáp án cụ thể, Mức độ tương đương đề thi cuối kì.</code>
+                                <br><em>Kết quả đầu ra:</em> Đề cương chi tiết được phân rã thành:
+                                <br><strong>I. PHỤ ÂM KÉP & THANH ĐIỆU:</strong> 1. Đọc và xác định thanh điệu của các từ sau: พร้อม, กล้วย, ใคร, แพง. 2. Viết 3 từ có phụ âm kép thật. 3. Chọn từ có cách phát âm khác: A. ปลา...
+                                <br><strong>II. TỪ VỰNG - CHỦ ĐỀ NGHỀ NGHIỆP:</strong> 5. Dịch sang tiếng Việt: ครู, หมอ, พนักงานบริษัท, ตำรวจ. 6. Dịch sang tiếng Thái: kỹ sư, đầu bếp, sinh viên, ca sĩ. 7. Hoàn thành câu: พ่อ của tôi là _____...
+                                <br><strong>III. NGỮ PHÁP CƠ BẢN:</strong> 9. Đặt câu với: อยาก + V, Phủ định: ฉันเข้าใจ...
                             </li>
                         </ul>
                     </div>
 
                     <div class="modal-alert">
-                        <strong>Bài học rút ra:</strong> Việc ứng dụng Kỹ nghệ prompt giúp tớ tự biên soạn được ngân hàng câu hỏi phân hóa độ khó cực nhanh, đồng thời đóng vai trò trợ lý thông minh giúp tớ chấm điểm và đưa ra phản hồi bài làm hiệu quả cho học sinh.
+                        <strong>Bài học rút ra:</strong> Qua bài tập 3, tớ đã kiểm chứng thực tế rằng năng lực viết Prompt học thuật giúp tớ làm chủ AI rất tốt để ứng dụng vào khâu chuẩn bị tài liệu sư phạm phong phú, có sự phân hóa độ khó rõ rệt cho học sinh.
                     </div>
                 `
             },
             4: {
                 num: "Bài tập 4 / Mục 4.4",
-                title: "Quản trị Dự án trực tuyến nhóm Việt ngữ",
+                title: "Bài tập 3 của mục 4.4: Sử dụng công cụ cộng tác trực tuyến cho dự án nhóm",
                 content: `
                     <div class="modal-alert">
-                        <strong>Mục tiêu bài tập:</strong> Rèn luyện năng lực phối hợp làm việc nhóm trực tuyến và điều phối tiến trình công việc linh hoạt qua các nền tảng số để tối ưu hóa năng suất.
+                        <strong>Mục tiêu bài tập:</strong> Trau dồi kỹ năng quản trị dự án số, sử dụng thành thạo các công cụ cộng tác trực tuyến và học cách điều phối nhân sự, tháo gỡ xung đột nhóm trong không gian hybrid.
                     </div>
 
-                    <h5>Thông tin chi tiết dự án theo báo cáo:</h5>
+                    <h5>Nội dung chi tiết báo cáo công việc cá nhân:</h5>
+                    <p>Bài tập nhóm của tớ thuộc môn <strong>Nhập môn Việt ngữ</strong>, tập trung hoàn thiện dự án thiết kế học liệu lý thuyết và bài tập về cấu trúc <strong>"Phát ngôn nghi vấn trong tiếng Việt"</strong>.</p>
+                    
+                    <h5>Các công cụ số nhóm tớ đã ứng dụng:</h5>
                     <ul>
-                        <li><strong>Bối cảnh thực tế:</strong> Hoàn thiện bài nghiên cứu nhóm trực tuyến cho môn học <strong>Nhập môn Việt ngữ</strong> (đề tài phân tích cấu trúc phát ngôn nghi vấn trong tiếng Việt).</li>
-                        <li><strong>Công cụ số đã ứng dụng điều phối:</strong>
-                            <ul>
-                                <li><strong>Trello:</strong> Thiết lập bảng Kanban theo dõi công việc từ khâu phác thảo ý tưởng, phân vai biên soạn, duyệt văn phong cho đến khi xuất bản tệp tin. Giúp kiểm soát timeline trực quan nhất.</li>
-                                <li><strong>Google Docs:</strong> Đồng biên soạn học liệu trực tuyến đồng thời. Trưởng nhóm và các thành viên trực tiếp sử dụng tính năng nhận xét (comments) để chỉnh sửa lỗi ngữ nghĩa trong thời gian thực.</li>
-                                <li><strong>Messenger & Google Meet:</strong> Giao tiếp nhanh và tổ chức họp định kỳ để tháo gỡ bất đồng quan điểm nghiên cứu.</li>
-                            </ul>
-                        </li>
-                        <li><strong>Phần việc cá nhân tớ đảm nhiệm:</strong> Thiết lập sơ bộ timeline hoạt động trên bảng Trello; chịu trách nhiệm nghiên cứu sâu sắc và hoàn thiện 2 mục nội dung học thuật được nhóm trưởng phân công trên Google Docs; rà soát lỗi chính tả, dấu câu và chỉnh sửa cách trích dẫn nguồn theo đúng quy chuẩn khoa học.</li>
+                        <li><strong>Trello (Quản lý tiến độ):</strong> Trực tiếp thiết lập và theo dõi bảng Kanban công việc. Chia làm các cột nhiệm vụ từ khâu thiết lập timeline, phân vai thực hiện, sửa lỗi chính tả đến nộp file.</li>
+                        <li><strong>Google Docs (Cộng tác đồng thời):</strong> Toàn bộ nội dung bài tập được các thành viên biên soạn chung trên một tệp Google Doc trực tuyến. Trưởng nhóm trực tiếp để lại các comments nhận xét để chỉnh sửa từ ngữ ngay lập tức.</li>
+                        <li><strong>Messenger & Google Meet (Truyền thông trực tiếp):</strong> Sử dụng để trao đổi công việc nhanh hằng ngày và họp định kỳ để thống nhất nội dung thảo luận.</li>
                     </ul>
 
-                    <h5>Tổng kết khó khăn, thuận lợi & Giải pháp thực hành:</h5>
-                    <div class="modal-table-container">
-                        <table class="modal-table">
-                            <thead>
-                                <tr>
-                                    <th>Khó khăn gặp phải</th>
-                                    <th>Thuận lợi sẵn có</th>
-                                    <th>Giải pháp tháo gỡ thành công</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Thành viên phản hồi tin nhắn chậm, đôi lúc gây trễ tiến độ dự án.</td>
-                                    <td>Mọi người đều sở hữu kỹ năng tin học cơ bản tốt và sử dụng Google Docs rất thành thạo.</td>
-                                    <td>Nhóm trưởng chia nhỏ đầu việc, thống nhất khung giờ phản hồi tin nhắn cố định hằng ngày.</td>
-                                </tr>
-                                <tr>
-                                    <td>Xung đột quan điểm, cách trình bày báo cáo giữa các thành viên do học online.</td>
-                                    <td>Các công cụ trực tuyến (Google Meet, Trello) có giao diện dễ tiếp cận, miễn phí.</td>
-                                    <td>Tổ chức các buổi họp đồng bộ trực tiếp qua Meet để lắng nghe, bỏ phiếu thống nhất ý kiến chung.</td>
-                                </tr>
-                                <tr>
-                                    <td>Dễ phát sinh hiểu lầm khi giao tiếp không trực diện (qua tin nhắn).</td>
-                                    <td>Có sự định hướng, hỗ trợ và tài liệu hướng dẫn rất cụ thể của giảng viên phụ trách học phần.</td>
-                                    <td>Leader thường xuyên đôn đốc, cập nhật tiến độ công khai và tạo lập không gian đối thoại văn minh.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <h5>Nội dung tớ đã trực tiếp nghiên cứu và hoàn thiện trên Google Doc:</h5>
+                    <p>Tớ chịu trách nhiệm biên soạn 2 mục lớn được nhóm trưởng phân công bao gồm cấu trúc lý thuyết và ví dụ cho các phát ngôn nghi vấn dùng để hỏi về:
+                    <br>- Nơi chốn: <i>Đâu, ở đâu</i> (Ví dụ: "Bạn đang ở đâu thế?", "Chia khóa xe ở đâu vậy?")
+                    <br>- Thời gian: <i>Khi nào, bao giờ</i> (Ví dụ: "Khi nào bạn đi học vậy?", "Bao giờ cô ấy về?")
+                    <br>- Nguyên nhân/Lý do: <i>Vì sao, tại sao</i> (Ví dụ: "Vì sao bạn lại làm như thế?", "Tại sao trái đất lại quay quanh mặt trời?")
+                    <br>- Số lượng: <i>Mấy, bao nhiêu</i> (Ví dụ: "Hôm nay có bao nhiêu người vi phạm giao thông?", "Các bạn đi học quân sự mấy tuần vậy?")
+                    <br>- Mức độ, cách thức: <i>Như thế nào</i> (Ví dụ: "Bạn làm bài tập như thế nào?", "Ngày hôm nay của bạn như thế nào?")
+                    <br>- Lựa chọn: <i>Nào, A hay B</i> (Ví dụ: "Trong những cái này cậu thích cái nào?", "Giữa cà phê và trà, cô muốn chọn cái nào?")</p>
+
+                    <h5>Khó khăn gặp phải & Cách giải quyết từ báo cáo:</h5>
+                    <ul>
+                        <li><strong>Khó khăn:</strong> Thành viên phản hồi tin nhắn chậm gây ảnh hưởng trực tiếp đến tiến trình công việc; mỗi người một ý kiến và phong cách viết khác nhau nên khó thống nhất bố cục và phân chia nhiệm vụ; việc làm việc online đôi khi dễ gây hiểu lầm hoặc thiếu tính tương tác trực quan.</li>
+                        <li><strong>Cách giải quyết:</strong> Nhóm đã tổ chức các buổi họp trực tuyến đồng thời qua Google Meet để trực tiếp đối thoại và thống nhất ý kiến. Phân chia công việc cực kỳ chi tiết đến từng thành viên trên Trello và trưởng nhóm liên tục đôn đốc, nhắc nhở deadline để cả nhóm phối hợp nhịp nhàng, hoàn thành dự án đúng hạn.</li>
+                    </ul>
 
                     <div class="modal-alert">
-                        <strong>Bài học rút ra:</strong> Quá trình hợp tác số đòi hỏi mỗi cá nhân phải có tinh thần trách nhiệm cực kỳ cao, học cách ghi chép tiến độ rõ ràng và giao tiếp chân thành, khéo léo để tránh những hiểu lầm không đáng có khi làm việc từ xa.
+                        <strong>Bài học sư phạm rút ra:</strong> Quá trình cộng tác nhóm trực tuyến đòi hỏi tính kỷ luật cá nhân cao, quy trình phân công minh bạch và kỹ năng giao tiếp tôn trọng, thấu cảm để duy trì hòa khí của đội ngũ khi làm việc không trực diện.
                     </div>
                 `
             },
             5: {
                 num: "Bài tập 5 / Mục 5.4",
-                title: "Sáng tạo nội dung với AI tạo sinh",
+                title: "Bài tập 2 của mục 5.4: Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung",
                 content: `
                     <div class="modal-alert">
-                        <strong>Mục tiêu bài tập:</strong> Học cách kết hợp đa công cụ AI tạo ảnh và nội dung để đồng thiết kế học liệu ngoại ngữ trực quan và cá nhân hóa lộ trình bài học cho từng đối tượng học viên.
+                        <strong>Mục tiêu bài tập:</strong> Đồng sáng tạo nội dung truyền thông trực quan và thiết kế giáo án, học liệu ngoại ngữ cá nhân hóa đạt chuẩn sư phạm chuyên ngành bằng cách phối hợp đa dạng các công cụ AI.
                     </div>
 
                     <div class="modal-tabs">
-                        <button class="modal-tab-btn active" onclick="switchTab(event, 'infographic')">1. Infographic Chùa Một Cột</button>
-                        <button class="modal-tab-btn" onclick="switchTab(event, 'syllabus')">2. Giáo trình ESL B1 cá nhân hóa</button>
+                        <button class="modal-tab-btn active" onclick="switchTab(event, 'infographic')">Tác vụ 1: Infographic Chùa Một Cột</button>
+                        <button class="modal-tab-btn" onclick="switchTab(event, 'syllabus')">Tác vụ 2: Học liệu ESL CEFR B1</button>
                     </div>
 
                     <!-- Infographic Tab -->
                     <div class="modal-tab-content active" id="infographic">
-                        <h5>Quy trình đồng sáng tạo Infographic "Chùa Một Cột":</h5>
+                        <h5>Quy trình thực hiện & Đánh giá 3 công cụ AI theo báo cáo:</h5>
                         <ul>
-                            <li><strong>Bước 1: Biên soạn nội dung với Gemini:</strong> Sử dụng prompt yêu cầu Gemini xây dựng dàn ý chi tiết về Chùa Một Cột gồm: Tên gọi lịch sử, vị trí, kiến trúc độc đáo Một cột đá giữa hồ Linh Chiểu mô phỏng bông sen nở, ý nghĩa tâm linh và lưu ý tham quan du lịch.</li>
-                            <li><strong>Bước 2: Tạo sinh hình ảnh với DALL-E:</strong> Sử dụng câu lệnh mô tả khung cảnh Chùa Một Cột cổ kính giữa hồ sen nở rực rỡ để thu về các file đồ họa sắc nét, có giá trị thẩm mỹ cao để làm ảnh nền chủ đạo.</li>
-                            <li><strong>Bước 3: Thiết kế hoàn thiện với Canva:</strong> Sắp xếp bố cục văn bản, tối ưu hóa không gian trống (white space) và đồng bộ hệ thống icons minh họa để thu về bản thiết kế cuối cùng đạt tính thẩm mỹ cao.</li>
+                            <li><strong>Gemini (Biên tập văn bản):</strong> Tớ đã sử dụng câu lệnh yêu cầu Gemini phác thảo nội dung chi tiết giới thiệu di sản gồm: Lịch sử hình thành Chùa Một Cột năm 1049, kiến trúc Liên Hoa Đài độc đáo mô phỏng đóa sen nở trên cột đá giữa hồ Linh Chiểu, ý nghĩa tâm linh và hướng dẫn du lịch.
+                                <br><em>- Ưu điểm:</em> Bố cục rõ ràng, màu sắc hài hòa mang nét truyền thống, nội dung bao quát được lịch sử và kiến trúc.
+                                <br><em>- Hạn chế:</em> Lượng chữ còn khá dày, thiếu số liệu nổi bật, chưa nhấn mạnh đủ tính độc đáo của kiến trúc và cần rà soát lại thông tin lịch sử để đảm bảo độ chính xác.
+                            </li>
+                            <li><strong>DALL-E (Tạo sinh hình ảnh):</strong> Sử dụng prompt tả thực phong cảnh Chùa Một Cột cổ kính, tĩnh lặng giữa hồ sen rực rỡ để thiết lập hình ảnh đồ họa nền có giá trị thẩm mỹ cao.
+                                <br><em>- Ưu điểm:</em> Đồ họa sắc nét, tỷ lệ bố cục 50/50 hài hòa giữa chữ và ảnh, tông màu xanh-hồng-vàng mang lại cảm giác thanh tịnh đậm nét văn hóa tâm linh.
+                                <br><em>- Hạn chế:</em> Xuất hiện lỗi typography dính chữ và dấu câu tiếng Việt chưa chuẩn, dữ liệu giờ mở cửa/vé tham quan chưa đúng thực tế, thiếu sơ đồ vị trí trực quan.
+                            </li>
+                            <li><strong>Canva AI (Thiết kế hoàn thiện):</strong> Lựa chọn mẫu layout dọc trực quan, sắp xếp cấu trúc văn bản và icons đồng bộ để xuất bản infographic cuối cùng.
+                                <br><em>- Ưu điểm:</em> Hiểu rõ yêu cầu thiết kế văn hóa Việt Nam, tạo được nhiều mẫu đa dạng, phản hồi nhanh chóng khi người dùng báo lỗi.
+                                <br><em>- Hạn chế:</em> Đôi lúc gặp lỗi kỹ thuật không hiển thị đầy đủ trong lần đầu gọi lệnh, chưa chủ động gợi ý phong cách hay màu sắc chi tiết.
+                            </li>
                         </ul>
-
-                        <h5>Đánh giá chi tiết ưu điểm và hạn chế của các công cụ AI:</h5>
-                        <div class="modal-table-container">
-                            <table class="modal-table">
-                                <thead>
-                                    <tr>
-                                        <th>Hệ thống AI</th>
-                                        <th>Điểm mạnh vượt trội</th>
-                                        <th>Điểm hạn chế cần lưu ý</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Gemini</strong></td>
-                                        <td>Bố cục nội dung khoa học, mạch lạc, dễ theo dõi, hành văn bao quát tốt ý nghĩa lịch sử của di sản văn hóa.</td>
-                                        <td>Lượng chữ biên soạn còn khá dày, thiếu dữ liệu số liệu trực quan để thu hút người xem tức thì.</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>DALL-E</strong></td>
-                                        <td>Đồ họa sắc nét, tính thẩm mỹ xuất sắc, hệ màu phối hợp mang tính thiền thanh tịnh, tâm linh đặc thù tốt.</td>
-                                        <td>Gặp lỗi hiển thị chữ dính hoặc sai khoảng cách dấu câu (lỗi typography) do AI chưa xử lý văn bản tiếng Việt tối ưu.</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Canva AI</strong></td>
-                                        <td>Gợi ý nhiều khuôn mẫu đa dạng phù hợp với bối cảnh văn hóa Việt Nam, phản hồi chỉnh sửa rất nhanh chóng.</td>
-                                        <td>Công cụ đôi khi phát sinh lỗi hệ thống trong lần đầu gọi lệnh, chưa chủ động hỏi sâu về sở thích thiết kế của người dùng.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
 
                     <!-- Syllabus Tab -->
                     <div class="modal-tab-content" id="syllabus">
-                        <h5>Giáo trình ESL cá nhân hóa "Sustainable Tourism & Eco-travel":</h5>
-                        <p><strong>Bối cảnh thiết kế:</strong> Thiết kế bài giảng chuyên biệt dành riêng cho đối tượng học viên có trình độ Trung cấp (CEFR B1) định hướng phát triển từ vựng chuyên ngành du lịch và nâng cao kỹ năng phản biện.</p>
+                        <h5>Thiết kế học liệu tiếng Anh cá nhân hóa chủ đề "Sustainable Tourism":</h5>
+                        <p><strong>Bối cảnh sư phạm:</strong> Biên soạn cho học viên trình độ Trung cấp (CEFR B1) định hướng chuyên ngành Du lịch và nâng cao năng lực đọc hiểu sâu kết hợp lập luận phản biện.</p>
                         
                         <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:16px; margin:16px 0; font-family:monospace; font-size:12px;">
                             <strong>LEARNING MATERIAL: SUSTAINABLE TOURISM (CEFR B1)</strong><br><br>
@@ -1598,43 +1588,44 @@
                             In addition to protecting nature, <strong>sustainable</strong> tourism supports <strong>indigenous</strong> people. Instead of staying in international hotel chains, responsible travelers choose locally-owned guesthouses and buy authentic handmade souvenirs. This directly boosts the local economy and preserves traditional cultures. Many travelers have found that interacting with native communities makes their trips much more meaningful. Ultimately, every small choice we make can lead to a big positive change for our planet.
                         </div>
 
-                        <h5>Hệ thống câu hỏi kiểm tra đi kèm bài đọc:</h5>
+                        <h5>Hệ thống bài tập đi kèm bài đọc:</h5>
                         <ul>
-                            <li><strong>Part A: Vocabulary (MCQs):</strong> Khảo sát khả năng ghi nhớ từ vựng qua ngữ cảnh (chọn điền đúng các từ <i>conservation, biodiversity, indigenous...</i> vào câu hỏi).</li>
-                            <li><strong>Part B: Grammar:</strong> Điền khuyết kiểm tra khả năng chia động từ thì Hiện tại hoàn thành (Present Perfect) liên quan đến chủ đề bảo vệ sinh thái.</li>
-                            <li><strong>Part C: Speaking/Writing:</strong> Yêu cầu thảo luận nhóm phản biện về đề tài: "Chính phủ có nên giới hạn số lượng khách du lịch tại các kỳ quan thiên nhiên nhạy cảm hay không?"</li>
+                            <li><strong>Vocabulary (Multiple Choice):</strong> Thiết kế 3 câu hỏi trắc nghiệm rèn luyện từ vựng mục tiêu (ví dụ: điền đúng từ <i>conservation, biodiversity, indigenous...</i> dựa vào ngữ cảnh).</li>
+                            <li><strong>Grammar (Present Perfect):</strong> Thiết kế 3 câu hỏi điền khuyết rèn luyện chia động từ thì Hiện tại hoàn thành lồng ghép bối cảnh du lịch xanh.</li>
+                            <li><strong>Speaking & Writing Activities:</strong> Yêu cầu thảo luận nhóm phản biện về chủ đề: "Chính phủ có nên hạn chế lượng khách du lịch tại các kỳ quan thiên nhiên nhạy cảm để bảo vệ hệ sinh thái hay không?" và viết đoạn văn nghị luận 120-150 từ.</li>
                         </ul>
 
                         <div class="modal-alert">
-                            <strong>Phương án cải tiến sư phạm:</strong> Sau khi tiến hành thử nghiệm thực tế trên 2 học viên độc lập (Minh T. và Thị H.), tớ đã rút ra hành động cải tiến sâu sắc: Cần tăng cường độ phân hóa bài tập ngữ pháp (thêm bài tập viết lại câu khó hơn) và bắt buộc bổ sung bảng giải nghĩa từ vựng đính kèm phiên âm quốc tế (IPA Glossary) ngay dưới bài đọc để tối ưu hóa khả năng tự học của học viên.
+                            <strong>Khảo nghiệm thực tế & Cải tiến:</strong> Sau khi kiểm thử trên 2 người học độc lập (Minh T. và chị Thị H.), tớ đã rút ra phương án tối ưu giáo án: 1) Cần tăng cường tính phân hóa phần ngữ pháp bằng cách thêm bài viết lại câu thay vì điền từ đơn giản; 2) Bắt buộc đính kèm bảng tra cứu từ vựng (Glossary) có phiên âm quốc tế IPA ngay bên dưới bài đọc để tăng hiệu quả tự học của học viên.
                         </div>
                     </div>
                 `
             },
             6: {
                 num: "Bài tập 6 / Mục 6.4",
-                title: "Liêm chính học thuật và Sử dụng AI có trách nhiệm",
+                title: "Bài tập 4 của mục 6.4: Sử dụng AI có trách nhiệm trong học tập và nghiên cứu",
                 content: `
                     <div class="modal-alert">
-                        <strong>Mục tiêu bài tập:</strong> Thiết lập tư duy học thuật chuẩn mực và xây dựng ranh giới ứng xử đạo đức để làm chủ AI một cách thông minh, liêm chính.
+                        <strong>Mục tiêu bài tập:</strong> Thiết lập tư duy học thuật liêm chính, bảo vệ bản quyền sở hữu trí tuệ và đề xuất các nguyên tắc cá nhân giúp khai thác hiệu quả công nghệ thông minh một cách văn minh.
                     </div>
                     
-                    <h5>Nội dung nghiên cứu sâu sắc theo báo cáo:</h5>
+                    <h5>Nội dung chi tiết nghiên cứu đạo đức theo báo cáo:</h5>
                     <ul>
-                        <li><strong>Phân tích Khung năng lực AI 2025 của VNU:</strong> Tìm hiểu quyết định tích hợp học phần chuyển đổi số bắt buộc 3 tín chỉ (VNU1001) thay thế cho môn Tin học cơ sở truyền thống. Rút ra triết lý giáo dục nhân văn sâu sắc: Công nghệ không được phép thay thế vị trí của giáo viên đứng lớp mà đóng vai trò củng cố, thúc đẩy năng lực sáng tạo của con người.</li>
-                        <li><strong>Đối chiếu chính sách học thuật quốc tế:</strong> So sánh quy định liêm chính học thuật số của VNU với các trường đại học hàng đầu thế giới như Harvard và Oxford. Nhận thấy điểm tương đồng lớn là đều đặt tính trung thực khoa học lên hàng đầu, nhưng VNU có xu hướng linh hoạt hóa quy định để thúc đẩy sinh viên ứng dụng thực tiễn công nghệ vào thị trường lao động số tại Việt Nam.</li>
+                        <li><strong>Nghiên cứu Khung năng lực AI VNU 2025:</strong> Nghiên cứu quyết định ban hành khung năng lực của ĐHQGHN (tháng 11/2025) và chuyển đổi môn Tin học cơ sở thành học phần "Nhập môn công nghệ số và ứng dụng AI" (3 tín chỉ). Đồng thời, thấu suốt triết lý nhân văn sâu sắc: AI được tích hợp để trợ lực nâng cao năng lực sáng tạo của sinh viên chứ không được thay thế tư duy độc lập của con người.</li>
+                        <li><strong>Đối chiếu chính sách học thuật quốc tế:</strong> So sánh quy định liêm chính học thuật số của VNU với các trường đại học hàng đầu như Harvard và Oxford. Rút ra điểm tương đồng lớn là đều đặt tính trung thực khoa học lên hàng đầu, nhưng VNU có xu hướng linh hoạt hóa để thúc đẩy tính ứng dụng thực tiễn trong bối cảnh thị trường lao động số tại Việt Nam.</li>
+                        <li><strong>Thực thi nhiệm vụ kết hợp tư duy cá nhân:</strong> Thực hành lập dàn ý bài luận về giải pháp thích ứng biến đổi khí hậu tại Đồng bằng sông Cửu Long (mô hình lúa - tôm). Tớ đã chủ động phản biện và bác bỏ một số giải pháp mang tính lý thuyết suông của AI, thay vào đó là bổ sung các số liệu thực tế địa phương thu thập được năm 2024 để tăng tính thực tiễn cho bài nghiên cứu.</li>
                     </ul>
 
-                    <h5>Chi tiết Bộ nguyên tắc ứng xử cá nhân 30/70 (Code of Conduct):</h5>
+                    <h5>Hệ thống 4 Quy tắc ứng xử cá nhân 30/70 (Code of Conduct):</h5>
                     <ol>
-                        <li><strong>Tư duy độc lập đi trước (Think first):</strong> Luôn bắt buộc bản thân phải phác thảo đề cương giáo án, lập dàn ý thô bằng chất xám cá nhân trước khi tìm đến sự hỗ trợ của các mô hình ngôn ngữ lớn (AI).</li>
-                        <li><strong>Quy tắc tỷ lệ vàng 30/70:</strong> Đảm bảo AI chỉ đóng vai trò tối đa 30% trong khâu khơi gợi ý tưởng ban đầu hoặc tra cứu, 70% nội dung phân tích chi tiết, lập luận và diễn đạt văn phong phải hoàn toàn do cá nhân tớ biên soạn độc lập.</li>
+                        <li><strong>Tư duy trước khi gõ (Think first):</strong> Luôn bắt buộc bản thân tự lập dàn ý thô bằng chất xám cá nhân trước khi tìm đến sự hỗ trợ của AI.</li>
+                        <li><strong>Quy tắc tỷ lệ vàng 30/70:</strong> Đảm bảo AI chỉ đóng vai trò tối đa 30% trong khâu khơi gợi ý tưởng ban đầu hoặc tra cứu; 70% nội dung phân tích chi tiết, lập luận và diễn đạt văn phong phải hoàn toàn do cá nhân tớ biên soạn độc lập.</li>
                         <li><strong>Luôn kiểm chứng nguồn tin (Fact-check):</strong> Mọi số liệu thực tế do AI cung cấp bắt buộc phải được tớ đối chiếu chéo với các nguồn học thuật chính thống uy tín để loại trừ lỗi ảo tưởng dữ liệu rác của máy tính.</li>
                         <li><strong>Minh bạch trích dẫn:</strong> Công khai rõ ràng mức độ, phạm vi có sự hỗ trợ của công cụ AI trong các bài báo cáo khoa học theo đúng quy chuẩn trích dẫn quốc tế APA/MLA.</li>
                     </ol>
 
                     <div class="modal-alert" style="background: rgba(124, 95, 209, 0.08);">
-                        <strong>Bài học rút ra:</strong> Liêm chính học thuật trong việc dùng AI giúp tớ bảo vệ tư duy sư phạm độc lập của bản thân, không bị rơi vào hiện tượng thụ động lười suy nghĩ và tăng tính chuyên môn khi tích hợp công nghệ giảng dạy Anh ngữ.
+                        <strong>Bài học rút ra:</strong> Hãy luôn coi trí tuệ nhân tạo là "Co-pilot" (người cùng lái) mẫn cán chứ không bao giờ xem AI là "Auto-pilot" (chế độ tự lái). Trách nhiệm cuối cùng đối với sự chính xác và giá trị học thuật của bài viết luôn thuộc về chính bản thân người học.
                     </div>
                 `
             }
